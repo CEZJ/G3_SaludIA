@@ -1,114 +1,286 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
 
-body{
-  background-color: rgb(82, 151, 151);
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  max-width: 100vw;
-}
 
-:root{
-  --darkBlue: #101022;
-  --bannerClr: #539dff;
-  --greenMln: #118f74;
-  --pltColorTwo: #77d6e7;
-}
-
-/*navegtion bar*/
-
-header{
-  color: #fff;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: fixed;
-  width: 100vw;
-  height: 11.5%;
-  z-index: 1000;
-  transition: 0.6s;
-}
-
-.btns{
-  display: none;
-}
-
-.log-cnt_rw{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 15%;
-}
-
-.logo_ttl{
-  font-size: 1.1em;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.nav_txt{
-  letter-spacing: 1.5px;
-  font-size: 1.1em;
-}
-
-.alingTxt{
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.img-logo{
-  position: relative;
-  border-radius: 9vh;
-  width: 100%;
-  margin-left: -5px;
-  height: 65%;
-}
-
-.nav_bar{
-  list-style: none;
+/* === SECCIÓN ¿QUIÉNES SOMOS? === */
+.banner {
+  background: linear-gradient(180deg, #539dff 60%, #77d6e7);
+  color: #000;
   text-align: center;
-  text-transform: uppercase;
-  font-weight: bolder;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 80px 20px 100px;
 }
 
-.nav_bar ul li{
+/* Título principal */
+.banner .ttlFrstQst {
+  font-size: 3.5em;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* Texto introductorio */
+.banner .Frstxt {
+  font-size: 1.2em;
+  font-weight: 500;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.5em;
+}
+
+/* Imagen centrada */
+.banner .imgMedic_ctn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.banner .imgMedic_ctn img {
+  width: 60%;
+  max-width: 700px;
+  height: auto;
+}
+
+/* Contenedor de misión y visión */
+.banner .mrInfApp {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Cuadros de texto */
+.banner .txt_mng {
+  width: 40%;
+  min-width: 300px;
+  text-align: center;
+}
+
+.banner .txt_cnt h3 {
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.banner .txt_cnt p {
+  font-size: 1.1em;
+  line-height: 1.6em;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* --- Responsivo (móvil) --- */
+@media (max-width: 768px) {
+  .banner .ttlFrstQst {
+    font-size: 2.2em;
+  }
+
+  .banner .Frstxt {
+    font-size: 1em;
+  }
+
+  .banner .imgMedic_ctn img {
+    width: 90%;
+  }
+
+  .banner .mrInfApp {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner .txt_mng {
+    width: 80%;
+  }
+
+  .banner .txt_cnt h3 {
+    font-size: 1.6em;
+  }
+
+  .banner .txt_cnt p {
+    font-size: 1em;
+  }
+}
+
+/* === SECCIÓN ¿CÓMO FUNCIONA SAI? === */
+.pageFunt {
+  background: linear-gradient(180deg, #2619a5 0%, #3770d8 50%, #64aef0 100%);
+  color: #000;
+  text-align: center;
+  padding: 100px 20px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Título */
+.pageFunt h3 {
+  font-size: 2.4em;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+/* Video centrado */
+.pageFunt iframe {
+  width: 70%;
+  max-width: 800px;
+  height: 450px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  margin-bottom: 40px;
+}
+
+/* Botón */
+.pageFunt .linkVd {
+  display: inline-block;
+  text-decoration: none;
+  background: #0038ff;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  padding: 14px 50px;
+  border-radius: 40px;
+  transition: 0.3s ease;
+}
+
+.pageFunt .linkVd:hover {
+  background: #001b99;
+}
+
+/* SVG decorativo (parte inferior derecha) */
+.pageFunt .svgCtn svg {
+  position: absolute;
+  bottom: 0;
+  right: 4%;
+  width: 400px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .pageFunt iframe {
+    width: 80%;
+    height: 380px;
+  }
+
+  .pageFunt .svgCtn svg {
+    width: 280px;
+    right: 2%;
+  }
+}
+
+@media (max-width: 768px) {
+  .pageFunt {
+    padding: 80px 10px 60px;
+  }
+
+  .pageFunt iframe {
+    width: 90%;
+    height: 300px;
+  }
+
+  .pageFunt h3 {
+    font-size: 1.8em;
+  }
+
+  .pageFunt .linkVd {
+    font-size: 1em;
+    padding: 12px 40px;
+  }
+
+  .pageFunt .svgCtn svg {
+    width: 180px;
+    opacity: 0.5;
+  }
+}
+
+
+
+/*footer*/
+
+.footer-ctn{
+  background-color: #101022;
+  bottom: 0;
+}
+
+.footer-ctn .footer-ctn_hdr{
+  padding: 1.5%;
+}
+
+.footer-ctn .footer-ctn_hdr .ftr_hdr_terms li{
   list-style: none;
   display: inline-block;
-  padding: 20px;
-  margin-right: 2pc;
+  margin-left: 3%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fff;
 }
 
-.nav_bar ul li a{
+
+.footer-ctn .footer-ctn_hdr .ftr_hdr_terms li a{
   text-decoration: none;
+  color: #0000ff;
+}
+
+.footer-ctn .footer-ctn_hdr .ftr_hdr_terms li a:hover{
+  color: #5252d6;
+}
+
+
+.footer-ctn .info-ctn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  font-weight: 400;
+}
+
+.footer-ctn .info-ctn .nameApp{
+  font-size: 300%;
+  letter-spacing: 2px;
+  margin-bottom: 1.5%;
+}
+
+.footer-ctn .info-ctn .app_lst-ctn ul li{
+  list-style: none;
+  display: inline-block;
+  font-size: 200%;
+  margin: 0 1.5% 1.5% 2%;
+}
+
+.footer-ctn .info-ctn .app_lst-ctn ul li a{
   color: #f0f8ff;
-  transition: 0.6s;
 }
 
-.nav_bar ul li a:hover{
-  text-decoration: underline;
+.footer-ctn .info-ctn .app_lst-ctn ul .fcb a:hover{
+  color: #0000ff;
 }
 
-.sticky{
-  background-color: rgb(65, 92, 167);
-  height: 7.5%;
+.footer-ctn .info-ctn .app_lst-ctn ul .wht a:hover{
+  color: #21b828;
 }
 
-.sticky .log-cnt_rw,
-.sticky ul li a{
-  color: #f0f8ff;
+.footer-ctn .info-ctn .app_lst-ctn ul .ytb a:hover{
+  color: #d41515;
 }
 
-.sticky .img-logo{
-  width: 75%;
-  margin-left: 0px;
+.footer-ctn .info-ctn .ubi-ctn span{
+  margin-bottom: 10px;
 }
+
+.footer-ctn .info-ctn .dnwl_app-ctn ul li{
+  list-style: none;
+  display: inline-block;
+}
+
+.footer-ctn .info-ctn .dnwl_app-ctn ul li img{
+  width: 120px;
+}
+
+.footer-ctn .info-ctn .end_ftr{
+  font-size: 12px;
+  opacity: 80%;
+  color: #5a5656;
+}
+
+
+
+
+
+

@@ -1,9 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 
-// Opción A (recomendada): si instalaste por npm -> npm i scrollreveal
-// import ScrollReveal from 'scrollreveal';
 
-// Opción B (con CDN): si cargaste <script src="https://unpkg.com/scrollreveal"></script> en index.html
 declare const ScrollReveal: any;
 
 @Component({
@@ -14,7 +11,6 @@ declare const ScrollReveal: any;
 export class InicioComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
-    // Si usas npm, descomenta la import de arriba y borra la línea declare. Ambas opciones funcionan.
     const sr = ScrollReveal();
 
     sr.reveal('.imgMedic_ctn', {
