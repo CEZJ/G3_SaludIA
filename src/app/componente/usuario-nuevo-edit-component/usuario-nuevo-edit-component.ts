@@ -15,7 +15,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Usuario} from '../../model/usuario';
 import {MatHint, MatFormField, MatLabel} from '@angular/material/form-field';
 @Component({
-  selector: 'app-proveedor-nuevo-edit-component',
+  selector: 'app-ubicacion-nuevo-edit-component',
   imports: [
     MatCard,
     MatCardTitle,
