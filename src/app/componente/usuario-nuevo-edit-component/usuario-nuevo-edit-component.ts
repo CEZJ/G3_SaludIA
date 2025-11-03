@@ -51,8 +51,8 @@ export class UsuarioNuevoEditComponent {
       idUsuario: [''],
       nombre: ['', Validators.required],
       fechaNacimiento: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      ubicacion: ['', Validators.required]
     })
   }
 
@@ -73,8 +73,8 @@ export class UsuarioNuevoEditComponent {
           idUsuario: data.idUsuario,
           nombre: data.nombre,
           fechaNacimiento: data.fechaNacimiento,
-          correo: data.correo,
-          password: data.password,
+          email: data.email,
+          ubicacion: data.ubicacion,
         });
       });
     }

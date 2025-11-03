@@ -1,5 +1,5 @@
 <mat-card class="example-card">
-  <mat-card-title>Formulario de Usuario</mat-card-title>
+  <mat-card-title>Formulario de Perfil</mat-card-title>
   <mat-card-content>
     <form [formGroup]="usuarioForm" class="form-container" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
@@ -14,12 +14,12 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Correo</mat-label>
-        <input matInput formControlName="correo" placeholder="Ingrese su correo" />
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Ingrese su email" />
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password" placeholder="Ingrese su password" />
+        <mat-label>Ubicacion</mat-label>
+        <input matInput formControlName="ubicacion" placeholder="Ingrese su ubicacion" />
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary">Registrar</button>
     </form>
