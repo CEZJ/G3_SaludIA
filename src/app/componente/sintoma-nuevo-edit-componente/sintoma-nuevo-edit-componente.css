@@ -1,8 +1,18 @@
-.example-card{
-  margin: 0 auto;
-  width: 600px;
-}
-.form-container{
+.example-section-flex {
   display: flex;
-  flex-direction: column;
+  gap: 20px; /* Espacio entre las dos columnas */
+}
+
+.column {
+  flex: 1; /* Hace que cada columna ocupe la mitad del espacio */
+  display: flex;
+  flex-direction: column; /* Apila los checkboxes verticalmente */
+  gap: 12px; /* Espacio entre checkboxes dentro de la columna */
+}
+h2 {
+  text-align: center;
+}
+.example-button-row {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
 }
