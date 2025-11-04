@@ -1,18 +1,269 @@
+/* Estilos generales */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Panel izquierdo: Asistente */
+.sidebar {
+  flex: 2;
+  background-color: #031837;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sidebar h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+}
+
+/* Sección de checkboxes */
 .example-section-flex {
   display: flex;
-  gap: 20px; /* Espacio entre las dos columnas */
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 2rem;
 }
 
 .column {
-  flex: 1; /* Hace que cada columna ocupe la mitad del espacio */
   display: flex;
-  flex-direction: column; /* Apila los checkboxes verticalmente */
-  gap: 12px; /* Espacio entre checkboxes dentro de la columna */
+  flex-direction: column;
+  gap: 0.7rem;
 }
-h2 {
-  text-align: center;
+
+mat-checkbox {
+  color: #ffffff;
 }
+/*cambia la letras a blanco*/
+::ng-deep .mat-mdc-checkbox label,
+::ng-deep .mat-mdc-checkbox .mdc-label {
+  color: #ffffff !important;
+}
+
+
+.example-margin {
+  margin: 0.2rem 0;
+}
+
+
+
+.analyze-btn {
+  background-color: #3b7b57;
+  color: white;
+  font-size: 1rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.analyze-btn:hover {
+  background-color: #2f5e45;
+}
+
+/* Botón de análisis */
 .example-button-row {
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
+  justify-content: center;
 }
+
+
+/* Panel derecho: Chat */
+.chat-section {
+  flex: 1;
+  background-color: #0a0e1a;
+  padding: 10.5rem;
+  border-left: 0.5px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat-box h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+}
+
+.chat-list p {
+  background-color: #1e293b;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.chat-list p:hover {
+  background-color: #5b6f8e;
+}
+
+/* --- Panel derecho: Chat (BLOQUE COMPLETAMENTE NUEVO) --- */
+
+/* Contenedor principal del panel derecho */
+.chat-section {
+  flex: 1;
+  background-color: #031837; /* Color de fondo azul oscuro de la imagen */
+  padding: 2rem 2.5rem; /* Menos padding que antes */
+  border-left: 0.5px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea todo arriba */
+  position: relative;
+}
+
+/* 1. Encabezado (título 'Chat' + Toggle) */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.chat-header h3 {
+  font-size: 1.2rem;
+  color: #e2e8f0;
+  margin: 0; /* Quita margen por defecto */
+}
+
+/* 2. Estilos para el Toggle Switch */
+.toggle-switch-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 50px; /* Ancho del switch */
+  height: 28px;
+  background-color: #031837; /* Fondo del switch */
+  border: 1px solid #5b6f8e; /* Borde del switch */
+  border-radius: 14px; /* Totalmente redondeado */
+  cursor: pointer;
+}
+
+.toggle-input {
+  display: none; /* Oculta el checkbox real */
+}
+
+/* El círculo que se desliza */
+.toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background-color: #fdd835; /* Color amarillo del sol */
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icono de Sol (dentro del slider) */
+.sun-icon {
+  width: 16px;
+  height: 16px;
+  color: #031837; /* Color oscuro para el ícono de sol */
+}
+
+/* Icono de Luna (fuera del slider, a la derecha) */
+.moon-icon {
+  position: absolute;
+  right: 5px;
+  width: 16px;
+  height: 16px;
+  color: #94a3b8; /* Color grisáceo */
+}
+
+/* Lógica de movimiento del toggle */
+.toggle-input:checked + .toggle-slider {
+  transform: translateX(22px); /* Mueve el círculo a la derecha */
+  background-color: #94a3b8; /* Cambia el color del círculo a gris (modo noche) */
+}
+
+/* Cuando está checkeado, el sol se oculta (opcional) */
+.toggle-input:checked + .toggle-slider .sun-icon {
+  display: none;
+}
+
+/* 3. Título "Recientes" */
+.recent-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 1rem;
+}
+
+/* 4. Caja de Chat */
+.chat-box {
+  border: 1px solid #1e293b; /* Borde de la caja */
+  border-radius: 16px; /* Bordes bien redondeados */
+  padding: 1rem 1.5rem; /* Ajuste de padding */
+  background-color: transparent; /* Sin fondo */
+}
+
+.chat-item {
+  color: #cbd5e1;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0.8rem 0; /* Añade padding para más espacio */
+}
+
+.chat-divider {
+  border: none;
+  border-top: 1px solid #1e293b; /* Línea divisoria */
+  margin: 0;
+}
+
+/* 5. Links inferiores */
+.footer-links {
+  margin-top: auto; /* Empuja los links al fondo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem; /* Espacio en el fondo */
+}
+
+.install-link {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.comments-link {
+  color: #6366f1; /* Color morado/índigo de la imagen */
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+
+
+

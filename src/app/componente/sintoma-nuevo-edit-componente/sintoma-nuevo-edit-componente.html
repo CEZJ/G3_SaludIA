@@ -1,28 +1,88 @@
-<h2>¿Qué sintomas siente actualmente?</h2>
-<section class="example-section-flex">
+<body>
+<div class="container">
+  <aside class="sidebar">
+    <h1>Asistente virtual</h1>
+    <p class="description">
+      Para recibir un diagnóstico, responda el siguiente cuestionario
+    </p>
 
-  <div class="column">
-    <mat-checkbox class="example-margin">Fiebre o temperatura alta</mat-checkbox>
-    <mat-checkbox class="example-margin">Tos</mat-checkbox>
-    <mat-checkbox class="example-margin">Congestión nasal</mat-checkbox>
-    <mat-checkbox class="example-margin">Dolor de garganta</mat-checkbox>
-    <mat-checkbox class="example-margin">Estornudos frecuentes</mat-checkbox>
-    <mat-checkbox class="example-margin">Dolores musculares</mat-checkbox>
-    <mat-checkbox class="example-margin">Fatiga o cansancio extremo</mat-checkbox>
-    <mat-checkbox class="example-margin">Escalofrios</mat-checkbox>
+    <h2>¿Qué síntomas siente actualmente?</h2>
+    <section class="example-section-flex">
+      <div class="column">
+        <mat-checkbox class="example-margin">Fiebre o temperatura alta</mat-checkbox>
+        <mat-checkbox class="example-margin">Tos</mat-checkbox>
+        <mat-checkbox class="example-margin">Congestión nasal</mat-checkbox>
+        <mat-checkbox class="example-margin">Dolor de garganta</mat-checkbox>
+        <mat-checkbox class="example-margin">Estornudos frecuentes</mat-checkbox>
+        <mat-checkbox class="example-margin">Dolores musculares</mat-checkbox>
+        <mat-checkbox class="example-margin">Fatiga o cansancio extremo</mat-checkbox>
+        <mat-checkbox class="example-margin">Escalofríos</mat-checkbox>
+      </div>
+      <div class="column">
+        <mat-checkbox class="example-margin">Dolor de cabeza fuerte</mat-checkbox>
+        <mat-checkbox class="example-margin">Mareo o desorientación</mat-checkbox>
+        <mat-checkbox class="example-margin">Nauseas o vomitos</mat-checkbox>
+        <mat-checkbox class="example-margin">Diarrea</mat-checkbox>
+        <mat-checkbox class="example-margin">Dolor abdominal</mat-checkbox>
+        <mat-checkbox class="example-margin">Pérdida de olfato o gusto</mat-checkbox>
+        <mat-checkbox class="example-margin">Dolor o ardor abdominal</mat-checkbox>
+      </div>
+    </section>
+
+    <section class="example-button-row">
+      <button matButton="filled" class="analyze-btn">
+        Analizar mis sintomas
+      </button>
+    </section>
+  </aside>
+
+  <<section class="chat-section">
+  <div class="chat-header">
+    <h3>Chat</h3>
+
+    <label class="toggle-switch-label">
+      <input type="checkbox" class="toggle-input" />
+      <span class="toggle-slider">
+        <svg
+          class="sun-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM5.106 17.834a.75.75 0 001.06 1.06l1.591-1.59a.75.75 0 00-1.06-1.061l-1.591 1.59zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.166 5.106a.75.75 0 00-1.06 1.06l1.59 1.591a.75.75 0 101.061-1.06l-1.59-1.591z"
+          />
+        </svg>
+      </span>
+      <svg
+        class="moon-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 008.25-4.5z"
+        />
+      </svg>
+    </label>
   </div>
 
-  <div class="column">
-    <mat-checkbox class="example-margin">Dolor de cabeza fuerte</mat-checkbox>
-    <mat-checkbox class="example-margin">Mareo o desorientación</mat-checkbox>
-    <mat-checkbox class="example-margin">Nauseas o vomitos</mat-checkbox>
-    <mat-checkbox class="example-margin">Diarrea</mat-checkbox>
-    <mat-checkbox class="example-margin">Dolor abdominal</mat-checkbox>
-    <mat-checkbox class="example-margin">Pérdida de olfato o gusto</mat-checkbox>
+  <h2 class="recent-title">Recientes</h2>
+
+  <div class="chat-box">
+    <p class="chat-item">Chat 1</p>
+    <hr class="chat-divider" />
+    <p class="chat-item">Chat 2</p>
+  </div>
+
+  <div class="footer-links">
+    <a href="#" class="install-link">Instala el plan</a>
+    <a href="#" class="comments-link">Comentarios y Asesoramiento</a>
   </div>
 </section>
-<section>
-  <div class="example-button-row">
-    <button matButton="filled">Analizar mis sintomas</button>
-  </div>
-</section>
+
+
