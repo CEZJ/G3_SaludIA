@@ -31,7 +31,7 @@ import {Router} from '@angular/router';
     MatRow,
     MatRowDef,
     MatPaginator,
-    DatePipe,
+    //DatePipe,
     MatSortHeader
   ],
   templateUrl: './sintoma-listar-componente.html',
