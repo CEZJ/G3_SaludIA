@@ -6,6 +6,7 @@ import {InicioComponent} from './componente/inicio-component/inicio-component';
 import {SintomaNuevoEditComponente} from './componente/sintoma-nuevo-edit-componente/sintoma-nuevo-edit-componente';
 import {UbicacionListarComponent} from './componente/ubicacion-listar-component/ubicacion-listar-component';
 import {SintomaListarComponente} from './componente/sintoma-listar-componente/sintoma-listar-componente';
+import {LoginComponent} from './componente/login-component/login-component';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent, pathMatch: 'full' },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'sintoma', component: SintomaListarComponente},
   { path: 'nuevo-edit-sintoma', component: SintomaNuevoEditComponente},
   { path: 'acerca', component: AcercaComponent},
+  { path: 'login', component: LoginComponent},
 ];
