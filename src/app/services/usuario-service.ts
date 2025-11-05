@@ -15,6 +15,19 @@ export interface RegisterRequest {
   direccion: string;
 }
 
+// --- ¡NUEVO! Interfaz para el DTO de Login ---
+export interface AuthRequest {
+  username: string;
+  password: string;
+}
+
+// --- ¡NUEVO! Interfaz para la Respuesta del Login ---
+export interface AuthResponse {
+  jwt: string;
+  roles: string[];
+}
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,10 +39,15 @@ export class UsuarioService {
   private httpClient = inject(HttpClient);
   constructor() {}
 
+  // --- ¡NUEVO MÉTODO DE LOGIN! ---
+  login(credentials: AuthRequest): Observable<AuthResponse> {
+    // Llama a /api/authenticate y espera un JSON (AuthResponse)
+    return this.httpClient.post<AuthResponse>(`${this.url}/authenticate`, credentials);
+  }
+
   // --- MÉTODO DE REGISTRO (Endpoint público) ---
   register(userData: RegisterRequest): Observable<any> {
     // Llama a /api/register y espera una respuesta de TEXTO
-    // Ruta: http://localhost:8080/api/register
     return this.httpClient.post(`${this.url}/register`, userData, { responseType: 'text' });
   }
 

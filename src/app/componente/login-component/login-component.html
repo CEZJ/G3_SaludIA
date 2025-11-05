@@ -1,1 +1,45 @@
-<p>login-component works!</p>
+<div class="form-container">
+
+  <mat-card>
+    <div class="logo-container">
+      <img src="assets/img/REGISTER%201.png" alt="Logo de la App">
+    </div>
+
+    <mat-card-title>
+      Iniciar Sesión
+    </mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input matInput formControlName="username" type="email">
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Requerido</mat-error>
+          <mat-error *ngIf="loginForm.get('username')?.hasError('email')">Email no válido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Requerido</mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button
+                class="login-button"
+                type="submit"
+                [disabled]="loading || loginForm.invalid">
+          {{ loading ? 'Ingresando...' : 'Ingresar' }}
+        </button>
+
+      </form>
+
+      <div class="register-link">
+        ¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+  <div class="illustration"></div>
+</div>
