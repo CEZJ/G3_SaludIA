@@ -1,8 +1,33 @@
-.example-card{
-  margin: 0 auto;
-  width: 600px;
+/* Centra el formulario en la página */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px; /* Añade un poco de espacio en los bordes */
 }
-.form-container{
+
+/* Define el ancho máximo de la tarjeta del formulario */
+mat-card {
+  width: 100%;
+  max-width: 500px; /* Puedes ajustar este valor */
+}
+
+/* Hace que el formulario use flexbox para ordenarse verticalmente */
+form {
   display: flex;
   flex-direction: column;
+}
+
+/* Hace que todos los campos de formulario ocupen el ancho completo */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 5px; /* Un pequeño espacio entre campos */
+}
+
+/* Estiliza el botón de envío */
+button {
+  width: 100%;
+  padding: 20px 0; /* Lo hace un poco más alto */
+  font-size: 1.1em;
+  margin-top: 10px; /* Espacio antes del botón */
 }

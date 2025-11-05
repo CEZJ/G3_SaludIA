@@ -1,28 +1,83 @@
-<mat-card class="example-card">
-  <mat-card-title>Formulario de Perfil</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="usuarioForm" class="form-container" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill">
-        <mat-label>Nombre</mat-label>
-        <input matInput formControlName="nombre" placeholder="Ingrese su nombre" />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Fecha Nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" placeholder=“Fecha“/>
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" placeholder="Ingrese su email" />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Ubicacion</mat-label>
-        <input matInput formControlName="ubicacion" placeholder="Ingrese su ubicacion" />
-      </mat-form-field>
-      <button type="submit" mat-raised-button color="primary">Registrar</button>
-    </form>
-  </mat-card-content>
-</mat-card>
+<div class="form-container">
 
+  <mat-card>
+    <mat-card-title>Crear Nuevo Perfil</mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" placeholder="Ej. Ana">
+          <mat-error *ngIf="usuarioForm.get('nombre')?.hasError('required')">
+            El nombre es obligatorio
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email (Usuario)</mat-label>
+          <input matInput formControlName="username" type="email" placeholder="ana@correo.com">
+          <mat-error *ngIf="usuarioForm.get('username')?.hasError('required')">
+            El email es obligatorio
+          </mat-error>
+          <mat-error *ngIf="usuarioForm.get('username')?.hasError('email')">
+            El formato del email no es válido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="password" type="password" placeholder="Mínimo 8 caracteres">
+          <mat-error *ngIf="usuarioForm.get('password')?.hasError('required')">
+            La contraseña es obligatoria
+          </mat-error>
+          <mat-error *ngIf="usuarioForm.get('password')?.hasError('minlength')">
+            Debe tener al menos 8 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="usuarioForm.get('fechaNacimiento')?.hasError('required')">
+            La fecha es obligatoria
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Provincia</mat-label>
+          <input matInput formControlName="provincia" placeholder="Ej. Lima">
+          <mat-error *ngIf="usuarioForm.get('provincia')?.hasError('required')">
+            La provincia es obligatoria
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Distrito</mat-label>
+          <input matInput formControlName="distrito" placeholder="Ej. Miraflores">
+          <mat-error *ngIf="usuarioForm.get('distrito')?.hasError('required')">
+            El distrito es obligatorio
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Dirección</mat-label>
+          <input matInput formControlName="direccion" placeholder="Ej. Av. Principal 123">
+          <mat-error *ngIf="usuarioForm.get('direccion')?.hasError('required')">
+            La dirección es obligatoria
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="loading || usuarioForm.invalid">
+          {{ loading ? 'Registrando...' : 'Crear Perfil' }}
+        </button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
