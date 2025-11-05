@@ -5,13 +5,11 @@ import {AcercaComponent} from './componente/acerca-component/acerca-component';
 import {InicioComponent} from './componente/inicio-component/inicio-component';
 import {SintomaNuevoEditComponente} from './componente/sintoma-nuevo-edit-componente/sintoma-nuevo-edit-componente';
 import {UbicacionListarComponent} from './componente/ubicacion-listar-component/ubicacion-listar-component';
-import {UbicacionNuevoEditComponent} from './componente/ubicacion-nuevo-edit-component/ubicacion-nuevo-edit-component';
 import {SintomaListarComponente} from './componente/sintoma-listar-componente/sintoma-listar-componente';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent, pathMatch: 'full' },
   { path: 'ubicacion', component: UbicacionListarComponent},
-  { path: 'nuevo-edit-ubicacion', component: UbicacionNuevoEditComponent},
   { path: 'usuarios', component: UsuarioListarComponent},
   { path: 'nuevo-edit', component: UsuarioNuevoEditComponent},
   { path: 'sintoma', component: SintomaListarComponente},
