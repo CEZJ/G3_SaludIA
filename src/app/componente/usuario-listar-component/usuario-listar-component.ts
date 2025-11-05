@@ -36,7 +36,7 @@ import {Router} from '@angular/router';
   styleUrl: './usuario-listar-component.css',
 })
 export class UsuarioListarComponent {
-  displayedColumns: string[] = ['idUsuario', 'nombre', 'fechaNacimiento', 'correo', 'password'];
+  displayedColumns: string[] = ['idUsuario', 'nombre', 'fechaNacimiento', 'email', 'ubicacion'];
   dataSource: MatTableDataSource<Usuario> = new MatTableDataSource<Usuario>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
