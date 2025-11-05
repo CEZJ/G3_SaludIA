@@ -1,33 +1,182 @@
-/* Centra el formulario en la página */
-.form-container {
+/* --- Fondo y Contenedor Principal --- */
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px; /* Añade un poco de espacio en los bordes */
+  min-height: 100vh;
+  width: 100%;
+  /* Fondo con gradiente sutil de tu paleta de verdes */
+  background: linear-gradient(135deg, #f5fcf9 0%, #e8f5e9 100%);
+  padding: 40px 20px;
+  box-sizing: border-box;
+  position: relative; /* Necesario para la ilustración */
+  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
-/* Define el ancho máximo de la tarjeta del formulario */
+/* --- La Tarjeta --- */
 mat-card {
   width: 100%;
-  max-width: 500px; /* Puedes ajustar este valor */
+  max-width: 550px; /* <-- ¡AJUSTADO! (Antes 450px) */
+  padding: 2.5em 3em !important; /* Más espaciado interno */
+  border-radius: 20px !important; /* Esquinas más suaves */
+
+  /* Sombra más moderna y suave, con tu tinte verde */
+  box-shadow: 0 20px 40px -10px rgba(0, 80, 30, 0.1) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.7); /* Borde blanco sutil */
+
+  /* Animación de entrada */
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Hace que el formulario use flexbox para ordenarse verticalmente */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Logo y Título --- */
+.logo-container {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.logo-container img {
+  width: 70px;
+  height: 70px;
+  /* Sombra sutil para el logo */
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+}
+mat-card-title {
+  text-align: center;
+  font-size: 2em; /* Más grande */
+  font-weight: 600; /* Más grueso */
+  color: #222;
+  letter-spacing: 0.5px; /* Tipografía moderna */
+  margin-bottom: 1.5em !important;
+}
+
+/* --- Campos del Formulario (Inputs) --- */
 form {
   display: flex;
   flex-direction: column;
 }
-
-/* Hace que todos los campos de formulario ocupen el ancho completo */
 mat-form-field {
   width: 100%;
-  margin-bottom: 5px; /* Un pequeño espacio entre campos */
+  margin-bottom: 10px; /* Más espacio */
 }
 
-/* Estiliza el botón de envío */
-button {
+/* ::ng-deep para estilizar componentes internos de Material */
+/* Borde del campo (outline) */
+::ng-deep .mat-mdc-form-field .mdc-notched-outline > * {
+  border-color: #dce3de !important; /* Borde gris-verde claro */
+  transition: border-color 0.3s ease;
+}
+::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline > * {
+  border-color: #38A84A !important; /* Verde al pasar el mouse */
+}
+/* Etiqueta (Label) */
+::ng-deep .mat-mdc-form-field .mdc-floating-label {
+  color: #777;
+}
+
+/* Estilos de Focus (cuando se hace clic) */
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-floating-label {
+  color: #38A84A !important; /* Tu verde principal */
+}
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline > * {
+  border-width: 2px !important;
+  border-color: #38A84A !important;
+}
+
+/* Colores del Datepicker */
+::ng-deep .mat-datepicker-toggle .mat-icon-button,
+::ng-deep .mat-calendar-body-selected {
+  color: #38A84A !important;
+  background-color: #e8f5e9 !important;
+}
+
+/* --- Botón y Enlace --- */
+.register-button {
   width: 100%;
-  padding: 20px 0; /* Lo hace un poco más alto */
+  padding: 22px 0 !important; /* Botón más alto */
   font-size: 1.1em;
-  margin-top: 10px; /* Espacio antes del botón */
+  font-weight: 600; /* Texto más grueso */
+  margin-top: 20px;
+  border-radius: 12px; /* Esquinas suaves */
+  border: none;
+
+  /* ¡Gradiente innovador! */
+  background: linear-gradient(90deg, #38A84A 0%, #2a7d3a 100%) !important;
+  color: white !important;
+
+  /* Sombra del botón */
+  box-shadow: 0 8px 15px -5px rgba(56, 168, 74, 0.4);
+  transition: all 0.3s ease;
+}
+
+.register-button:hover:not(:disabled) {
+  transform: translateY(-3px); /* Efecto de "levantar" */
+  box-shadow: 0 12px 20px -5px rgba(56, 168, 74, 0.5);
+}
+
+.register-button:disabled {
+  background: #e0e0e0 !important;
+  box-shadow: none;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 2em;
+  font-size: 0.95em;
+  color: #555;
+}
+.login-link a {
+  color: #38A84A;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+.login-link a:hover {
+  color: #2a7d3a;
+  text-decoration: underline;
+}
+
+
+/* --- Ilustración Decorativa --- */
+.illustration {
+  position: absolute; /* Flota en la página */
+  bottom: -20px;
+  right: -30px;
+  width: 400px;
+  height: 350px;
+  background-image: url('/assets/img/REGISTER 1.png'); /* ¡Asegúrate que esta ruta sea correcta! */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  z-index: 0; /* Detrás de la tarjeta */
+
+  /* Animación de entrada */
+  animation: slideIn 1.2s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Responsividad para Móviles --- */
+@media (max-width: 900px) {
+  /* Oculta la ilustración en pantallas pequeñas */
+  .illustration {
+    display: none;
+  }
+  /* Ajusta el padding para móviles */
+  :host {
+    align-items: flex-start;
+    padding: 20px 10px;
+  }
+  mat-card {
+    padding: 2em 1.5em !important;
+    max-width: 100%; /* Ocupa todo el ancho en móviles */
+  }
 }
