@@ -1,56 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Necesario para directivas
-
-// --- 1. IMPORTA LOS MÓDULOS DE MATERIAL QUE FALTAN ---
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-
-// (Probablemente también necesites tu servicio e interfaz de Sintoma)
-// import { Sintoma } from '../../model/sintoma';
-// import { SintomaService } from '../../services/sintoma-service';
-
+import {Component, inject, ViewChild} from '@angular/core';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable, MatTableDataSource
+} from '@angular/material/table';
+import {MatSort, MatSortHeader} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+import {DatePipe} from '@angular/common';
+import {Sintoma} from '../../model/sintoma';
+import {SintomaService} from '../../services/sintoma-service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-sintoma-listar-componente',
-  standalone: true, // <-- Tu componente es standalone
-
-  // --- 2. AÑADE LOS MÓDULOS AL ARRAY DE 'imports' ---
   imports: [
-    CommonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
-    // (Añade aquí otros módulos que uses, como MatInputModule, MatButtonModule, etc.)
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCell,
+    MatHeaderCellDef,
+    MatCell,
+    MatCellDef,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRow,
+    MatRowDef,
+    MatPaginator,
+    //DatePipe,
+    MatSortHeader
   ],
   templateUrl: './sintoma-listar-componente.html',
-  styleUrls: ['./sintoma-listar-componente.css']
+  styleUrl: './sintoma-listar-componente.css',
 })
-export class SintomaListarComponente implements OnInit {
-
-  // --- 3. DECLARA LAS PROPIEDADES QUE EL HTML NECESITA ---
-
-  // El HTML te pedía 'dataSource'
-  // (Reemplaza 'any' con tu modelo, ej: MatTableDataSource<Sintoma>)
-  dataSource = new MatTableDataSource<any>();
-
-  // El HTML también te pedía 'displayedColumns'
-  // (Ajusta los nombres para que coincidan con tus <ng-container matColumnDef="...">)
+export class SintomaListarComponente {
   displayedColumns: string[] = ['idSintoma', 'nombre'];
-
-  // (Más adelante, necesitarás esto para conectar el paginador y el sort)
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
-  // @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(/* private sintomaService: SintomaService */) { }
-
-  ngOnInit(): void {
-    // Aquí es donde cargarías los datos
-    /*
-    this.sintomaService.list().subscribe(data => {
-      this.dataSource.data = data;
-      // this.dataSource.paginator = this.paginator;
-      // this.dataSource.sort = this.sort;
-    });
-    */
+  dataSource: MatTableDataSource<Sintoma> = new MatTableDataSource<Sintoma>();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  sintomaService: SintomaService = inject(SintomaService);
+  route : Router = inject(Router);
+  constructor() {
+  }
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+  ngOnInit(){ //se ejecuta al cargar la página
+    console.log("Llamando a mi API");
+    this.sintomaService.list().subscribe({
+      next: data => {
+        console.log("API me ha traido:", data);
+        this.dataSource.data = data;
+      }
+    })
   }
 }
