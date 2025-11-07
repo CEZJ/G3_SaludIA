@@ -6,4 +6,5 @@ export class Usuario {
   fechaNacimiento: Date;
   email: string;
   ubicacion: Ubicacion;
+
 }

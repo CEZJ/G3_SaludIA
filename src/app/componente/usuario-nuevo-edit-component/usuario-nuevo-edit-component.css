@@ -149,7 +149,7 @@ mat-form-field {
   right: -30px;
   width: 400px;
   height: 350px;
-  background-image: url('/assets/img/REGISTER 1.png'); /* ¡Asegúrate que esta ruta sea correcta! */
+  background-image: url('/public/assets/REGISTER 1.png'); /* ¡Asegúrate que esta ruta sea correcta! */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom right;
