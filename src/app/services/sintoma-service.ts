@@ -15,11 +15,11 @@ export class SintomaService {
     return this.httpClient.get<Sintoma[]>(this.url + "/sintomas");
   }
   listId(id:number){
-    return this.httpClient.get<Sintoma>(this.url + "/sintoma" + {id});
+    return this.httpClient.get<Sintoma>(this.url + "/sintomas" + {id});
   }
   insert(sintoma: Sintoma){
     console.log("Enviando Insert:",sintoma);
-    return this.httpClient.post(this.url + "/sintoma", sintoma);
+    return this.httpClient.post(this.url + "/sintomas", sintoma);
   }
   update(sintoma: Sintoma){
     return this.httpClient.put(this.url + "/sintoma", sintoma);
