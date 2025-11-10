@@ -1,5 +1,71 @@
+.profileBox {
+  position: relative;
+  width: 100%;
+  height: 853px;
+  overflow: hidden;
+  color: #ffffff;
 
+}
+/* Contenedor de la imagen de fondo */
+.profileBox .imgProf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* <-- CLAVE: El div de la imagen debe tener 100% de ancho */
+  height: 100%;
+  z-index: 1;
+}
+/* La imagen GIF */
 
+.profileBox .imgProf img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6); /* Oscurece un poco la imagen para legibilidad */
+}
+
+/* Contenedor del texto principal (Salud AI, Alerta) */
+.profileBox .txtProf {
+  position: absolute; /* Te permite moverlo libremente */
+  z-index: 2; /* Se pone delante de la imagen */
+  bottom: 120px; /* Distancia desde el borde inferior */
+  right: 80px; /* Distancia desde el borde derecho */
+  text-align: right; /* Alinea el texto a la derecha */
+  text-shadow: 2px 2px 8px rgba(0,1,0,0.7); /* Sombra para legibilidad */
+}
+
+.profileBox .txtProf h1 {
+  font-size: 3.5em;
+  font-weight: 800;
+  margin: 1em auto;
+}
+
+.profileBox .txtProf h2 {
+  font-size: 1.8em;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Contenedor del eslogan inferior ("La plataforma...") */
+.profileBox .wavesprf {
+  position: absolute; /* Te permite moverlo libremente */
+  z-index: 2; /* Se pone delante de la imagen */
+  bottom: 60px; /* Más abajo que el texto principal */
+  right: 40px; /* A la misma distancia de la derecha */
+}
+
+.profileBox .wavesprf .footertxt h4 {
+  font-size: 1.5em;
+  font-weight: 500;
+  font-style: italic;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7); /* Sombra para legibilidad */
+  margin: 0;
+}
+
+/* Oculta la línea azul que tenías (si ya no la quieres) */
+.profileBox .lineBlr {
+  display: none;
+}
 /* === SECCIÓN ¿QUIÉNES SOMOS? === */
 .banner {
   background: linear-gradient(180deg, #539dff 60%, #77d6e7);
