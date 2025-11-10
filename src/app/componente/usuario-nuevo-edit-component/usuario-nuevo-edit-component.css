@@ -37,11 +37,11 @@ mat-card {
 /* --- Logo y Título --- */
 .logo-container {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: -2em;
 }
 .logo-container img {
-  width: 70px;
-  height: 70px;
+  width: 250px;
+  height: 180px;
   /* Sombra sutil para el logo */
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
 }
