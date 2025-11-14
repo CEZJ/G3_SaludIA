@@ -1,0 +1,245 @@
+<mat-sidenav-container class="dashboard-container">
+
+  <mat-sidenav mode="side" opened class="sidenav">
+    <div class="sidenav-content">
+
+      <div class="logo-area">
+        <img src="assets/Logo-app-inicio.png" alt="Salud AI Logo" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-title">Salud AI</span>
+          <span class="logo-subtitle">A Tu Salud Primero</span>
+        </div>
+      </div>
+      <div class="status-badge">
+        <span class="online-dot"></span> En línea
+      </div>
+
+      <mat-nav-list>
+        <a mat-list-item class="nav-item active-item" routerLink="/inicio">
+          <mat-icon>home</mat-icon>
+          <span>Inicio</span>
+        </a>
+        <a mat-list-item class="nav-item" routerLink="/diagnostico">
+          <mat-icon>biotech</mat-icon>
+          <span>Diagnóstico</span>
+          <mat-icon class="chevron-icon">chevron_right</mat-icon>
+        </a>
+        <a mat-list-item class="nav-item" routerLink="/historial">
+          <mat-icon>history</mat-icon>
+          <span>Historial</span>
+          <mat-icon class="chevron-icon">chevron_right</mat-icon>
+        </a>
+        <a mat-list-item class="nav-item" routerLink="/mapas">
+          <mat-icon>map</mat-icon>
+          <span>Mapas</span>
+          <mat-icon class="chevron-icon">chevron_right</mat-icon>
+        </a>
+        <a mat-list-item class="nav-item" routerLink="/ajustes">
+          <mat-icon>settings</mat-icon>
+          <span>Ajustes</span>
+        </a>
+      </mat-nav-list>
+
+      <div class="logout-area">
+        <a mat-list-item class="nav-item logout-item" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar Sesión</span>
+          <mat-icon class="chevron-icon">chevron_right</mat-icon>
+        </a>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+
+    <mat-toolbar class="top-toolbar">
+      <div class="breadcrumbs">
+        Panel de Usuario
+      </div>
+      <span class="spacer"></span> <button mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+      <button mat-icon-button>
+        <mat-icon>notifications_none</mat-icon>
+      </button>
+
+      <div class="user-profile">
+        <img src="https://placehold.co/40x40" alt="Avatar" class="user-avatar">
+        <div class="user-info">
+          <span class="user-name">Usuario</span>
+          <span class="user-role">Paciente</span>
+        </div>
+        <mat-icon>expand_more</mat-icon>
+      </div>
+    </mat-toolbar>
+
+    <div class="content-body">
+
+      <mat-card class="welcome-banner">
+        <div class="banner-text">
+          <mat-icon class="shield-icon">verified_user</mat-icon>
+          <h2>¡Bienvenido a Salud AI!</h2>
+          <strong>Tu sistema inteligente de prevención de salud</strong>
+          <p>
+            Sistema especializado en la prevención y monitoreo de enfermedades infecciosas.
+            Utiliza nuestras herramientas para evaluar síntomas, consultar tu historial y visualizar
+            brotes de enfermedades en tu zona.
+          </p>
+          <button mat-flat-button class="diag-button">
+            Realizar Diagnóstico Ahora
+          </button>
+        </div>
+        <mat-icon class="banner-icon-bg">medical_services</mat-icon>
+      </mat-card>
+
+      <div class="stats-grid">
+        <mat-card class="stat-card">
+          <div class="stat-header">
+            <mat-icon class="stat-icon">bar_chart</mat-icon>
+            <span class="stat-percent">+12%</span>
+          </div>
+          <span class="stat-title">Diagnósticos Totales</span>
+          <span class="stat-value">0</span>
+        </mat-card>
+        <mat-card class="stat-card">
+          <div class="stat-header">
+            <mat-icon class="stat-icon">query_builder</mat-icon>
+          </div>
+          <span class="stat-title">Última Consulta</span>
+          <span class="stat-value">Sin registro</span>
+        </mat-card>
+        <mat-card class="stat-card">
+          <div class="stat-header">
+            <mat-icon class="stat-icon">favorite_border</mat-icon>
+            <span class="stat-tag">Estable</span>
+          </div>
+          <span class="stat-title">Estado de Salud</span>
+          <span class="stat-value">Bueno</span>
+        </mat-card>
+      </div>
+
+      <h2>Acceso Rápido</h2>
+      <div class="access-grid">
+        <mat-card class="access-card" routerLink="/diagnostico">
+          <div class="icon-circle" style="background-color: #e0f7fa;">
+            <mat-icon style="color: #00bcd4;">stethoscope</mat-icon>
+          </div>
+          <strong>Nuevo Diagnóstico</strong>
+          <span>Evalúa tus síntomas ahora</span>
+        </mat-card>
+        <mat-card class="access-card" routerLink="/historial">
+          <div class="icon-circle" style="background-color: #e3f2fd;">
+            <mat-icon style="color: #2196f3;">assignment</mat-icon>
+          </div>
+          <strong>Mi Historial</strong>
+          <span>0 diagnósticos registrados</span>
+        </mat-card>
+        <mat-card class="access-card" routerLink="/mapas">
+          <div class="icon-circle" style="background-color: #f3e5f5;">
+            <mat-icon style="color: #ab47bc;">location_on</mat-icon>
+          </div>
+          <strong>Mapa de Salud</strong>
+          <span>Enfermedades en tu zona</span>
+        </mat-card>
+        <mat-card class="access-card" routerLink="/perfil">
+          <div class="icon-circle" style="background-color: #ffebee;">
+            <mat-icon style="color: #f44336;">person_outline</mat-icon>
+          </div>
+          <strong>Mi Perfil</strong>
+          <span>Configuración personal</span>
+        </mat-card>
+      </div>
+
+      <div class="alerts-section">
+        <div class="alerts-header">
+          <h2>Alertas en tu Zona</h2>
+          <a routerLink="/mapas">Ver Mapa Completo</a>
+        </div>
+        <div class="alerts-grid">
+          <mat-card class="alert-card alert-red">
+            <div class="alert-header">
+              <strong>Gripe</strong>
+              <mat-icon>info_outline</mat-icon>
+            </div>
+            <div class="alert-body">
+              <div class="alert-info">
+                <span>Casos:</span>
+                <span><mat-icon>location_on</mat-icon> Lima Centro</span>
+              </div>
+              <span class="alert-count">234</span>
+            </div>
+          </mat-card>
+          <mat-card class="alert-card alert-yellow">
+            <div class="alert-header">
+              <strong>Gastroenteritis</strong>
+              <mat-icon>info_outline</mat-icon>
+            </div>
+            <div class="alert-body">
+              <div class="alert-info">
+                <span>Casos:</span>
+                <span><mat-icon>location_on</mat-icon> Surco</span>
+              </div>
+              <span class="alert-count">145</span>
+            </div>
+          </mat-card>
+          <mat-card class="alert-card alert-green">
+            <div class="alert-header">
+              <strong>COVID-19</strong>
+              <mat-icon>info_outline</mat-icon>
+            </div>
+            <div class="alert-body">
+              <div class="alert-info">
+                <span>Casos:</span>
+                <span><mat-icon>location_on</mat-icon> Miraflores</span>
+              </div>
+              <span class="alert-count">89</span>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+      <h2>Consejos de Prevención</h2>
+      <div class="consejos-grid">
+        <mat-card class="consejo-card">
+          <div class="consejo-icon icon-blue"><mat-icon>wash</mat-icon></div>
+          <div class="consejo-text">
+            <strong>Prevención de Enfermedades</strong>
+            <p>Lávate las manos frecuentemente con agua y jabón durante al menos 20 segundos</p>
+          </div>
+        </mat-card>
+        <mat-card class="consejo-card">
+          <div class="consejo-icon icon-green"><mat-icon>water_drop</mat-icon></div>
+          <div class="consejo-text">
+            <strong>Mantente Hidratado</strong>
+            <p>Bebe al menos 8 vasos de agua al día para mantener tu cuerpo funcionando correctamente</p>
+          </div>
+        </mat-card>
+        <mat-card class="consejo-card">
+          <div class="consejo-icon icon-purple"><mat-icon>fitness_center</mat-icon></div>
+          <div class="consejo-text">
+            <strong>Ejercicio Regular</strong>
+            <p>Realiza al menos 30 minutos de actividad física moderada todos los días</p>
+          </div>
+        </mat-card>
+        <mat-card class="consejo-card">
+          <div class="consejo-icon icon-red"><mat-icon>restaurant</mat-icon></div>
+          <div class="consejo-text">
+            <strong>Alimentación Balanceada</strong>
+            <p>Consume frutas, verduras y proteínas para fortalecer tu sistema inmunológico</p>
+          </div>
+        </mat-card>
+      </div>
+
+      <mat-card class="aviso-card">
+        <mat-icon>warning_amber</mat-icon>
+        <div class="aviso-text">
+          <strong>Aviso Médico Importante</strong>
+          <p>
+            La herramienta de diagnóstico de Salud AI es una guía orientativa basada en síntomas.
+            Si presentas síntomas graves o persistentes, busca atención médica inmediata. Los datos del mapa de enfermedades son referenciales y se actualizan constantemente.
+          </p>
+        </div>
+      </mat-card>
+
+    </div> </mat-sidenav-content>
+</mat-sidenav-container>
