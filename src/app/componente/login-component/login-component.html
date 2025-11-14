@@ -1,45 +1,125 @@
-<div class="form-container">
+<!--
+  Asegúrate de que los nombres de mat-icon (los iconos) sean estos:
+  'timeline', 'security', 'analytics', 'public'
+  'mail_outline', 'lock_outline', 'visibility', 'visibility_off'
+-->
+<div class="login-container">
 
-  <mat-card>
-    <div class="logo-container">
-      <img src="assets/Logo-app-inicio.png" alt="Logo de la App">
-    </div>
-
-    <mat-card-title>
-      Iniciar Sesión
-    </mat-card-title>
-
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
-        <mat-form-field appearance="outline">
-          <mat-label>Correo</mat-label>
-          <input matInput formControlName="username" type="email">
-          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Requerido</mat-error>
-          <mat-error *ngIf="loginForm.get('username')?.hasError('email')">Email no válido</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Contraseña</mat-label>
-          <input matInput formControlName="password" type="password">
-          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Requerido</mat-error>
-        </mat-form-field>
-
-        <button mat-flat-button
-                class="login-button"
-                type="submit"
-                [disabled]="loading || loginForm.invalid">
-          {{ loading ? 'Ingresando...' : 'Ingresar' }}
-        </button>
-
-      </form>
-
-      <div class="register-link">
-        ¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a>
+  <!-- 1. Panel de Información (Izquierda) -->
+  <div class="info-panel">
+    <div class="info-content">
+      <!-- Logo y Título de la App -->
+      <div class="logo-header">
+        <!-- ¡Asegúrate de que esta ruta a tu logo sea correcta! -->
+        <img src="assets/Logo-app-inicio.png" alt="Logo de la App" class="logo-img"
+             onerror="this.style.display='none'"> <!-- Oculta si no se encuentra -->
+        <div class="logo-text">
+          <span class="logo-title">Salud AI</span>
+          <span class="logo-subtitle">Sistema de Prevención de Enfermedades</span>
+        </div>
       </div>
 
-    </mat-card-content>
-  </mat-card>
+      <!-- Lema -->
+      <p class="tagline">
+        Plataforma orientada a prevenir la propagación
+        de enfermedades infecciosas
+      </p>
 
-  <div class="illustration"></div>
+      <!-- Lista de Características -->
+      <div class="feature-list">
+        <div class="feature-item">
+          <mat-icon>timeline</mat-icon> <!-- Icono 1 -->
+          <div class="feature-text">
+            <strong>Monitoreo en Tiempo Real</strong>
+            <span>Seguimiento continuo de síntomas</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <mat-icon>security</mat-icon> <!-- Icono 2 -->
+          <div class="feature-text">
+            <strong>Seguridad Total</strong>
+            <span>Protección de datos médicos</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <mat-icon>analytics</mat-icon> <!-- Icono 3 -->
+          <div class="feature-text">
+            <strong>Análisis Predictivo</strong>
+            <span>Prevención de enfermedades</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <mat-icon>public</mat-icon> <!-- Icono 4 -->
+          <div class="feature-text">
+            <strong>Alcance Global</strong>
+            <span>Cobertura internacional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Panel de Formulario (Derecha) -->
+  <div class="form-panel">
+    <mat-card>
+      <mat-card-title>
+        Iniciar Sesión
+      </mat-card-title>
+      <p class="subtitle">Bienvenido de nuevo al sistemas</p>
+
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <!-- Campo de Correo con ícono -->
+          <mat-form-field appearance="outline">
+            <mat-label>Correo Electrónico</mat-label>
+            <mat-icon matPrefix>mail_outline</mat-icon> <!-- Icono de Correo -->
+            <input matInput formControlName="username" type="email">
+            <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Requerido</mat-error>
+            <mat-error *ngIf="loginForm.get('username')?.hasError('email')">Email no válido</mat-error>
+          </mat-form-field>
+
+          <!-- Campo de Contraseña con ícono y toggle -->
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <mat-icon matPrefix>lock_outline</mat-icon> <!-- Icono de Candado -->
+            <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button" [attr.aria-label]="'Ocultar/Mostrar contraseña'">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon> <!-- Iconos de Ojo -->
+            </button>
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Requerido</mat-error>
+          </mat-form-field>
+
+          <!-- Fila de "Recordarme" y "Olvidaste..." -->
+          <div class="form-helpers">
+            <mat-checkbox formControlName="rememberMe" class="remember-me">Recordarme</mat-checkbox>
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <!-- Botón de Ingresar -->
+          <button mat-flat-button
+                  class="login-button"
+                  type="submit"
+                  [disabled]="loading || loginForm.invalid">
+            <span>{{ loading ? 'Ingresando...' : 'Iniciar Sesión' }}</span>
+            <mat-icon *ngIf="!loading">arrow_forward</mat-icon>
+          </button>
+
+          <!-- Separador "o" -->
+          <div class="separator">
+            <span class="separator-line"></span>
+            o
+            <span class="separator-line"></span>
+          </div>
+
+          <!-- Enlace de Registro -->
+          <div class="register-link">
+            ¿No tienes una cuenta? <a routerLink="/register">Crear cuenta</a>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
 </div>

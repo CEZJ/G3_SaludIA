@@ -1,175 +1,293 @@
-/* --- Fondo y Contenedor Principal --- */
+/* --- Reseteo y Fondo General --- */
 :host {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  /* Gradiente suave como el de la imagen */
+  background: linear-gradient(120deg, #fdfbff 0%, #f6f7fb 100%);
+  font-family: 'Inter', sans-serif; /* Fuente más moderna, asegúrate de importarla */
+}
+
+/* --- Contenedor Principal (2 columnas) --- */
+.login-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  align-items: stretch;
+}
+
+/* --- 1. Panel de Información (Izquierda) --- */
+.info-panel {
+  flex: 1.2; /* Darle un poco más de espacio que al formulario */
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  /* Fondo con gradiente sutil de tu paleta de verdes */
-  background: linear-gradient(135deg, #f5fcf9 0%, #e8f5e9 100%);
-  padding: 40px 20px;
-  box-sizing: border-box;
-  position: relative; /* Necesario para la ilustración */
-  overflow-x: hidden; /* Evita scroll horizontal */
+  padding: 40px;
+  background-color: #f8f9fa; /* Color de fondo sutil */
+  border-right: 1px solid #e0e0e0;
 }
 
-/* --- La Tarjeta --- */
+.info-content {
+  max-width: 550px;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.logo-img {
+  width: 60px; /* Ajusta el tamaño de tu logo */
+  height: auto;
+  margin-right: 16px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.logo-subtitle {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  transition: box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.feature-item mat-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #e8f5e9; /* Tono verde claro */
+  color: #38A84A; /* Tono verde principal */
+  margin-right: 16px;
+}
+
+.feature-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-text strong {
+  font-weight: 600;
+  color: #333;
+}
+
+.feature-text span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+
+/* --- 2. Panel de Formulario (Derecha) --- */
+.form-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
 mat-card {
   width: 100%;
-  max-width: 550px; /* Ancho de la tarjeta */
-  padding: 2.5em 3em !important; /* Más espaciado interno */
-  border-radius: 20px !important; /* Esquinas más suaves */
-
-  /* Sombra más moderna y suave, con tu tinte verde */
-  box-shadow: 0 20px 40px -10px rgba(0, 80, 30, 0.1) !important;
-
-  border: 1px solid rgba(255, 255, 255, 0.7); /* Borde blanco sutil */
-
-  /* Animación de entrada */
-  animation: fadeIn 0.8s ease-out forwards;
+  max-width: 450px;
+  padding: 32px 40px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  border: none !important;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Logo y Título --- */
-.logo-container {
-  text-align: center;
-  margin-bottom: 0em;
-}
-.logo-container img {
-  width: 300px;
-  height: 230px;
-  /* Sombra sutil para el logo */
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
-}
 mat-card-title {
-  text-align: center;
-  font-size: 2em; /* Más grande */
-  font-weight: 600; /* Más grueso */
-  color: #222;
-  letter-spacing: 0.5px; /* Tipografía moderna */
-  margin-bottom: 1.5em !important;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  text-align: left;
+  margin-bottom: 8px !important;
 }
 
-/* --- Campos del Formulario (Inputs) --- */
+.subtitle {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 32px;
+}
+
+/* --- Estilos de Formulario --- */
 form {
   display: flex;
   flex-direction: column;
 }
+
 mat-form-field {
   width: 100%;
-  margin-bottom: 10px; /* Más espacio */
+  margin-bottom: 12px;
 }
 
-/* ::ng-deep para estilizar componentes internos de Material */
-/* Borde del campo (outline) */
+/* ::ng-deep para estilizar componentes de Material */
 ::ng-deep .mat-mdc-form-field .mdc-notched-outline > * {
-  border-color: #dce3de !important; /* Borde gris-verde claro */
-  transition: border-color 0.3s ease;
+  border-color: #e0e0e0 !important;
 }
-::ng-deep .mat-mdc-form-field:hover .mdc-notched-outline > * {
-  border-color: #38A84A !important; /* Verde al pasar el mouse */
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label {
+  color: #888 !important;
 }
-/* Etiqueta (Label) */
-::ng-deep .mat-mdc-form-field .mdc-floating-label {
-  color: #777;
-}
-
-/* Estilos de Focus (cuando se hace clic) */
-::ng-deep .mat-mdc-form-field.mat-focused .mdc-floating-label {
-  color: #38A84A !important; /* Tu verde principal */
+::ng-deep .mat-mdc-form-field mat-icon[matPrefix] {
+  color: #aaa;
+  margin-right: 8px;
 }
 ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline > * {
   border-width: 2px !important;
+  border-color: #38A84A !important; /* Verde principal */
+}
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #38A84A !important;
+}
+::ng-deep .mat-mdc-form-field.mat-focused mat-icon[matPrefix] {
+  color: #38A84A !important;
+}
+::ng-deep .mat-mdc-input-element {
+  font-weight: 500;
+}
+::ng-deep .mat-mdc-form-field .mdc-text-field--outlined {
+  border-radius: 12px !important;
+}
+
+/* Fila de Ayudantes (Checkbox y Olvidaste) */
+.form-helpers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+}
+
+.remember-me {
+  font-size: 0.9rem;
+  color: #555;
+}
+::ng-deep .remember-me .mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background {
+  background-color: #38A84A !important;
   border-color: #38A84A !important;
 }
 
-/* --- Botón y Enlace --- */
-.login-button { /* <-- CAMBIADO */
+.forgot-password {
+  color: #38A84A;
+  font-weight: 500;
+  text-decoration: none;
+}
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Botón de Login */
+.login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   width: 100%;
-  padding: 22px 0 !important; /* Botón más alto */
-  font-size: 1.1em;
-  font-weight: 600; /* Texto más grueso */
-  margin-top: 20px;
-  border-radius: 12px; /* Esquinas suaves */
-  border: none;
-
-  /* ¡Gradiente innovador! */
-  background: linear-gradient(90deg, #38A84A 0%, #2a7d3a 100%) !important;
+  padding: 24px 0 !important;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  background-color: #38A84A !important; /* Verde principal */
   color: white !important;
-
-  /* Sombra del botón */
-  box-shadow: 0 8px 15px -5px rgba(56, 168, 74, 0.4);
+  box-shadow: 0 5px 15px rgba(56, 168, 74, 0.3);
   transition: all 0.3s ease;
 }
-
-.login-button:hover:not(:disabled) { /* <-- CAMBIADO */
-  transform: translateY(-3px); /* Efecto de "levantar" */
-  box-shadow: 0 12px 20px -5px rgba(56, 168, 74, 0.5);
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 168, 74, 0.4);
 }
-
-.login-button:disabled { /* <-- CAMBIADO */
-  background: #e0e0e0 !important;
+.login-button:disabled {
+  background-color: #e0e0e0 !important;
   box-shadow: none;
 }
 
-.register-link { /* <-- CAMBIADO */
+/* Separador "o" */
+.separator {
+  display: flex;
+  align-items: center;
   text-align: center;
-  margin-top: 2em;
-  font-size: 0.95em;
+  color: #aaa;
+  margin: 24px 0;
+  font-size: 0.9rem;
+}
+.separator-line {
+  flex-grow: 1;
+  border-bottom: 1px solid #eee;
+  margin: 0 10px;
+}
+
+/* Enlace de Registro */
+.register-link {
+  text-align: center;
+  font-size: 0.95rem;
   color: #555;
 }
-.register-link a { /* <-- CAMBIADO */
+.register-link a {
   color: #38A84A;
   font-weight: 600;
   text-decoration: none;
   margin-left: 5px;
-  transition: color 0.3s ease;
 }
-.register-link a:hover { /* <-- CAMBIADO */
-  color: #2a7d3a;
+.register-link a:hover {
   text-decoration: underline;
 }
 
-
-/* --- Ilustración Decorativa --- */
-.illustration {
-  position: absolute; /* Flota en la página */
-  bottom: -20px;
-  right: -30px;
-  width: 400px;
-  height: 350px;
-  background-image: url('/public/assets/REGISTER 1.png'); /* ¡Asegúrate que esta ruta sea correcta! */
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  z-index: 0; /* Detrás de la tarjeta */
-
-  /* Animación de entrada */
-  animation: slideIn 1.2s ease-out forwards;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(100px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
 /* --- Responsividad para Móviles --- */
-@media (max-width: 900px) {
-  /* Oculta la ilustración en pantallas pequeñas */
-  .illustration {
+@media (max-width: 1024px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  /* Ocultamos el panel de info en móviles para simplicidad */
+  .info-panel {
     display: none;
   }
-  /* Ajusta el padding para móviles */
-  :host {
-    align-items: flex-start;
-    padding: 20px 10px;
+
+  .form-panel {
+    flex: 1;
+    min-height: 100vh; /* Asegura que ocupe toda la pantalla */
+    padding: 20px;
   }
+
   mat-card {
-    padding: 2em 1.5em !important;
-    max-width: 100%; /* Ocupa todo el ancho en móviles */
+    padding: 24px 20px !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
   }
 }
