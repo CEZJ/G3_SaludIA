@@ -1,105 +1,230 @@
-<section class="profileBox">
-  <div class="imgProf">
+<!--
+  Landing Page de Inicio para Salud AI
+  Este HTML combina todas las secciones de las imágenes.
+-->
 
-    <img src='assets/medico-gafas.jpg' alt="medico con gafas" >
+<!-- 1. Barra de Navegación (Header) -->
+<mat-toolbar class="navbar" id="inicio">
+  <div class="navbar-content">
+    <div class="logo-container">
+      <!-- Asegúrate de tener tu logo en esta ruta -->
+      <img src="assets/Logo-app-inicio.png" alt="Salud AI Logo" class="logo-img">
+      <span class="logo-title">Salud AI</span>
+    </div>
+    <div class="nav-links">
+      <a (click)="scrollTo('inicio')">Inicio</a>
+      <a (click)="scrollTo('quienes-somos')">Quiénes Somos</a>
+      <a (click)="scrollTo('caracteristicas')">Características</a>
+      <a (click)="scrollTo('equipo')">Equipo</a>
+      <a (click)="scrollTo('contacto')">Contacto</a>
+    </div>
+    <button mat-flat-button color="primary" class="login-button" routerLink="/login">
+      Iniciar Sesión
+    </button>
   </div>
+</mat-toolbar>
 
-  <div class="txtProf">
-    <h1>Salud AI</h1>
-    <h2>Alerta Infecciosa</h2>
-  </div>
-
-  <div class="wavesprf">
-    <div class="footertxt">
-      <h4>"La plataforma que está al alcance de tus manos"</h4>
+<!-- 2. Sección Hero -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Innovación en Salud Digital</span>
+    <h1 class="hero-title">El Futuro de la Salud</h1>
+    <p class="hero-subtitle">La plataforma que está al alcance de tus manos</p>
+    <div class="hero-buttons">
+      <button mat-flat-button class="hero-btn-primary" (click)="scrollTo('caracteristicas')">
+        Comenzar Ahora <mat-icon>arrow_forward</mat-icon>
+      </button>
+      <button mat-stroked-button class="hero-btn-secondary" (click)="scrollTo('quienes-somos')">
+        Conocer Más
+      </button>
     </div>
   </div>
-
-  <div class="blue-wave-background"></div>
-
 </section>
 
-    <section class="banner" id="id">
-      <div class="appInfo_Sai" data-sr-id="5" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition:
-      all, opacity 3s cubic-bezier(0.5, 0, 0, 1), transform 3s cubic-bezier(0.5, 0, 0, 1);">
+<!-- 3. Sección "¿Quiénes Somos?" -->
+<section class="section" id="quienes-somos">
+  <div class="section-container">
+    <span class="section-tag">Sobre Nosotros</span>
+    <h2 class="section-title">¿Quiénes Somos?</h2>
+    <p class="section-subtitle">
+      Somos una plataforma orientada a prevenir la propagación de
+      enfermedades infecciosas a nivel mundial.
+    </p>
+    <div class="card-grid-3">
+      <mat-card>
+        <mat-card-content>
+          <div class="icon-wrapper-green"><mat-icon>track_changes</mat-icon></div>
+          <h3>Misión</h3>
+          <p>Proporcionar una plataforma eficiente para detectar y contener enfermedades infecciosas, priorizando la salud junto a la seguridad pública.</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-content>
+          <div class="icon-wrapper-green"><mat-icon>visibility</mat-icon></div>
+          <h3>Visión</h3>
+          <p>Ser líderes en la prevención y detección temprana de enfermedades infecciosas a nivel global para mejorar el bienestar global.</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-content>
+          <div class="icon-wrapper-green"><mat-icon>favorite</mat-icon></div>
+          <h3>Nuestros Valores</h3>
+          <p>Compromiso con la excelencia, innovación continua, ética médica y accesibilidad para todos los pacientes.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>
 
-        <h3 class="ttlFrstQst"><b>¿Quienes somos?</b></h3>
-        <p class="Frstxt"><br>Somos una plataforma orientada<br>a prevenir la propagación de<br>enfermedades infecciosas a nivel mundial</p>
-      </div>
-      <div class="imgMedic_ctn" data-sr-id="0" style="visibility: visible; opacity: 1; transform:
-      matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: all, opacity 3s cubic-bezier(0.5, 0, 0, 1), transform 3s cubic-bezier(0.5, 0, 0, 1);">
-        <img src='assets/corazon.png' alt="medic"></div>
-      <div class="mrInfApp">
-        <div class="txt_mng" data-sr-id="3" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: all, opacity 3s cubic-bezier(0.5, 0, 0, 1), transform 3s cubic-bezier(0.5, 0, 0, 1);">
-          <div class="txt_cnt">
-            <h3>Misión</h3>
-            <p>Propocionar una plataforma eficiente<br> para detectar y contener enfermedades<br> infecciosas, priorizando la salud<br> junto a la seguridad pública.</p>
+<!-- 4. Sección "Características" -->
+<section class="section section-gray" id="caracteristicas">
+  <div class="section-container">
+    <span class="section-tag">Nuestras Características</span>
+    <h2 class="section-title">Características</h2>
+    <p class="section-subtitle">
+      Tecnología de vanguardia al servicio de tu salud
+    </p>
+    <div class="card-grid-3">
+      <!-- Usamos *ngFor para crear las tarjetas de características -->
+      <mat-card class="feature-card" *ngFor="let feature of featuresList">
+        <mat-card-content>
+          <div class="icon-wrapper-dark-green"><mat-icon>{{ feature.icon }}</mat-icon></div>
+          <div class="feature-text">
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.text }}</p>
           </div>
-        </div>
-        <div class="txt_mng" data-sr-id="4" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: all, opacity 3s cubic-bezier(0.5, 0, 0, 1), transform 3s cubic-bezier(0.5, 0, 0, 1);">
-          <div class="txt_cnt">
-            <h3>Visión</h3>
-            <p>Ser líderes en la prevención y detección<br> temprana de enfermedades infecciosas infecciosas a<br> nivel global para mejorar el<br>bienestar global</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Sección "Nuestro Equipo" -->
+<section class="section" id="equipo">
+  <div class="section-container">
+    <span class="section-tag">Conoce a Nuestro Equipo</span>
+    <h2 class="section-title">Nuestro Equipo</h2>
+    <p class="section-subtitle">
+      Profesionales experimentados dedicados a revolucionar la atención médica
+    </p>
+    <div class="team-grid-5">
+      <!-- Usamos *ngFor para crear las tarjetas del equipo -->
+      <mat-card class="team-card" *ngFor="let member of teamList">
+        <img mat-card-image [src]="member.img" alt="Foto de {{ member.name }}">
+        <mat-card-content>
+          <h4>{{ member.name }}</h4>
+          <p>{{ member.role }}</p>
+          <div class="social-links">
+            <a><mat-icon svgIcon="linkedin"></mat-icon></a>
+            <a><mat-icon svgIcon="twitter"></mat-icon></a>
           </div>
-        </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Sección "Contáctanos" -->
+<section class="section section-gray" id="contacto">
+  <div class="section-container">
+    <span class="section-tag">Ponte en Contacto</span>
+    <h2 class="section-title">Contáctanos</h2>
+    <p class="section-subtitle">
+      ¿Tienes preguntas? Estamos aquí para ayudarte
+    </p>
+    <div class="contact-grid">
+      <!-- Columna de Formulario -->
+      <mat-card class="contact-form-card">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre Completo</mat-label>
+            <input matInput formControlName="nombre" placeholder="Tu nombre">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="tu@email.com">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono" placeholder="+51 958 005 203">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="contact-textarea">
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput formControlName="mensaje" placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
+          </mat-form-field>
+          <button mat-flat-button class="hero-btn-primary" type="submit" [disabled]="contactForm.invalid">
+            Enviar Mensaje
+          </button>
+        </form>
+      </mat-card>
+
+      <!-- Columna de Información de Contacto -->
+      <div class="contact-info-stack">
+        <mat-card class="contact-info-card">
+          <mat-icon class="icon-wrapper-dark-green">email</mat-icon>
+          <div class="contact-info-text">
+            <h4>Email</h4>
+            <p>contacto@saludai.com<br>soporte@saludai.com</p>
+          </div>
+        </mat-card>
+        <mat-card class="contact-info-card">
+          <mat-icon class="icon-wrapper-dark-green">phone</mat-icon>
+          <div class="contact-info-text">
+            <h4>Teléfono</h4>
+            <p>+51 958 005 203<br>Lun - Vie: 9:00 - 18:00</p>
+          </div>
+        </mat-card>
+        <mat-card class="contact-info-card">
+          <mat-icon class="icon-wrapper-dark-green">location_on</mat-icon>
+          <div class="contact-info-text">
+            <h4>Oficina</h4>
+            <p>Av. Magdalena 123<br>1059, Lima</p>
+          </div>
+        </mat-card>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="pageFunt">
-      <div class="box">
-        <h3>¿Cómo funciona SAI?</h3>
-
-        <iframe width="560" height="315"
-                src="https://www.youtube.com/embed/TEq-SOgGYH0?si=iAjbgNDXzEzJgSBR"
-                title="Video explicativo de SAI"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-        </iframe>
-
-        <a href="https://youtu.be/TEq-SOgGYH0"
-           class="linkVd"
-           target="_blank"
-           rel="noopener noreferrer">Ir al video</a>
-
+<!-- 7. Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col" id="footer-logo">
+      <div class="logo-container">
+        <img src="assets/Logo-app-inicio.png" alt="Salud AI Logo" class="logo-img">
+        <span class="logo-title">Salud AI</span>
       </div>
-    </section>
+      <p>Transformando la atención médica con inteligencia artificial</p>
+    </div>
 
-    <footer class="footer-ctn">
-      <div class="footer-ctn_hdr">
-        <ul class="ftr_hdr_terms">
-          <li class="ftr_terms"><a href="#" class="link_terms">Términos de uso</a></li>
-          <li class="ftr_terms"><a href="#" class="link_terms">Política de privacidad</a></li>
-        </ul>
+    <div class="footer-col">
+      <h4>Enlaces Rápidos</h4>
+      <a (click)="scrollTo('inicio')">Inicio</a>
+      <a (click)="scrollTo('quienes-somos')">Quiénes Somos</a>
+      <a (click)="scrollTo('caracteristicas')">Características</a>
+      <a (click)="scrollTo('equipo')">Equipo</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a>Privacidad</a>
+      <a>Términos de Uso</a>
+      <a>Cookies</a>
+      <a>Seguridad</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Síguenos</h4>
+      <div class="footer-social-links">
+        <a><mat-icon svgIcon="facebook"></mat-icon></a>
+        <a><mat-icon svgIcon="twitter"></mat-icon></a>
+        <a><mat-icon svgIcon="instagram"></mat-icon></a>
+        <a><mat-icon svgIcon="linkedin"></mat-icon></a>
       </div>
-      <div class="info-ctn">
-        <h3 class="nameApp">SAI</h3>
-        <div class="app_lst-ctn">
-          <ul class="app_lst">
-            <li class="app fcb"><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-            <li class="app wht"><a href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
-            <li class="app ytb"><a a href="https://youtu.be/XYOi49G0GsY" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-          </ul>
-        </div>
-        <div class="ubi-ctn">
-          <span class="spot">Av. de la Marina 2810</span>
-          <br>
-          <br>
-          <span class="spot">San Miguel</span>
-          <br>
-          <br>
-          <span class="spot">Lima - Perú</span>
-          <br>
-          <br>
-        </div>
-        <div class="dnwl_app-ctn">
-          <ul class="dnwl_app">
-            <li><a href="#"><img src='assets/play-store.png' alt="Google" ></a></li>
-            <li><a href="#"><img src="assets/app-store.png" alt="App"></a></li>
-          </ul>
-        </div>
-        <br>
-        <span class="end_ftr">SAI &copy; 2024</span>
-      </div>
-    </footer>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} Salud AI. Todos los derechos reservados.</p>
+  </div>
+</footer>
