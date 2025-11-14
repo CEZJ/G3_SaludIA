@@ -72,6 +72,7 @@ export class LoginComponent {
       password: this.loginForm.value.password
     };
 
+
     // 7. Llamar al servicio
     this.usuarioService.login(credentials).subscribe({
       next: (response: AuthResponse) => {
