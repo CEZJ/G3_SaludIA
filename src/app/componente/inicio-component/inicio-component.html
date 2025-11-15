@@ -1,14 +1,8 @@
-<!--
-  Landing Page de Inicio para Salud AI
-  Este HTML combina todas las secciones de las imágenes.
--->
-
 <!-- 1. Barra de Navegación (Header) -->
 <mat-toolbar class="navbar" id="inicio">
   <div class="navbar-content">
     <div class="logo-container">
-      <!-- Asegúrate de tener tu logo en esta ruta -->
-      <img src="assets/Logo-app-inicio.png" alt="Salud AI Logo" class="logo-img">
+      <img src="assets/img.png" alt="Salud AI Logo" class="logo-img">
       <span class="logo-title">Salud AI</span>
     </div>
     <div class="nav-links">
@@ -24,8 +18,15 @@
   </div>
 </mat-toolbar>
 
-<!-- 2. Sección Hero -->
+<!-- 2. Sección Hero (Con <img> para el fondo) -->
 <section class="hero">
+  <img
+    [ngSrc]="'assets/medico-sai.gif'"
+    alt="Fondo de un profesional médico usando tecnología"
+    class="hero-background-image"
+    fill
+    priority>
+
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-tag">Innovación en Salud Digital</span>
@@ -86,7 +87,6 @@
       Tecnología de vanguardia al servicio de tu salud
     </p>
     <div class="card-grid-3">
-      <!-- Usamos *ngFor para crear las tarjetas de características -->
       <mat-card class="feature-card" *ngFor="let feature of featuresList">
         <mat-card-content>
           <div class="icon-wrapper-dark-green"><mat-icon>{{ feature.icon }}</mat-icon></div>
@@ -100,7 +100,7 @@
   </div>
 </section>
 
-<!-- 5. Sección "Nuestro Equipo" -->
+<!-- 5. Sección "Nuestro Equipo" (MODIFICADA) -->
 <section class="section" id="equipo">
   <div class="section-container">
     <span class="section-tag">Conoce a Nuestro Equipo</span>
@@ -109,15 +109,30 @@
       Profesionales experimentados dedicados a revolucionar la atención médica
     </p>
     <div class="team-grid-5">
-      <!-- Usamos *ngFor para crear las tarjetas del equipo -->
-      <mat-card class="team-card" *ngFor="let member of teamList">
-        <img mat-card-image [src]="member.img" alt="Foto de {{ member.name }}">
+      <mat-card class="team-card" *ngFor="let member of teamList; let i = index">
+        <img mat-card-image
+             [ngSrc]="member.img"
+             alt="Foto de {{ member.name }}"
+             width="300"
+             height="400"
+             [priority]="i < 2"
+             onerror="this.src='https://placehold.co/300x400/333/fff?text=Error'">
         <mat-card-content>
           <h4>{{ member.name }}</h4>
-          <p>{{ member.role }}</p>
+          <p class="team-role">{{ member.role }}</p>
+
+          <!-- ¡DESCRIPCIÓN AÑADIDA! -->
+          <p class="team-description">{{ member.description }}</p>
+
           <div class="social-links">
-            <a><mat-icon svgIcon="linkedin"></mat-icon></a>
-            <a><mat-icon svgIcon="twitter"></mat-icon></a>
+            <!-- ¡ENLACE DE LINKEDIN AÑADIDO! -->
+            <a [href]="member.linkedinUrl" target="_blank" rel="noopener noreferrer">
+              <mat-icon svgIcon="linkedin"></mat-icon>
+            </a>
+            <!-- Icono de Twitter (de ejemplo, no hace nada) -->
+            <a>
+              <mat-icon svgIcon="twitter"></mat-icon>
+            </a>
           </div>
         </mat-card-content>
       </mat-card>

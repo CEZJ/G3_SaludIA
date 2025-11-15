@@ -8,6 +8,7 @@ import {UbicacionListarComponent} from './componente/ubicacion-listar-component/
 import {SintomaListarComponente} from './componente/sintoma-listar-componente/sintoma-listar-componente';
 import {LoginComponent} from './componente/login-component/login-component';
 import {InicioUsuarioComponent} from './componente/inicio-usuario-component/inicio-usuario-component';
+import {DiagnosticoComponent} from './componente/diagnostico-usuario-component/diagnostico-usuario-component';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent, pathMatch: 'full' },
@@ -19,4 +20,5 @@ export const routes: Routes = [
   { path: 'nosotros', component: NosotrosComponent},
   { path: 'login', component: LoginComponent},
   { path: 'inicio-usuario', component: InicioUsuarioComponent},
+  { path: 'diagnostico', component: DiagnosticoComponent},
 ];

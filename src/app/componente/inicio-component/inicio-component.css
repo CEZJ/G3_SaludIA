@@ -1,9 +1,6 @@
 /* --- 1. IMPORTACIONES ESENCIALES --- */
-/* Importa el tema de Angular Material */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
-/* Importa la fuente 'Inter' */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-/* Importa los Iconos de Material */
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 /* --- 2. Variables y Estilos Globales del Componente --- */
@@ -11,23 +8,18 @@
   display: block;
   font-family: 'Inter', sans-serif;
   color: #333;
-  --color-primary: #38A84A; /* Verde principal de tu marca */
-  --color-primary-dark: #2a7d3a;
-  --color-bg-light: #f7f9fb; /* Fondo gris claro para secciones */
+  --color-primary: #4A9D91;
+  --color-primary-dark: #3e837a;
+  --color-primary-light: #e4f2f0;
+  --color-bg-light: #f7f9fb;
   --color-text-primary: #222;
   --color-text-secondary: #555;
   --border-radius-card: 16px;
   --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.07);
 }
-
-/* Habilitar scroll suave */
-html {
-  scroll-behavior: smooth;
-}
-/* Corregir el anclaje por el header pegajoso */
-:host ::ng-deep section[id] {
-  scroll-margin-top: 70px;
-}
+/* ... (estilos sin cambios) ... */
+html { scroll-behavior: smooth; }
+:host ::ng-deep section[id] { scroll-margin-top: 70px; }
 
 
 /* --- 3. Barra de Navegación (Header) --- */
@@ -41,7 +33,7 @@ html {
   height: 70px;
   color: var(--color-text-primary);
 }
-
+/* ... (estilos de navbar sin cambios) ... */
 .navbar-content {
   display: flex;
   justify-content: space-between;
@@ -51,28 +43,14 @@ html {
   margin: 0 auto;
   padding: 0 20px;
 }
-
 .logo-container {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-.logo-img {
-  width: 30px; /* Ajusta el tamaño */
-  height: auto;
-}
-
-.logo-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-}
-
+.logo-img { width: 30px; height: auto; }
+.logo-title { font-size: 1.3rem; font-weight: 600; }
+.nav-links { display: flex; gap: 30px; }
 .nav-links a {
   font-weight: 500;
   color: var(--color-text-secondary);
@@ -81,11 +59,7 @@ html {
   position: relative;
   padding-bottom: 5px;
 }
-
-.nav-links a:hover {
-  color: var(--color-primary);
-}
-
+.nav-links a:hover { color: var(--color-primary); }
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -96,11 +70,7 @@ html {
   background-color: var(--color-primary);
   transition: width 0.3s ease;
 }
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
+.nav-links a:hover::after { width: 100%; }
 .login-button {
   background-color: var(--color-primary) !important;
   color: white !important;
@@ -109,43 +79,37 @@ html {
   padding: 5px 20px !important;
   line-height: 28px !important;
 }
-.login-button:hover {
-  background-color: var(--color-primary-dark) !important;
-}
-
+.login-button:hover { background-color: var(--color-primary-dark) !important; }
 
 /* --- 4. Estilos Generales de Sección --- */
 .section {
   padding: 80px 20px;
   box-sizing: border-box;
+  background: linear-gradient(to top, var(--color-primary-light) 0%, #ffffff 95%);
 }
 .section-gray {
-  background-color: var(--color-bg-light);
+  /* background: var(--color-bg-light); */ /* Hereda el degradado */
 }
-
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
-
 .section-tag {
   display: inline-block;
-  background-color: #e8f5e9; /* Verde muy claro */
-  color: var(--color-primary);
+  background-color: #f0f0f0;
+  color: var(--color-text-secondary);
   padding: 6px 16px;
   border-radius: 99px;
   font-weight: 500;
   font-size: 0.9rem;
 }
-
 .section-title {
   font-size: 2.5rem;
   font-weight: 600;
   color: var(--color-text-primary);
   margin: 16px 0 10px 0;
 }
-
 .section-subtitle {
   font-size: 1.1rem;
   color: var(--color-text-secondary);
@@ -164,28 +128,33 @@ html {
   justify-content: center;
   text-align: center;
   color: white;
-  /* Imagen de fondo de placeholder. Reemplaza con la tuya. */
-  background-image: url('https://placehold.co/1920x800/455a64/ffffff?text=Imagen+Hero');
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  background: #ffffff;
 }
-
+.hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Overlay oscuro */
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
-
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 800px;
 }
-
+/* ... (estilos de hero sin cambios) ... */
 .hero-tag {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.15);
@@ -196,25 +165,9 @@ html {
   font-size: 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-
-.hero-title {
-  font-size: 4rem;
-  font-weight: 700;
-  margin: 16px 0 10px 0;
-}
-
-.hero-subtitle {
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin-bottom: 30px;
-}
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
+.hero-title { font-size: 4rem; font-weight: 700; margin: 16px 0 10px 0; }
+.hero-subtitle { font-size: 1.5rem; font-weight: 300; margin-bottom: 30px; }
+.hero-buttons { display: flex; justify-content: center; gap: 15px; }
 .hero-btn-primary, .hero-btn-secondary {
   padding: 10px 30px !important;
   font-size: 1rem !important;
@@ -222,23 +175,17 @@ html {
   border-radius: 8px;
   line-height: 28px !important;
 }
-
 .hero-btn-primary {
   background-color: var(--color-primary) !important;
   color: white !important;
 }
-.hero-btn-primary:hover {
-  background-color: var(--color-primary-dark) !important;
-}
-
+.hero-btn-primary:hover { background-color: var(--color-primary-dark) !important; }
 .hero-btn-secondary {
   background-color: transparent !important;
   color: white !important;
   border: 2px solid white !important;
 }
-.hero-btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-}
+.hero-btn-secondary:hover { background-color: rgba(255, 255, 255, 0.1) !important; }
 
 /* --- 6. Grids de Tarjetas (General) --- */
 .card-grid-3 {
@@ -247,58 +194,55 @@ html {
   gap: 25px;
   margin-top: 40px;
 }
-
 :host ::ng-deep .card-grid-3 mat-card {
   border-radius: var(--border-radius-card) !important;
   box-shadow: var(--shadow-card) !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
   padding: 30px !important;
+  background-color: #ffffff;
 }
-
 :host ::ng-deep .card-grid-3 mat-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
 }
-
 .icon-wrapper-green {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 60px;
   height: 60px;
-  border-radius: 50%;
-  background-color: #e8f5e9;
-  color: var(--color-primary);
+  border-radius: 16px;
+  background-color: var(--color-primary);
+  color: white;
   margin: 0 auto 20px auto;
 }
 .icon-wrapper-green mat-icon {
   font-size: 30px;
   width: 30px;
   height: 30px;
+  color: white;
 }
-
 :host ::ng-deep .card-grid-3 mat-card h3 {
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 10px;
 }
-
 :host ::ng-deep .card-grid-3 mat-card p {
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--color-text-secondary);
 }
 
-/* --- 7. Sección "Características" (Específico) --- */
+/* --- 7. Sección "Características" --- */
 :host ::ng-deep .feature-card mat-card-content {
   display: flex;
   align-items: center;
   text-align: left;
   gap: 20px;
   padding: 15px !important;
+  background-color: #ffffff;
 }
-
 .icon-wrapper-dark-green {
   display: flex;
   align-items: center;
@@ -310,111 +254,73 @@ html {
   color: white;
   flex-shrink: 0;
 }
-.icon-wrapper-dark-green mat-icon {
-  font-size: 28px;
-  width: 28px;
-  height: 28px;
-}
+.icon-wrapper-dark-green mat-icon { font-size: 28px; width: 28px; height: 28px; }
+.feature-text h3 { font-size: 1.2rem; margin: 0 0 5px 0; }
+.feature-text p { font-size: 0.9rem; margin: 0; }
 
-.feature-text h3 {
-  font-size: 1.2rem;
-  margin: 0 0 5px 0;
-}
-.feature-text p {
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-
-/* --- 8. Sección "Nuestro Equipo" --- */
+/* --- 8. Sección "Nuestro Equipo" (MODIFICADA) --- */
 .team-grid-5 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 }
-
 .team-card {
   border-radius: var(--border-radius-card) !important;
   box-shadow: var(--shadow-card) !important;
   overflow: hidden;
-  background-color: var(--color-bg-light);
+  background-color: #ffffff;
 }
-
 .team-card img {
   width: 100%;
-  height: 300px;
+  height: 400px;
   object-fit: cover;
   display: block;
 }
-
 :host ::ng-deep .team-card mat-card-content {
   padding: 20px !important;
   text-align: center;
 }
+.team-card h4 { font-size: 1.2rem; font-weight: 600; margin: 0 0 5px 0; }
 
-.team-card h4 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0 0 5px 0;
-}
-.team-card p {
+/* ¡ESTILOS ACTUALIZADOS Y AÑADIDOS! */
+.team-card p.team-role {
   font-size: 0.9rem;
   color: var(--color-primary);
-  margin: 0 0 15px 0;
+  margin: 0 0 10px 0; /* Menos espacio abajo */
   font-weight: 500;
 }
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.social-links a {
+.team-card p.team-description {
+  font-size: 0.9rem;
   color: var(--color-text-secondary);
-  cursor: pointer;
-  transition: color 0.3s ease;
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+  /* Altura mínima para que las tarjetas se alineen
+     incluso con descripciones de diferente longitud */
+  min-height: 4.5em; /* (Aprox. 3 líneas) */
 }
-.social-links a:hover {
-  color: var(--color-primary);
-}
-.social-links mat-icon {
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
-}
+.social-links { display: flex; justify-content: center; gap: 10px; }
+.social-links a { color: var(--color-text-secondary); cursor: pointer; transition: color 0.3s ease; }
+.social-links a:hover { color: var(--color-primary); }
+.social-links mat-icon { font-size: 20px; width: 20px; height: 20px; }
 
 /* --- 9. Sección "Contáctanos" --- */
+/* ... (estilos sin cambios) ... */
 .contact-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 30px;
   text-align: left;
 }
-
 .contact-form-card {
   border-radius: var(--border-radius-card) !important;
   box-shadow: var(--shadow-card) !important;
   padding: 30px !important;
+  background-color: #ffffff;
 }
-
-.contact-form-card form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-:host ::ng-deep .contact-form-card .mat-mdc-form-field {
-  width: 100%;
-}
-:host ::ng-deep .contact-textarea .mat-mdc-form-field-flex {
-  height: 120px;
-}
-
-.contact-info-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
+.contact-form-card form { display: flex; flex-direction: column; gap: 10px; }
+:host ::ng-deep .contact-form-card .mat-mdc-form-field { width: 100%; }
+:host ::ng-deep .contact-textarea .mat-mdc-form-field-flex { height: 120px; }
+.contact-info-stack { display: flex; flex-direction: column; gap: 20px; }
 .contact-info-card {
   border-radius: var(--border-radius-card) !important;
   box-shadow: var(--shadow-card) !important;
@@ -422,13 +328,9 @@ html {
   display: flex;
   align-items: center;
   gap: 20px;
+  background-color: #ffffff;
 }
-
-.contact-info-text h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 5px 0;
-}
+.contact-info-text h4 { font-size: 1.1rem; font-weight: 600; margin: 0 0 5px 0; }
 .contact-info-text p {
   font-size: 0.95rem;
   color: var(--color-text-secondary);
@@ -438,11 +340,11 @@ html {
 
 /* --- 10. Footer --- */
 .footer {
-  background-color: #1a1a1a;
+  background-color: #101828;
   color: #b0b0b0;
   padding: 60px 20px 0 20px;
 }
-
+/* ... (estilos de footer sin cambios) ... */
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -450,12 +352,7 @@ html {
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 30px;
 }
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.footer-col { display: flex; flex-direction: column; gap: 10px; }
 .footer-col h4 {
   font-size: 1.1rem;
   font-weight: 600;
@@ -468,95 +365,43 @@ html {
   cursor: pointer;
   transition: color 0.3s ease;
 }
-.footer-col a:hover {
-  color: var(--color-primary);
-}
-
-.footer-col#footer-logo .logo-container {
-  margin-bottom: 10px;
-}
-.footer-col#footer-logo .logo-title {
-  color: white;
-}
+.footer-col a:hover { color: var(--color-primary); }
+.footer-col#footer-logo .logo-container { margin-bottom: 10px; }
+.footer-col#footer-logo .logo-title { color: white; }
 .footer-col#footer-logo p {
   font-size: 0.95rem;
   line-height: 1.6;
   max-width: 250px;
 }
-
-.footer-social-links {
-  display: flex;
-  gap: 15px;
-}
-.footer-social-links mat-icon {
-  font-size: 24px;
-  width: 24px;
-  height: 24px;
-}
-
+.footer-social-links { display: flex; gap: 15px; }
+.footer-social-links mat-icon { font-size: 24px; width: 24px; height: 24px; }
 .footer-bottom {
   border-top: 1px solid #333;
   text-align: center;
   padding: 20px 0;
   margin-top: 40px;
 }
-.footer-bottom p {
-  margin: 0;
-  font-size: 0.9rem;
-}
+.footer-bottom p { margin: 0; font-size: 0.9rem; }
 
 /* --- 11. Responsividad --- */
 @media (max-width: 992px) {
-  .nav-links {
-    display: none; /* Oculta links en móvil, necesitarías un menú hamburguesa */
-  }
-  .card-grid-3 {
-    grid-template-columns: 1fr 1fr;
-  }
-  .team-grid-5 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-  .footer-container {
-    grid-template-columns: 1fr 1fr;
-  }
-  .hero-title {
-    font-size: 3rem;
-  }
+  .nav-links { display: none; }
+  .card-grid-3 { grid-template-columns: 1fr 1fr; }
+  .team-grid-5 { grid-template-columns: repeat(3, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-container { grid-template-columns: 1fr 1fr; }
+  .hero-title { font-size: 3rem; }
 }
-
 @media (max-width: 768px) {
-  .section {
-    padding: 60px 15px;
-  }
-  .card-grid-3 {
-    grid-template-columns: 1fr;
-  }
-  .team-grid-5 {
-    grid-template-columns: 1fr 1fr;
-  }
-  .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .footer-col#footer-logo p {
-    margin: 0 auto;
-  }
-  .footer-col .logo-container, .footer-social-links {
-    justify-content: center;
-  }
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
+  .section { padding: 60px 15px; }
+  .card-grid-3 { grid-template-columns: 1fr; }
+  .team-grid-5 { grid-template-columns: 1fr 1fr; }
+  .footer-container { grid-template-columns: 1fr; text-align: center; }
+  .footer-col#footer-logo p { margin: 0 auto; }
+  .footer-col .logo-container, .footer-social-links { justify-content: center; }
+  .hero-title { font-size: 2.5rem; }
+  .hero-subtitle { font-size: 1.2rem; }
 }
-
 @media (max-width: 480px) {
-  .team-grid-5 {
-    grid-template-columns: 1fr;
-  }
+  .team-grid-5 { grid-template-columns: 1fr; }
 }
