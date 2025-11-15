@@ -4,21 +4,21 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-// 1. Asumiendo que tu servicio está en esta ruta
-import { UsuarioService, AuthRequest, AuthResponse } from '../../services/usuario-service';
+// 1. Importar el servicio y las interfaces
+// (Asegúrate que la ruta a tu servicio sea correcta)
+import { UsuarioService, AuthRequest, AuthResponse } from '../../services/usuario-service'
 
-// 2. Módulos de Material NECESARIOS
+// Módulos de Material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon'; // <-- ¡Crítico para los iconos!
-import { MatCheckboxModule } from '@angular/material/checkbox'; // <-- ¡Crítico para el checkbox!
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login', // Tu selector
   standalone: true,
-  // 3. Importar TODOS los módulos en el componente standalone
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -28,32 +28,30 @@ import { MatCheckboxModule } from '@angular/material/checkbox'; // <-- ¡Crític
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatIconModule, // <-- ¡Asegúrate de que esté aquí!
-    MatCheckboxModule // <-- ¡Asegúrate de que esté aquí!
+    MatIconModule,
+    MatCheckboxModule
   ],
-  templateUrl: './login-component.html',
-  styleUrls: ['./login-component.css']
+  templateUrl: './login-component.html', // Tu HTML
+  styleUrls: ['./login-component.css'] // Tu CSS
 })
 export class LoginComponent {
   loginForm: FormGroup;
   loading = false;
-  hidePassword = true; // Para el botón de ver/ocultar contraseña
+  hidePassword = true;
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuarioService,
+    private usuarioService: UsuarioService, // Inyectar servicio
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    // 4. Crear formulario
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      rememberMe: [false] // Añadido para el checkbox
+      rememberMe: [false]
     });
   }
 
-  // 5. Función para el botón del ojo
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
   }
@@ -65,28 +63,36 @@ export class LoginComponent {
     }
 
     this.loading = true;
-
-    // 6. Crear el objeto AuthRequest
     const credentials: AuthRequest = {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     };
 
-
-    // 7. Llamar al servicio
     this.usuarioService.login(credentials).subscribe({
-      next: (response: AuthResponse) => {
+      next: () => {
         this.loading = false;
-        localStorage.setItem('jwt_token', response.jwt);
 
-        this.snackBar.open('¡Bienvenido!', 'Cerrar', {
-          duration: 3000,
-          panelClass: ['snackbar-success']
-        });
+        // --- Lógica de Redirección por Rol ---
 
-        this.router.navigate(['/inicio']); // Ajusta esta ruta
+        if (this.usuarioService.isAdmin()) {
+          // ¡CORREGIDO! Redirige a /admin/inicio
+          this.snackBar.open('Bienvenido Administrador', 'Cerrar', { duration: 3000 });
+          this.router.navigate(['/inicio-admin']);
+
+        } else if (this.usuarioService.isUser()) {
+          // Redirige a /panel/inicio
+          this.snackBar.open('Bienvenido', 'Cerrar', { duration: 3000 });
+          this.router.navigate(['/inicio-usuario']);
+
+        } else {
+          this.snackBar.open('Usuario sin roles definidos', 'Cerrar', {
+            duration: 5000, panelClass: ['snackbar-error']
+          });
+        }
       },
-      error: (err) => {
+      // --- ¡CORRECCIÓN AQUÍ! ---
+      // Añade ": any" para darle un tipo al error
+      error: (err: any) => {
         this.loading = false;
         this.snackBar.open('Usuario o contraseña incorrectos', 'Cerrar', {
           duration: 5000,

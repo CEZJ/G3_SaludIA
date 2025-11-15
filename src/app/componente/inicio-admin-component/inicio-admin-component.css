@@ -1,0 +1,144 @@
+/* --- 1. IMPORTACIONES ESENCIALES --- */
+/* (Se incluyen por si este componente se carga de forma independiente) */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* --- Variables de Color --- */
+:host {
+  --color-primary: #4A9D91;
+  --color-primary-dark: #3E7C70;
+  --color-text-primary: #222;
+  --color-text-secondary: #555;
+  --color-border-light: #f0f0f0;
+}
+
+/* --- Banner de Bienvenida --- */
+.admin-welcome-banner {
+  /* Degradado sutil del banner */
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 32px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.banner-text {
+  max-width: 70%;
+}
+.banner-icon-bg {
+  font-size: 5rem;
+  width: 80px;
+  height: 80px;
+  color: white;
+  opacity: 0.8;
+}
+.admin-welcome-banner h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 8px 0;
+}
+.admin-welcome-banner strong {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.admin-welcome-banner p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-top: 12px;
+}
+
+/* --- Grid Misión/Visión --- */
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+.info-card {
+  border-radius: 12px;
+  padding: 24px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid var(--color-border-light);
+  display: flex;
+  flex-direction: column;
+}
+.info-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.info-icon-wrapper mat-icon {
+  font-size: 28px;
+}
+.info-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--color-text-primary);
+}
+.info-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* --- Grid Características --- */
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 32px 0 0 0;
+}
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 8px 0 24px 0;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.feature-card {
+  border-radius: 12px;
+  padding: 24px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid var(--color-border-light);
+  text-align: left;
+}
+.feature-card h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--color-text-primary);
+}
+.feature-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 992px) {
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+  }
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}

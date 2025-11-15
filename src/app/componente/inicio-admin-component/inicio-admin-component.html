@@ -1,1 +1,55 @@
-<p>inicio-admin-component works!</p>
+<!-- Banner de Bienvenida del Admin -->
+<mat-card class="admin-welcome-banner">
+  <div class="banner-text">
+    <mat-icon class="banner-icon-bg">bubble_chart</mat-icon>
+    <h2>Salud AI</h2>
+    <strong>Transformando el Futuro de la Medicina</strong>
+    <p>
+      Somos una plataforma orientada a prevenir la propagación de enfermedades infecciosas,
+      conectando profesionales médicos con tecnología de vanguardia para ofrecer diagnósticos
+      más precisos y tratamientos personalizados.
+    </p>
+  </div>
+</mat-card>
+
+<!-- Misión y Visión -->
+<div class="mission-vision-grid">
+  <mat-card class="info-card">
+    <div class="info-icon-wrapper" style="color: #4A9D91; background-color: #e4f2f0;">
+      <mat-icon>track_changes</mat-icon>
+    </div>
+    <h3>Nuestra Misión</h3>
+    <p>
+      Proporcionar una plataforma eficiente para detectar y contener
+      enfermedades infecciosas, priorizando la salud junto a la
+      seguridad pública.
+    </p>
+  </mat-card>
+  <mat-card class="info-card">
+    <div class="info-icon-wrapper" style="color: #9c27b0; background-color: #f3e5f5;">
+      <mat-icon>visibility</mat-icon>
+    </div>
+    <h3>Nuestra Visión</h3>
+    <p>
+      Ser la plataforma líder mundial en soluciones de salud impulsadas por
+      IA, donde cada profesional médico tenga acceso a tecnología avanzada
+      que permita salvar más vidas y mejorar el bienestar de millones de
+      personas en todo el mundo.
+    </p>
+  </mat-card>
+</div>
+
+<!-- Características Principales -->
+<h2>Características Principales</h2>
+<p class="section-subtitle">
+  Descubre las capacidades que hacen de Salud AI la plataforma más avanzada del mercado
+</p>
+<div class="features-grid">
+  <mat-card class="feature-card" *ngFor="let feature of featuresList">
+    <div class="info-icon-wrapper" [style.color]="feature.color" [style.background-color]="feature.bgColor">
+      <mat-icon>{{ feature.icon }}</mat-icon>
+    </div>
+    <h4>{{ feature.title }}</h4>
+    <p>{{ feature.text }}</p>
+  </mat-card>
+</div>
