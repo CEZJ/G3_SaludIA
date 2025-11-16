@@ -1,10 +1,81 @@
-span {
-  margin: auto;
-  text-align: center;
+/* --- 1. IMPORTACIONES ESENCIALES --- */
+/* (Asegúrate de que estas estén en tu styles.css global,
+   o impórtalas aquí si es necesario)
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+*/
+
+:host {
+  --color-primary: #4A9D91; /* Tu color principal */
+  --color-primary-dark: #3e837a;
+  --color-text-primary: #222;
+  --color-text-secondary: #555;
+  --color-warn: #ef4444; /* Rojo */
 }
-.example-spacer {
-  flex: 1 1 auto;
+
+.navbar-app {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: var(--color-text-primary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-button {
-  margin: 0px 2px;
+.navbar-content {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 64px;
+}
+.logo-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+.nav-links {
+  display: flex;
+  margin-left: 24px;
+}
+/* Estilo para los botones de navegación de texto */
+:host ::ng-deep .nav-links .mat-mdc-button {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  border-radius: 6px;
+  margin: 0 4px;
+}
+:host ::ng-deep .nav-links .mat-mdc-button:hover {
+  background-color: #f4f4f5;
+  color: var(--color-text-primary);
+}
+/* Estilo para el enlace activo */
+:host ::ng-deep .nav-links .mat-mdc-button.active-link {
+  color: var(--color-primary);
+  background-color: #e4f2f0; /* Color primario claro */
+}
+.spacer {
+  flex: 1 1 auto; /* Esto empuja lo que sigue a la derecha */
+}
+
+/* Estilo para el botón de Login */
+:host ::ng-deep .login-button.mat-mdc-button {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0 20px;
+  line-height: 36px;
+}
+:host ::ng-deep .login-button.mat-mdc-button:hover {
+  background-color: var(--color-primary-dark) !important;
+}
+
+/* Estilo para el botón de logout */
+:host ::ng-deep .logout-button.mat-mdc-button {
+  background-color: var(--color-warn) !important;
+}
+:host ::ng-deep .logout-button.mat-mdc-button:hover {
+  background-color: #d73737 !important; /* Rojo oscuro */
 }
