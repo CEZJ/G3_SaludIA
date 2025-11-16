@@ -29,3 +29,113 @@
                  aria-label="Select page of periodic elements">
   </mat-paginator>
 </div>
+<div class="mapa-enfermedades-container">
+
+  <mat-card class="map-header-card">
+    <div class="header-content">
+      <mat-icon class="header-icon">location_on</mat-icon>
+      <div class="header-text">
+        <h2>Mapa de Enfermedades</h2>
+        <p>Visualiza la distribución de enfermedades en diferentes zonas</p>
+        <div class="alert-box">
+          <mat-icon>warning_amber</mat-icon>
+          <small>Los datos se actualizan en tiempo real. Esta información es orientativa y basada en reportes de usuarios.</small>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="metric-cards-grid">
+    <mat-card class="metric-card total-cases">
+      <div class="metric-info">
+        <span class="metric-title">Total Casos</span>
+        <span class="metric-value">1279</span>
+      </div>
+      <div class="metric-icon-trend">
+        <mat-icon>timeline</mat-icon>
+      </div>
+    </mat-card>
+
+    <mat-card class="metric-card zones-monitored">
+      <div class="metric-info">
+        <span class="metric-title">Zonas Monitoreadas</span>
+        <span class="metric-value">8</span>
+      </div>
+      <div class="metric-icon-trend">
+        <mat-icon>location_on</mat-icon>
+      </div>
+    </mat-card>
+
+    <mat-card class="metric-card zones-alert">
+      <div class="metric-info">
+        <span class="metric-title">Zonas de Alto Riesgo</span>
+        <span class="metric-value">4</span>
+      </div>
+      <div class="metric-icon-trend alert-icon">
+        <mat-icon>error_outline</mat-icon>
+      </div>
+    </mat-card>
+
+    <mat-card class="metric-card trend">
+      <div class="metric-info">
+        <span class="metric-title">Tendencia</span>
+        <span class="metric-value">+12%</span>
+      </div>
+      <div class="metric-icon-trend">
+        <mat-icon>trending_up</mat-icon>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="filter-section">
+    <label>Filtrar por enfermedad:</label>
+    <button mat-flat-button class="filter-button active">Todas</button>
+    <button mat-flat-button class="filter-button">Gripe</button>
+    <button mat-flat-button class="filter-button">COVID-19</button>
+    <button mat-flat-button class="filter-button">Gastroenteritis</button>
+  </div>
+
+  <mat-card class="mapa-calor-card">
+    <h3>Mapa de Calor</h3>
+    <div class="map-placeholder">
+    </div>
+  </mat-card>
+
+  <div class="detalle-zona-section">
+    <h2>Detalle por Zona</h2>
+    <div class="alerts-cards-grid">
+      <mat-card class="alert-zone-card card-red">
+        <div class="zone-header">
+          <mat-icon class="status-icon-red">location_on</mat-icon>
+          <span class="zone-name">Lima Centro</span>
+          <span class="zone-status status-red">Alta</span>
+        </div>
+        <div class="zone-details">
+          <span class="disease">Gripe</span>
+          <span class="detail-label">Casos Reportados:</span>
+          <span class="detail-value">234</span>
+          <span class="detail-label">Última Actualización:</span>
+          <span class="detail-date">14/1/2024</span>
+        </div>
+      </mat-card>
+
+      <mat-card class="alert-zone-card card-orange">
+        <div class="zone-header">
+          <mat-icon class="status-icon-orange">location_on</mat-icon>
+          <span class="zone-name">Miraflores</span>
+          <span class="zone-status status-orange">Media</span>
+        </div>
+      </mat-card>
+
+      <mat-card class="alert-zone-card card-green">
+        <div class="zone-header">
+          <mat-icon class="status-icon-green">location_on</mat-icon>
+          <span class="zone-name">San Isidro</span>
+          <span class="zone-status status-green">Baja</span>
+        </div>
+      </mat-card>
+
+    </div>
+  </div>
+
+</div>
