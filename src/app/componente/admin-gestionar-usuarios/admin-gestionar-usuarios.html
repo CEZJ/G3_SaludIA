@@ -50,7 +50,6 @@
 
 
 
-  <!-- ========== CONTENIDO PRINCIPAL ========== -->
   <main class="content">
 
 
@@ -58,55 +57,61 @@
     <mat-card class="admin-welcome-banner">
       <div class="banner-text">
         <mat-icon class="banner-icon-bg">bubble_chart</mat-icon>
-        <h2>Salud AI</h2>
+        <h2>Gestionar Usuarios</h2>
 
         <p>
-         modo administrador
+          modo administrador
         </p>
       </div>
     </mat-card>
 
-    <!-- Misión y Visión -->
-    <div class="mission-vision-grid">
-      <mat-card class="info-card">
-        <div class="info-icon-wrapper" style="color:#4A9D91;background-color:#e4f2f0;">
-          <mat-icon>track_changes</mat-icon>
-        </div>
-        <h3>Nuestra Misión</h3>
-        <p>
-          Proporcionar una plataforma eficiente para detectar y contener
-          enfermedades infecciosas, priorizando la salud junto a la seguridad pública.
-        </p>
-      </mat-card>
 
-      <mat-card class="info-card">
-        <div class="info-icon-wrapper" style="color:#9c27b0;background-color:#f3e5f5;">
-          <mat-icon>visibility</mat-icon>
-        </div>
-        <h3>Nuestra Visión</h3>
-        <p>
-          Ser la plataforma líder mundial en soluciones de salud impulsadas por IA...
-        </p>
-      </mat-card>
+
+
+
+
+
+
+
+  <!-- Filtros de búsqueda normales -->
+    <div class="filters-row">
+      <div class="filter">
+        <span class="icon">🔍</span>
+        <input type="text" placeholder="Buscar por ID" [(ngModel)]="filterId" (input)="applyFilter()">
+      </div>
+      <div class="filter">
+        <span class="icon">🔍</span>
+        <input type="text" placeholder="Buscar por Usuario" [(ngModel)]="filterName" (input)="applyFilter()">
+      </div>
     </div>
 
-    <!-- Características -->
-    <h2>Características Principales</h2>
-    <p class="section-subtitle">
-      Descubre las capacidades que hacen de Salud AI la plataforma más avanzada del mercado
-    </p>
+  <!-- Tabla de Usuarios -->
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>ID</th>
+        <th>Correo</th>
+        <th>Dirección</th>
+        <th>Distrito</th>
+        <th>Estado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let u of filteredUsuarios">
+        <td>{{u.usuario}}</td>
+        <td>{{u.id}}</td>
+        <td>{{u.correo}}</td>
+        <td>{{u.direccion}}</td>
+        <td>{{u.distrito}}</td>
+        <td>{{u.estado}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <div class="features-grid">
-      <mat-card class="feature-card" *ngFor="let feature of featuresList">
-        <div class="info-icon-wrapper"
-             [style.color]="feature.color"
-             [style.background-color]="feature.bgColor">
-          <mat-icon>{{ feature.icon }}</mat-icon>
-        </div>
-        <h4>{{ feature.title }}</h4>
-        <p>{{ feature.text }}</p>
-      </mat-card>
-    </div>
+
 
   </main>
 

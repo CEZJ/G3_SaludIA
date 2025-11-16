@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Necesario para *ngIf
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // ¡Clave para formularios!
-import { Router } from '@angular/router';
+import {Router, RouterLink, RouterModule} from '@angular/router';
+
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 // 1. Importar el servicio
@@ -29,7 +30,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterLink
   ]
 })
 export class UsuarioNuevoEditComponent implements OnInit {

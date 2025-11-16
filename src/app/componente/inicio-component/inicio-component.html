@@ -33,9 +33,12 @@
     <h1 class="hero-title">El Futuro de la Salud</h1>
     <p class="hero-subtitle">La plataforma que está al alcance de tus manos</p>
     <div class="hero-buttons">
-      <button mat-flat-button class="hero-btn-primary" (click)="scrollTo('caracteristicas')">
-        Comenzar Ahora <mat-icon>arrow_forward</mat-icon>
+
+      <button mat-flat-button color="primary" class="hero-btn-primary" routerLink="/login"> Comenzar Ahora <mat-icon>arrow_forward</mat-icon>
       </button>
+
+
+
       <button mat-stroked-button class="hero-btn-secondary" (click)="scrollTo('quienes-somos')">
         Conocer Más
       </button>
@@ -180,7 +183,7 @@
           <mat-icon class="icon-wrapper-dark-green">email</mat-icon>
           <div class="contact-info-text">
             <h4>Email</h4>
-            <p>contacto@saludai.com<br>soporte@saludai.com</p>
+            <p>contacto&#64;saludai.com<br>soporte&#64;saludai.com</p>
           </div>
         </mat-card>
         <mat-card class="contact-info-card">
