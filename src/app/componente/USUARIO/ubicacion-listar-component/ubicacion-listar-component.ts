@@ -11,9 +11,11 @@ import {
 import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {DatePipe} from '@angular/common';
-import {Ubicacion} from '../../model/ubicacion';
-import {UbicacionService} from '../../services/ubicacion-service';
+import {Ubicacion} from '../../../model/ubicacion';
+import {UbicacionService} from '../../../services/ubicacion-service';
 import {Router} from '@angular/router';
+// @ts-ignore
+import {MatIcon} from '@angular/material/icon-module.d';
 @Component({
   selector: 'app-ubicacion-listar-component',
   imports: [

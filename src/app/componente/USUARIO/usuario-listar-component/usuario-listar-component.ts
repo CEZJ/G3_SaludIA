@@ -3,8 +3,8 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { DatePipe, CommonModule } from '@angular/common';
-import { Usuario } from '../../model/usuario'; // <-- ¡Usando tu modelo Usuario!
-import { UsuarioService } from '../../services/usuario-service';
+import { Usuario } from '../../../model/usuario'; // <-- ¡Usando tu modelo Usuario!
+import { UsuarioService } from '../../../services/usuario-service';
 import { Router, RouterLink } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';

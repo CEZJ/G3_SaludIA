@@ -6,7 +6,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 // 1. Importar el servicio y las interfaces
 // (Asegúrate que la ruta a tu servicio sea correcta)
-import { UsuarioService, AuthRequest, AuthResponse } from '../../services/usuario-service'
+import { UsuarioService, AuthRequest, AuthResponse } from '../../../services/usuario-service'
 
 // Módulos de Material
 import { MatCardModule } from '@angular/material/card';

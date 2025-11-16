@@ -11,8 +11,8 @@ import {
 import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {DatePipe} from '@angular/common';
-import {Sintoma} from '../../model/sintoma';
-import {SintomaService} from '../../services/sintoma-service';
+import {Sintoma} from '../../../model/sintoma';
+import {SintomaService} from '../../../services/sintoma-service';
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-sintoma-listar-componente',

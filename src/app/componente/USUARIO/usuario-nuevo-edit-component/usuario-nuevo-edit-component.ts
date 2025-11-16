@@ -6,7 +6,7 @@ import {Router, RouterLink, RouterModule} from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 // 1. Importar el servicio
-import { UsuarioService } from '../../services/usuario-service'; // Ajusta la ruta si es necesario
+import { UsuarioService } from '../../../services/usuario-service'; // Ajusta la ruta si es necesario
 
 // 2. Importar los módulos de Material que usaremos (por ser Standalone)
 import { MatCardModule } from '@angular/material/card';
