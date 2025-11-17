@@ -50,26 +50,5 @@ import { MatButtonModule } from '@angular/material/button'; // Útil si añades 
   styleUrl: './ubicacion-listar-component.css',
 })
 export class UbicacionListarComponent {
-  displayedColumns: string[] = ['idUbicacion', 'distrito', 'provincia', 'direccion'];
-  dataSource: MatTableDataSource<Ubicacion> = new MatTableDataSource<Ubicacion>();
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  ubicacionService: UbicacionService = inject(UbicacionService);
-  route : Router = inject(Router);
 
-  constructor() {
-  }
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
-  ngOnInit(){ //se ejecuta al cargar la página
-    console.log("Llamando a mi API");
-    this.ubicacionService.list().subscribe({
-      next: data => {
-        console.log("API me ha traido:", data);
-        this.dataSource.data = data;
-      }
-    })
-  }
 }
