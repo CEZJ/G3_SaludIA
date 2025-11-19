@@ -1,0 +1,96 @@
+<div class="content-container">
+
+  <!-- Banner de Bienvenida -->
+  <mat-card class="admin-welcome-banner">
+    <div class="banner-text">
+      <mat-icon class="banner-icon-bg">map</mat-icon>
+      <h2>Gestión de Ubicaciones</h2>
+      <p>Modo administrador: Visualiza y gestiona los puntos de monitoreo.</p>
+    </div>
+  </mat-card>
+
+  <!-- Tarjeta del Mapa -->
+  <mat-card class="map-view-card">
+    <div class="map-header">
+      <div class="header-details">
+        <mat-icon class="map-icon">location_on</mat-icon>
+        <div class="header-text-container">
+          <h2>Mapa de Ubicaciones</h2>
+          <p>Distribución geográfica de puntos de monitoreo</p>
+        </div>
+      </div>
+
+      <div class="map-controls">
+        <button mat-button class="map-view-button">Vista Satélite</button>
+        <button mat-button class="map-view-button active-map-view">Vista Mapa</button>
+      </div>
+    </div>
+
+    <div class="map-placeholder">
+      <!-- Aquí iría tu componente de mapa real (Google Maps / Leaflet) -->
+      <div class="map-image-placeholder"></div>
+
+      <div class="map-legend">
+        <div class="legend-item">
+          <span class="legend-dot active-location-dot"></span>
+          <span>Ubicación activa</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot case-count-dot"></span>
+          <span>Número de casos</span>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+  <!-- Tabla de Ubicaciones -->
+  <div class="table-wrapper mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="idUbicacion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="id-badge">#{{element.idUbicacion}}</span>
+        </td>
+      </ng-container>
+
+      <!-- Distrito Column -->
+      <ng-container matColumnDef="distrito">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Distrito </th>
+        <td mat-cell *matCellDef="let element"> {{element.distrito}} </td>
+      </ng-container>
+
+      <!-- Provincia Column -->
+      <ng-container matColumnDef="provincia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Provincia </th>
+        <td mat-cell *matCellDef="let element"> {{element.provincia}} </td>
+      </ng-container>
+
+      <!-- Dirección Column -->
+      <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="address-cell">
+            <mat-icon class="tiny-icon">home</mat-icon>
+            {{element.direccion}}
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover-row"></tr>
+
+      <!-- Fila vacía si no hay datos -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell no-data" colspan="4">No se encontraron ubicaciones.</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Seleccionar página de ubicaciones">
+    </mat-paginator>
+  </div>
+
+</div>

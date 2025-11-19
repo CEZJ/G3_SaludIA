@@ -1,0 +1,72 @@
+<div class="content-container">
+
+  <!-- Banner de Bienvenida -->
+  <mat-card class="admin-welcome-banner">
+    <div class="banner-text">
+      <mat-icon class="banner-icon-bg">bubble_chart</mat-icon>
+      <h2>Gestionar Usuarios</h2>
+      <p>Administración de pacientes y perfiles</p>
+    </div>
+  </mat-card>
+
+  <!-- Filtros de búsqueda -->
+  <div class="filters-row">
+    <div class="filter">
+      <span class="icon">🔍</span>
+      <input type="number" placeholder="Buscar por ID" [(ngModel)]="filterId" (input)="applyFilter()">
+    </div>
+    <div class="filter">
+      <span class="icon">🔍</span>
+      <!-- Actualicé el placeholder para reflejar que busca en más campos -->
+      <input type="text" placeholder="Buscar por Nombre, Correo, Distrito..." [(ngModel)]="filterName" (input)="applyFilter()">
+    </div>
+  </div>
+
+  <!-- Tabla de Usuarios -->
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>F. Nacimiento</th>
+        <th>Dirección</th>
+        <th>Distrito</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Iteramos sobre la lista filtrada -->
+      <tr *ngFor="let u of filteredUsuarios">
+        <td>{{u.idUsuario}}</td>
+        <td>
+          <div class="user-cell">
+            <span class="user-name">{{u.nombre}}</span>
+          </div>
+        </td>
+        <!-- Asegúrate de usar la propiedad correcta (username o email) -->
+        <td>{{u.email}}</td>
+        <td>{{u.fechaNacimiento | date:'dd/MM/yyyy'}}</td>
+
+        <!-- USO DEL MODELO UBICACIÓN -->
+        <td>{{u.ubicacion?.direccion || 'N/A'}}</td>
+        <td>{{u.ubicacion?.distrito || 'N/A'}}</td>
+
+        <td>
+          <button class="btn-action edit"><mat-icon>edit</mat-icon></button>
+          <button class="btn-action delete"><mat-icon>delete</mat-icon></button>
+        </td>
+      </tr>
+
+      <!-- Mensaje si no hay datos -->
+      <tr *ngIf="filteredUsuarios.length === 0">
+        <td colspan="7" class="no-data">
+          No se encontraron usuarios.
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

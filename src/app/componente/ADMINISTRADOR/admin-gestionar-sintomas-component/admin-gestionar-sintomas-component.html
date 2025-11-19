@@ -1,0 +1,117 @@
+<div class="content-container">
+
+  <!-- Banner Azul Grande con Estadísticas -->
+  <div class="dashboard-header-card">
+    <div class="header-top">
+      <div class="header-info">
+        <div class="icon-box">
+          <mat-icon>pulse_alert</mat-icon>
+        </div>
+        <div>
+          <h2>Lista de Síntomas</h2>
+          <p>Registro médico de síntomas y manifestaciones clínicas</p>
+        </div>
+      </div>
+      <!-- Botón Nuevo Síntoma -->
+      <button mat-flat-button class="btn-new">
+        <mat-icon>add</mat-icon> Nuevo Síntoma
+      </button>
+    </div>
+
+    <!-- Grid de Estadísticas -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <mat-icon>description</mat-icon>
+        <div>
+          <span class="stat-label">Total Síntomas</span>
+          <span class="stat-number">{{ totalSintomas }}</span>
+        </div>
+      </div>
+      <div class="stat-box">
+        <mat-icon>warning</mat-icon>
+        <div>
+          <span class="stat-label">Casos Severos</span>
+          <span class="stat-number">{{ casosSeveros }}</span>
+        </div>
+      </div>
+      <div class="stat-box">
+        <mat-icon>trending_up</mat-icon>
+        <div>
+          <span class="stat-label">Más Frecuente</span>
+          <span class="stat-number">{{ masFrecuente }}</span>
+        </div>
+      </div>
+      <div class="stat-box">
+        <mat-icon>category</mat-icon>
+        <div>
+          <span class="stat-label">Categorías</span>
+          <span class="stat-number">{{ totalCategorias }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters-container">
+    <div class="filter-item">
+      <label># Buscar por ID del Síntoma</label>
+      <div class="input-wrapper">
+        <input type="text" placeholder="# 123" [(ngModel)]="filterId" (input)="applyFilter()">
+      </div>
+    </div>
+    <div class="filter-item">
+      <label>Q Buscar por Nombre del Síntoma</label>
+      <div class="input-wrapper">
+        <input type="text" placeholder="Nombre del síntoma" [(ngModel)]="filterName" (input)="applyFilter()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE DEL SÍNTOMA</th>
+        <!-- Como tu modelo solo tiene id y nombre, ocultamos las columnas que no existen -->
+        <!-- <th>CATEGORÍA</th> -->
+        <!-- <th>SEVERIDAD</th> -->
+        <!-- <th>FRECUENCIA</th> -->
+        <th>ACCIONES</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Iteramos sobre la lista filtrada -->
+      <tr *ngFor="let s of filteredSintomas">
+
+        <!-- ID -->
+        <td>
+          <span class="id-badge"># {{ s.idSintoma }}</span>
+        </td>
+
+        <!-- Nombre -->
+        <td>
+          <div class="name-cell">
+            <div class="mini-icon"><mat-icon>show_chart</mat-icon></div>
+            <span>{{ s.nombre }}</span>
+          </div>
+        </td>
+
+        <!-- Acciones -->
+        <td>
+          <button class="btn-icon delete" (click)="eliminarSintoma(s.idSintoma)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Mensaje si no hay datos -->
+      <tr *ngIf="filteredSintomas.length === 0">
+        <td colspan="3" class="no-data">No se encontraron síntomas.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

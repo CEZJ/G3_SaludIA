@@ -1,0 +1,156 @@
+<div class="register-layout">
+
+  <!-- LADO IZQUIERDO: Información y Branding -->
+  <div class="info-side">
+    <div class="info-content">
+      <div class="brand-header">
+        <img src="assets/Logo-app-inicio.png" alt="Salud AI Logo" class="brand-logo">
+        <div class="brand-text">
+          <h1>Salud AI</h1>
+          <span>Sistema de Prevención de Enfermedades</span>
+        </div>
+      </div>
+
+      <h2>Únete a nuestra comunidad</h2>
+      <p class="brand-description">
+        Forma parte de una red global de profesionales de la salud dedicados
+        a prevenir la propagación de enfermedades infecciosas mediante tecnología avanzada.
+      </p>
+
+      <!-- Grid de Estadísticas -->
+      <div class="stats-grid">
+        <div class="stat-item">
+          <strong>10,000+</strong>
+          <span>Profesionales</span>
+        </div>
+        <div class="stat-item">
+          <strong>500K+</strong>
+          <span>Pacientes</span>
+        </div>
+        <div class="stat-item">
+          <strong>98%</strong>
+          <span>Precisión</span>
+        </div>
+        <div class="stat-item">
+          <strong>24/7</strong>
+          <span>Soporte</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Elementos decorativos de fondo -->
+    <div class="circle-bg circle-1"></div>
+    <div class="circle-bg circle-2"></div>
+  </div>
+
+  <!-- LADO DERECHO: Formulario -->
+  <div class="form-side">
+    <div class="form-wrapper">
+      <div class="form-header">
+        <h2>Crear Cuenta</h2>
+        <p>Completa tus datos para registrarte en la plataforma</p>
+      </div>
+
+      <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="register-form">
+
+        <!-- Nombre (Largo) -->
+        <div class="form-row full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre Completo</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput formControlName="nombre" placeholder="Ej. Juan Perez">
+            <mat-error *ngIf="usuarioForm.get('nombre')?.hasError('required')">Requerido</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Correo y Fecha de Nacimiento (50/50) -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Correo Electrónico</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input matInput formControlName="username" type="email" placeholder="tu@email.com">
+            <mat-error *ngIf="usuarioForm.get('username')?.hasError('email')">Email inválido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="usuarioForm.get('fechaNacimiento')?.hasError('required')">Requerido</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Provincia y Distrito (50/50) -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Provincia</mat-label>
+            <mat-icon matPrefix>map</mat-icon>
+            <mat-select formControlName="provincia">
+              <mat-option *ngFor="let prov of provincias" [value]="prov">
+                {{ prov }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="usuarioForm.get('provincia')?.hasError('required')">Requerido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Distrito</mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            <mat-select formControlName="distrito" [disabled]="!usuarioForm.get('provincia')?.value">
+              <mat-option *ngFor="let dist of distritosDisponibles" [value]="dist">
+                {{ dist }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="usuarioForm.get('distrito')?.hasError('required')">Requerido</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Dirección (Largo) -->
+        <div class="form-row full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <mat-icon matPrefix>home</mat-icon>
+            <input matInput formControlName="direccion" placeholder="Av. Principal 123">
+            <mat-error *ngIf="usuarioForm.get('direccion')?.hasError('required')">Requerido</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Contraseña (Largo) -->
+        <div class="form-row full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="usuarioForm.get('password')?.hasError('minlength')">Mínimo 8 caracteres</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Términos -->
+        <div class="terms-check full-width">
+          <mat-checkbox formControlName="terms" color="primary">
+            Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a>
+          </mat-checkbox>
+        </div>
+
+        <!-- Botón Submit -->
+        <button mat-flat-button
+                class="submit-btn full-width"
+                type="submit"
+                [disabled]="loading || usuarioForm.invalid">
+          {{ loading ? 'Creando cuenta...' : 'Crear Cuenta' }}
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </button>
+
+        <div class="login-link full-width">
+          ¿Ya tienes una cuenta? <a routerLink="/login">Iniciar Sesión</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>

@@ -1,30 +1,39 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {Ubicacion} from '../model/ubicacion';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Ubicacion } from '../model/ubicacion'; // Asegúrate de tener este modelo
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UbicacionService {
-  private url = environment.apiURL;
+  private url = environment.apiURL; // http://localhost:8080/api
   private httpClient = inject(HttpClient);
-  constructor() {}
-  list(){
-    console.log(this.url + "/ubicaciones");
-    return this.httpClient.get<Ubicacion[]>(this.url + "/ubicaciones");
+  private readonly TOKEN_KEY = 'jwt_token';
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (!token) return new HttpHeaders();
+    return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
   }
-  listId(id:number){
-    return this.httpClient.get<Ubicacion>(this.url + "/ubicacion" + {id});
+
+  // Listar todas las ubicaciones
+  list(): Observable<Ubicacion[]> {
+    return this.httpClient.get<Ubicacion[]>(`${this.url}/ubicaciones`, {
+      headers: this.getAuthHeaders()
+    });
   }
-  insert(ubicacion: Ubicacion){
-    console.log("Enviando Insert:",ubicacion);
-    return this.httpClient.post(this.url + "/ubicacion", ubicacion);
+
+  // Eliminar ubicación
+  delete(id: number) {
+    return this.httpClient.delete(`${this.url}/ubicaciones/${id}`, {
+      headers: this.getAuthHeaders()
+    });
   }
-  update(ubicacion: Ubicacion){
-    return this.httpClient.put(this.url + "/ubicacion", ubicacion);
-  }
-  delete(id:number){
-    return this.httpClient.delete(this.url + "/usuario" + {id});
+
+  // Insertar y Actualizar (opcionales por ahora)
+  insert(ubicacion: Ubicacion) {
+    return this.httpClient.post(`${this.url}/ubicaciones`, ubicacion, { headers: this.getAuthHeaders() });
   }
 }

@@ -12,7 +12,6 @@
       -->
       <ng-container *ngIf="!usuarioService.isLoggedIn()">
         <button mat-button [routerLink]="'/'" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Inicio</button>
-        <button mat-button [routerLink]="'/nosotros'" routerLinkActive="active-link">Nosotros</button>
       </ng-container>
 
       <!--
@@ -24,7 +23,6 @@
           Esto navega al panel de usuario que hicimos
         -->
         <button mat-button [routerLink]="'/inicio-usuario'" routerLinkActive="active-link">Mi Panel</button>
-        <button mat-button [routerLink]="'/nosotros'" routerLinkActive="active-link">Nosotros</button>
       </ng-container>
 
       <!--

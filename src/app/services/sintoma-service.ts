@@ -1,30 +1,42 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Sintoma } from '../model/sintoma'; // Tu modelo
+import { Observable } from 'rxjs';
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {Sintoma} from '../model/sintoma';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SintomaService {
-  private url = environment.apiURL;
+  private url = environment.apiURL; // http://localhost:8080/api
   private httpClient = inject(HttpClient);
-  constructor() {}
-  list(){
-    console.log(this.url + "/sintomas");
-    return this.httpClient.get<Sintoma[]>(this.url + "/sintomas");
+  private readonly TOKEN_KEY = 'jwt_token';
+
+  // Helper para obtener el token y crear los headers
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (!token) return new HttpHeaders();
+    return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
   }
-  listId(id:number){
-    return this.httpClient.get<Sintoma>(this.url + "/sintomas" + {id});
+
+  // Listar todos los síntomas
+  list(): Observable<Sintoma[]> {
+    return this.httpClient.get<Sintoma[]>(`${this.url}/sintomas`, {
+      headers: this.getAuthHeaders()
+    });
   }
-  insert(sintoma: Sintoma){
-    console.log("Enviando Insert:",sintoma);
-    return this.httpClient.post(this.url + "/sintomas", sintoma);
+
+  // Eliminar un síntoma por ID
+  delete(id: number) {
+    return this.httpClient.delete(`${this.url}/sintomas/${id}`, {
+      headers: this.getAuthHeaders()
+    });
   }
-  update(sintoma: Sintoma){
-    return this.httpClient.put(this.url + "/sintoma", sintoma);
-  }
-  delete(id:number){
-    return this.httpClient.delete(this.url + "/sintoma" + {id});
+
+  // (Opcional) Crear un síntoma
+  insert(sintoma: Sintoma) {
+    return this.httpClient.post(`${this.url}/sintomas`, sintoma, {
+      headers: this.getAuthHeaders()
+    });
   }
 }
