@@ -1,36 +1,76 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <-- ¡IMPORTANTE! Para usar *ngIf
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button'; // <-- Módulo completo
-import { MatIconModule } from '@angular/material/icon'; // <-- Para el icono de logout
-import { UsuarioService } from '../../services/usuario-service'; // <-- 1. Importa el servicio
+import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav-bar-component',
-  standalone: true, // <-- ¡AÑADIDO!
+  standalone: true,
   imports: [
-    CommonModule, // <-- ¡AÑADIDO!
-    MatButtonModule, // <-- Módulo completo
+    CommonModule,
+    MatButtonModule,
     MatToolbar,
-    MatToolbarRow,
     RouterLink,
-    RouterLinkActive,
-    MatIconModule // <-- ¡AÑADIDO!
+    MatIconModule
   ],
   templateUrl: './nav-bar-component.html',
-  styleUrl: './nav-bar-component.css',
+  styleUrls: ['./nav-bar-component.css'],
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
 
-  // 3. Inyecta el servicio y hazlo PÚBLICO
-  // Al hacerlo público, podemos usarlo en el HTML
-  public usuarioService = inject(UsuarioService);
+  private router = inject(Router);
 
-  // 4. Añade la función de logout
-  logout(): void {
-    this.usuarioService.logout();
+  // Controla si el navbar debe mostrarse
+  showNavbar = false;
+
+  // Controla si estamos en la página de Login o Registro (para ocultar el botón de 'Iniciar Sesión' si ya estamos ahí)
+  isAuthPage = false;
+
+  ngOnInit() {
+    // Escuchar cambios de ruta
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      const url = event.urlAfterRedirects;
+
+      // 1. ¿Debemos mostrar el Navbar?
+      // Solo en Inicio (/), Login y Registro
+      const isHome = url === '/' || url === '/#inicio';
+      const isLogin = url.includes('/login');
+      const isRegister = url.includes('/nuevo-edit');
+
+      this.showNavbar = isHome || isLogin || isRegister;
+
+      // 2. ¿Estamos en una página de autenticación?
+      // Esto nos sirve para ocultar el botón de "Login" si ya estamos en /login
+      this.isAuthPage = isLogin || isRegister;
+    });
   }
 
-  // (El CSS que tenías aquí dentro se ha movido al archivo .css)
+  scrollTo(sectionId: string): void {
+    if (this.router.url !== '/') {
+      this.router.navigate(['/']).then(() => {
+        setTimeout(() => this.doScroll(sectionId), 100);
+      });
+    } else {
+      this.doScroll(sectionId);
+    }
+  }
+
+  private doScroll(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  }
 }

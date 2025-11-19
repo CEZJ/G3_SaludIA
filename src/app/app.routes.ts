@@ -14,7 +14,7 @@
 
   import { AdminGestionarSintomasComponent } from './componente/ADMINISTRADOR/admin-gestionar-sintomas-component/admin-gestionar-sintomas-component';
   import { AdminGestionarEnfermedades } from './componente/ADMINISTRADOR/admin-gestionar-enfermedades/admin-gestionar-enfermedades';
-  import { AdminConfiguracion } from './componente/ADMINISTRADOR/admin-configuracion/admin-configuracion';
+  import { AdminConfiguracionComponent } from './componente/ADMINISTRADOR/admin-configuracion-component/admin-configuracion-component';
   import { AdminUbicacionesComponent } from './componente/ADMINISTRADOR/admin-ubicaciones-component/admin-ubicaciones-component';
   import {
     HistorialDiagnosticoComponent
@@ -61,7 +61,7 @@
     { path: 'admin-gestionar-sintomas-component', component: AdminGestionarSintomasComponent },
     { path: 'admin-gestionar-enfermedades', component: AdminGestionarEnfermedades },
     { path: 'admin-ubicaciones-component', component: AdminUbicacionesComponent },
-    { path: 'admin-configuracion', component: AdminConfiguracion },
+    { path: 'admin-configuracion-component', component: AdminConfiguracionComponent },
 
 
 

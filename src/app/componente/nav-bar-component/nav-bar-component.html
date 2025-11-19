@@ -1,61 +1,41 @@
-<mat-toolbar color="primary" class="navbar-app">
-  <mat-toolbar-row class="navbar-content">
+<!-- Solo se muestra en las rutas permitidas -->
+<mat-toolbar class="navbar" *ngIf="showNavbar">
+  <div class="navbar-content">
 
-    <!-- Título/Logo (Siempre visible) -->
-    <span class="logo-title" [routerLink]="'/'">SALUD AI</span>
+    <!-- LOGO -->
+    <div class="logo-container" routerLink="/" style="cursor: pointer;">
+      <img src="assets/Logo-app-inicio.png" alt="Salud AI Logo" class="logo-img">
+      <span class="logo-title">Salud AI</span>
+    </div>
 
-    <!-- Enlaces de Navegación -->
+    <!-- ENLACES DE NAVEGACIÓN (Siempre visibles en estas páginas) -->
     <div class="nav-links">
+      <a (click)="scrollTo('inicio')">Inicio</a>
+      <a (click)="scrollTo('quienes-somos')">Quiénes Somos</a>
+      <a (click)="scrollTo('caracteristicas')">Características</a>
+      <a (click)="scrollTo('equipo')">Equipo</a>
+      <a (click)="scrollTo('contacto')">Contacto</a>
+    </div>
+
+    <!-- BOTONES DE ACCIÓN -->
+    <div class="auth-buttons">
 
       <!--
-        --- CASO 1: USUARIO NO LOGUEADO ---
+        Botón "Iniciar Sesión"
+        Solo se muestra si NO estamos en la página de login/registro
+        (para no ser redundante).
       -->
-      <ng-container *ngIf="!usuarioService.isLoggedIn()">
-        <button mat-button [routerLink]="'/'" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Inicio</button>
-      </ng-container>
+      <button *ngIf="!isAuthPage"
+              mat-flat-button
+              class="login-button"
+              routerLink="/login">
+        Iniciar Sesión
+      </button>
 
-      <!--
-        --- CASO 2: USUARIO 'USER' LOGUEADO ---
-      -->
-      <ng-container *ngIf="usuarioService.isLoggedIn() && usuarioService.isUser()">
-        <!--
-          ¡IMPORTANTE!
-          Esto navega al panel de usuario que hicimos
-        -->
-        <button mat-button [routerLink]="'/inicio-usuario'" routerLinkActive="active-link">Mi Panel</button>
-      </ng-container>
-
-      <!--
-        --- CASO 3: USUARIO 'ADMIN' LOGUEADO ---
-        (Mostramos los enlaces del panel de admin)
-      -->
-      <ng-container *ngIf="usuarioService.isLoggedIn() && usuarioService.isAdmin()">
-
-        <button mat-raised-button [routerLink]="'/nuevo-edit'">Nuevo perfil</button>
-        <button mat-button [routerLink]="'/inicio-admin'" routerLinkActive="active-link">Inicio Admin</button>
-        <button mat-button [routerLink]="'/usuarios'" routerLinkActive="active-link">Usuarios</button>
-        <button mat-button [routerLink]="'/sintomas'" routerLinkActive="active-link">Síntomas</button>
-        <button mat-button [routerLink]="'/ubicaciones'" routerLinkActive="active-link">Ubicaciones</button>
-      </ng-container>
+      <!-- Si estamos en login/registro, mostramos un botón para volver al inicio o nada -->
+      <!-- Por ejemplo, en registro podríamos mostrar 'Ya tengo cuenta' que lleve al login, pero eso ya está en el form -->
 
     </div>
 
-    <!-- Espaciador -->
-    <span class="spacer"></span>
-
-    <!--
-      Botones de Sesión
-    -->
-
-    <!-- Botón de Login (Solo si NO está logueado) -->
-    <button *ngIf="!usuarioService.isLoggedIn()" mat-flat-button class="login-button" [routerLink]="'/login'">
-      Login
-    </button>
-
-    <!-- Botón de Logout (Solo si SÍ está logueado) -->
-    <button *ngIf="usuarioService.isLoggedIn()" mat-flat-button class="login-button logout-button" (click)="logout()">
-      Cerrar Sesión
-    </button>
-
-  </mat-toolbar-row>
+  </div>
 </mat-toolbar>

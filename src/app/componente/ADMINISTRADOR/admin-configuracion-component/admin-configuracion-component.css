@@ -1,0 +1,253 @@
+.content-container {
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fcfd;
+  min-height: 100%;
+}
+
+/* --- Encabezado --- */
+.page-header {
+  margin-bottom: 30px;
+}
+.page-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 5px 0;
+}
+.page-header p {
+  font-size: 15px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* --- Layout (Grid) --- */
+.settings-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Menú fijo - Contenido flexible */
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* --- Sidebar de Ajustes --- */
+.settings-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.tab-btn:hover {
+  background-color: #ffffff;
+  color: #334155;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.tab-btn.active {
+  background-color: #e0f2f1; /* Verde muy claro */
+  color: #00695c; /* Verde oscuro */
+  font-weight: 600;
+  border: 1px solid #b2dfdb;
+}
+
+.tab-btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* --- Tarjeta de Contenido --- */
+.profile-card {
+  background-color: white;
+  border-radius: 20px !important;
+  padding: 40px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04) !important;
+  border: 1px solid #f1f5f9;
+}
+
+.card-header {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 20px;
+}
+.card-header h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 5px 0;
+}
+.card-header p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* --- Info de Usuario (Foto) --- */
+.profile-header-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.avatar-wrapper {
+  position: relative;
+}
+
+.avatar-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f8fcfd;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-edit-photo {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #3b9985;
+  color: white;
+  border: 2px solid white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.btn-edit-photo mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.user-details h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 5px 0;
+}
+
+.role-badge {
+  display: block;
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.link-change-photo {
+  font-size: 13px;
+  color: #3b9985;
+  font-weight: 600;
+  text-decoration: none;
+}
+.link-change-photo:hover { text-decoration: underline; }
+
+/* --- Formulario --- */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-row.full-width {
+  grid-template-columns: 1fr;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+/* Input personalizado para parecerse a la imagen */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper mat-icon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 16px 12px 40px; /* padding-left para dejar espacio al icono */
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  color: #334155;
+  background-color: #ffffff;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-wrapper input:focus {
+  border-color: #3b9985;
+  box-shadow: 0 0 0 3px rgba(59, 153, 133, 0.1);
+}
+
+/* Botón Guardar */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.btn-save {
+  background-color: #3e837a !important; /* Verde oscuro */
+  color: white !important;
+  padding: 10px 24px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .settings-layout {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+  .settings-sidebar {
+    flex-direction: row; /* Menú horizontal arriba */
+    overflow-x: auto;
+  }
+  .tab-btn {
+    white-space: nowrap;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
