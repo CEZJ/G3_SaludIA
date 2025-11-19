@@ -18,51 +18,70 @@
     </div>
 
     <nav class="menu">
+
       <a routerLink="/inicio-admin" class="menu-item">
-        <mat-icon>home</mat-icon> Inicio
+      <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;">
+        <mat-icon>home</mat-icon>
+      </span>
+        Inicio
       </a>
 
       <a routerLink="/admin-gestionar-usuarios-component" class="menu-item">
-        <mat-icon>group</mat-icon> Usuarios
+      <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;">
+        <mat-icon>group</mat-icon>
+      </span>
+        Usuarios
       </a>
 
       <a routerLink="/admin-gestionar-sintomas-component" class="menu-item">
-        <mat-icon>coronavirus</mat-icon> Síntomas
+      <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;">
+        <mat-icon>coronavirus</mat-icon>
+      </span>
+        Síntomas
       </a>
 
-      <a routerLink="/admin-gestionar-enfermedades" class="menu-item">
-        <mat-icon>science</mat-icon> Enfermedades
+      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item">
+      <span class="icon-circle" style="color:#9333ea; background:#faf5ff;">
+        <mat-icon>science</mat-icon>
+      </span>
+        Enfermedades
       </a>
 
       <a routerLink="/admin-ubicaciones-component" class="menu-item">
-        <mat-icon>location_on</mat-icon> Ubicaciones
+      <span class="icon-circle" style="color:#f97316; background:#fff7ed;">
+        <mat-icon>location_on</mat-icon>
+      </span>
+        Ubicaciones
       </a>
 
       <a routerLink="/admin-configuracion-component" class="menu-item">
-        <mat-icon>settings</mat-icon> Configuracion
+      <span class="icon-circle" style="color:#64748b; background:#f1f5f9;">
+        <mat-icon>settings</mat-icon>
+      </span>
+        Ajustes
       </a>
+
     </nav>
 
     <a routerLink="/login" class="logout">
-      <mat-icon>logout</mat-icon> Cerrar Sesión
+      <mat-icon>logout</mat-icon>
+      Cerrar Sesión
     </a>
+
   </aside>
 
 
 
-  <!-- ========== CONTENIDO PRINCIPAL ========== -->
+
+  <!-- ========== CONTENIDO ========== -->
   <main class="content">
 
-
-    <!-- Banner de Bienvenida -->
+    <!-- Banner -->
     <mat-card class="admin-welcome-banner">
       <div class="banner-text">
         <mat-icon class="banner-icon-bg">bubble_chart</mat-icon>
         <h2>Salud AI</h2>
-
-        <p>
-         modo administrador
-        </p>
+        <p>Transformando el Futuro de la Medicina</p>
       </div>
     </mat-card>
 
@@ -91,7 +110,7 @@
     </div>
 
     <!-- Características -->
-    <h2>Características Principales</h2>
+    <h2 class="section-title">Características Principales</h2>
     <p class="section-subtitle">
       Descubre las capacidades que hacen de Salud AI la plataforma más avanzada del mercado
     </p>

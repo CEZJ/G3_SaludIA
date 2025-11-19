@@ -1,6 +1,6 @@
   import { Routes } from '@angular/router';
   import {UsuarioListarComponent} from './componente/ADMINISTRADOR/usuario-listar-component/usuario-listar-component';
-  import {RegisterComponent} from './componente/USUARIO/register-component/register-component';
+  import {RegisterComponent} from './componente/HOME/register-component/register-component';
   import {InicioComponent} from './componente/HOME/inicio-component/inicio-component';
   import {SintomaNuevoEditComponente} from './componente/USUARIO/sintoma-nuevo-edit-componente/sintoma-nuevo-edit-componente';
   import {UbicacionListarComponent} from './componente/ADMINISTRADOR/ubicacion-listar-component/ubicacion-listar-component';
@@ -13,7 +13,7 @@
 
 
   import { AdminGestionarSintomasComponent } from './componente/ADMINISTRADOR/admin-gestionar-sintomas-component/admin-gestionar-sintomas-component';
-  import { AdminGestionarEnfermedades } from './componente/ADMINISTRADOR/admin-gestionar-enfermedades/admin-gestionar-enfermedades';
+
   import { AdminConfiguracionComponent } from './componente/ADMINISTRADOR/admin-configuracion-component/admin-configuracion-component';
   import { AdminUbicacionesComponent } from './componente/ADMINISTRADOR/admin-ubicaciones-component/admin-ubicaciones-component';
   import {
@@ -26,6 +26,9 @@
   import {
     AdminGestionarUsuariosComponent
   } from './componente/ADMINISTRADOR/admin-gestionar-usuarios-component/admin-gestionar-usuarios-component';
+  import {
+    AdminGestionarEnfermedadesComponent
+  } from './componente/ADMINISTRADOR/admin-gestionar-enfermedades-component/admin-gestionar-enfermedades-component';
 
 
 
@@ -59,7 +62,7 @@
     { path: 'inicio-admin', component: InicioAdminComponent},
     { path: 'admin-gestionar-usuarios-component', component: AdminGestionarUsuariosComponent },
     { path: 'admin-gestionar-sintomas-component', component: AdminGestionarSintomasComponent },
-    { path: 'admin-gestionar-enfermedades', component: AdminGestionarEnfermedades },
+    { path: 'admin-gestionar-enfermedades-component', component: AdminGestionarEnfermedadesComponent },
     { path: 'admin-ubicaciones-component', component: AdminUbicacionesComponent },
     { path: 'admin-configuracion-component', component: AdminConfiguracionComponent },
 

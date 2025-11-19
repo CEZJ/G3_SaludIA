@@ -7,16 +7,16 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
-  selector: 'app-admin-gestionar-enfermedades',
+  selector: 'app-admin-gestionar-enfermedades-component',
   imports: [
     CommonModule,
     RouterModule,
     MatCardModule,
     MatIconModule
   ],
-  templateUrl: './admin-gestionar-enfermedades.html',
-  styleUrls: ['./admin-gestionar-enfermedades.css']
+  templateUrl: './admin-gestionar-enfermedades-component.html',
+  styleUrls: ['./admin-gestionar-enfermedades-component.css']
 })
-export class AdminGestionarEnfermedades {
+export class AdminGestionarEnfermedadesComponent {
 
 }
