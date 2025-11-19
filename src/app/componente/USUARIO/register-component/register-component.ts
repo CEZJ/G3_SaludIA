@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
   hidePassword = true;
 
   // --- Datos para los Selectores ---
-  provincias: string[] = ['Lima'];
+  provincias: string[] = ['Lima', 'Callao'];
 
   // Mapa simple de distritos por provincia
   distritosPorProvincia: { [key: string]: string[] } = {
@@ -60,8 +60,8 @@ export class RegisterComponent implements OnInit {
       'Santa Rosa', 'Santiago de Surco', 'Surquillo', 'Villa el Salvador',
       'Villa Maria del Triunfo'
     ],
-  };
-
+    'Callao' : [ 'Bellavista', 'Carmen de La Legua-Reynoso', 'La Perla', 'La Punta', 'Ventanilla', 'Mi Perú'],
+  }
   // Lista de distritos que se mostrará (se actualiza al elegir provincia)
   distritosDisponibles: string[] = [];
 

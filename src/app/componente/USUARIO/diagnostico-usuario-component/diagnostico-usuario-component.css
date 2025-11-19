@@ -1,0 +1,304 @@
+/* --- Variables y Reset --- */
+:host {
+  --color-primary: #4A9D91;
+  --color-primary-light: #e4f2f0;
+  --color-primary-dark: #3e837a;
+  --color-text-main: #222;
+  --color-text-sec: #555;
+  --color-warn-bg: #fffbeb;
+  --color-warn-border: #fde68a;
+  --color-warn-text: #b45309;
+
+  font-family: 'Inter', sans-serif;
+  display: block;
+  padding-bottom: 80px; /* Espacio para el footer flotante */
+}
+
+.diag-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- Header --- */
+.page-title-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.icon-circle-header {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title-text h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.page-title-text p {
+  font-size: 15px;
+  color: var(--color-text-sec);
+  margin: 0;
+}
+
+/* --- Disclaimer Card --- */
+.disclaimer-card {
+  background-color: var(--color-warn-bg) !important;
+  border: 1px solid var(--color-warn-border);
+  box-shadow: none !important;
+  border-radius: 12px !important;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.disclaimer-content {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.warning-icon {
+  color: #f59e0b; /* Amber */
+}
+
+.disclaimer-text strong {
+  color: var(--color-warn-text);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.disclaimer-text p {
+  color: var(--color-warn-text);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* --- Selector de Síntomas --- */
+.symptom-group {
+  margin-bottom: 24px;
+}
+
+.symptom-group-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-text-main);
+}
+
+.symptom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+/* Estilo personalizado para los botones de síntomas */
+.symptom-btn {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: none;
+}
+
+.symptom-btn:hover {
+  border-color: #bbb;
+  background-color: #fafafa;
+}
+
+.symptom-btn.selected {
+  border-color: var(--color-primary);
+  background-color: #f0f9f8; /* Verde muy claro */
+  color: var(--color-primary);
+  font-weight: 600;
+  border-width: 2px; /* Borde más grueso al seleccionar */
+}
+
+.symptom-btn mat-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+/* --- Footer Flotante --- */
+.diagnosis-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  margin-top: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  bottom: 24px;
+  z-index: 10;
+  border: 1px solid #eee;
+}
+
+.selected-tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-submit-diagnosis {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  padding: 20px 24px !important;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+/* Chips personalizados */
+:host ::ng-deep .custom-chip {
+  background-color: var(--color-primary-light) !important;
+  color: var(--color-primary) !important;
+  font-weight: 500;
+}
+:host ::ng-deep .custom-chip mat-icon {
+  color: var(--color-primary);
+  opacity: 0.7;
+}
+
+/* --- Resultados --- */
+.result-card {
+  border: 2px solid #bbf7d0; /* Verde borde claro */
+  background-color: #f0fdf4; /* Verde fondo claro */
+  border-radius: 16px !important;
+  padding: 24px !important;
+  box-shadow: none !important;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.result-header h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.severity-badge {
+  background-color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--color-text-sec);
+  border: 1px solid #ddd;
+  display: inline-block;
+}
+
+.new-diagnosis-btn {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.result-probability {
+  font-size: 18px;
+  color: var(--color-text-main);
+  margin-bottom: 16px;
+}
+.result-probability strong {
+  font-size: 24px;
+}
+
+.result-description p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-sec);
+}
+
+mat-divider {
+  margin: 24px 0 !important;
+  border-top-color: #bbf7d0 !important;
+}
+
+.result-recommendations strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.recommendations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recommendations-list li {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--color-text-sec);
+}
+
+.recommendations-list mat-icon {
+  color: var(--color-primary);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Caja azul de próximos pasos */
+.next-steps-box {
+  background-color: #e0f2fe; /* Azul muy claro */
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  align-items: flex-start;
+}
+
+.symptoms-reported-footer {
+  margin-top: 32px;
+}
+.symptoms-reported-footer strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-text-sec);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .diagnosis-footer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .btn-submit-diagnosis {
+    width: 100%;
+  }
+  .result-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

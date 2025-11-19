@@ -1,0 +1,289 @@
+/* --- Variables y Configuración --- */
+:host {
+  --color-primary: #4A9D91;
+  --color-text-main: #222;
+  --color-text-sec: #555;
+  --color-border-light: #e0e0e0;
+  --color-bg-light: #f7f9fb;
+  --color-white: #ffffff;
+
+  /* Colores de iconos */
+  --color-blue-light: #e7f3ff;
+  --color-blue-text: #3498db;
+  --color-green-light: #f0fdf4;
+  --color-green-text: #16a34a;
+  --color-orange-light: #fef8f0;
+  --color-orange-text: #f0ad4e;
+
+  display: block;
+  font-family: 'Inter', sans-serif;
+}
+
+.ajustes-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- Header --- */
+.page-title-header {
+  margin-bottom: 32px;
+}
+.page-title-text h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0 0 8px 0;
+}
+.page-title-text p {
+  font-size: 16px;
+  color: var(--color-text-sec);
+  margin: 0;
+}
+
+/* --- Layout Grid --- */
+.settings-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Sidebar fijo, contenido flexible */
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* --- Navegación Lateral --- */
+.settings-nav {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  padding: 12px;
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.05); <-- Material Card ya tiene sombra, pero si quieres más */
+  border: 1px solid var(--color-border-light);
+  position: sticky;
+  top: 24px;
+}
+
+.settings-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-sec);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 4px;
+}
+
+.settings-nav-link:hover {
+  background-color: #f4f7fa;
+  color: var(--color-text-main);
+}
+
+.settings-nav-link.active {
+  background-color: #f0fdf9; /* Verde muy claro */
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.settings-nav-link mat-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+/* --- Tarjetas de Contenido --- */
+.settings-card {
+  padding: 24px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+  border: 1px solid var(--color-border-light);
+  background-color: var(--color-white);
+}
+
+.mb-4 {
+  margin-bottom: 24px;
+}
+
+mat-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+mat-card-subtitle {
+  font-size: 14px;
+  color: var(--color-text-sec);
+  margin-bottom: 24px;
+}
+
+/* --- Sección Avatar --- */
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border-light);
+}
+
+.avatar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.avatar-info strong {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.avatar-info span {
+  font-size: 14px;
+  color: var(--color-text-sec);
+  margin-bottom: 8px;
+}
+
+/* --- Formularios --- */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Ajuste de Material Form Field para que se vea limpio */
+mat-form-field {
+  width: 100%;
+}
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none; /* Oculta el espacio de error si no hay error */
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 16px;
+  /* border-top: 1px solid var(--color-border-light); */
+}
+
+.security-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* --- Iconos Circulares --- */
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+.icon-circle mat-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+.icon-circle.inline-icon {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.icon-circle.inline-icon mat-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+}
+
+.blue-light { background-color: var(--color-blue-light); color: var(--color-blue-text); }
+.green-light { background-color: var(--color-green-light); color: var(--color-green-text); }
+.orange-light { background-color: var(--color-orange-light); color: var(--color-orange-text); }
+
+/* --- Tarjeta 2FA --- */
+.two-factor-card .card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.card-info p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-sec);
+}
+
+.badge-active {
+  background-color: var(--color-green-light);
+  color: var(--color-green-text);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+  border: 1px solid #bbf7d0;
+}
+
+/* --- Lista de Sesiones --- */
+.session-icon {
+  color: var(--color-text-sec);
+}
+.session-status {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-green-text);
+  background-color: var(--color-green-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+  .settings-layout {
+    grid-template-columns: 1fr; /* Columna única en móviles */
+  }
+
+  .settings-nav {
+    flex-direction: row; /* Navegación horizontal en móviles */
+    overflow-x: auto;
+    position: static; /* Ya no sticky */
+    margin-bottom: 20px;
+  }
+
+  .settings-nav-link {
+    flex-shrink: 0;
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr; /* Inputs uno debajo del otro */
+  }
+}

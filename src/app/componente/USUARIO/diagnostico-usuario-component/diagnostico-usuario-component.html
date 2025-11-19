@@ -1,0 +1,130 @@
+<div class="diag-container">
+
+  <!-- Encabezado de la Página -->
+  <div class="page-title-header">
+    <div class="icon-circle-header">
+      <mat-icon>medical_services</mat-icon>
+    </div>
+    <div class="page-title-text">
+      <h2>Diagnóstico por Síntomas</h2>
+      <p>Selecciona los síntomas que estás experimentando</p>
+    </div>
+  </div>
+
+  <!-- Tarjeta de Advertencia -->
+  <mat-card class="disclaimer-card">
+    <div class="disclaimer-content">
+      <mat-icon class="warning-icon">warning</mat-icon>
+      <div class="disclaimer-text">
+        <strong>Importante:</strong>
+        <p>Este diagnóstico es orientativo y no sustituye la consulta médica profesional. Si presentas síntomas graves, busca atención médica inmediata.</p>
+      </div>
+    </div>
+  </mat-card>
+
+  <!--
+    VISTA 1: SELECTOR DE SÍNTOMAS
+    (Se muestra si showResults() es false)
+  -->
+  <ng-container *ngIf="!showResults()">
+    <div class="symptom-selector">
+
+      <!-- Iteramos sobre las categorías -->
+      <div class="symptom-group" *ngFor="let category of symptomCategories()">
+        <h3 class="symptom-group-title">{{ category.name }}</h3>
+        <div class="symptom-grid">
+          <!-- Botones de síntomas -->
+          <button *ngFor="let symptom of category.symptoms"
+                  class="symptom-btn"
+                  [class.selected]="symptom.selected"
+                  (click)="toggleSymptom(symptom)">
+            {{ symptom.name }}
+            <mat-icon *ngIf="symptom.selected">check_circle</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer Flotante -->
+      <div class="diagnosis-footer" *ngIf="selectedSymptoms().length > 0">
+        <div class="selected-tags">
+          <strong>Síntomas seleccionados:</strong>
+          <mat-chip-listbox>
+            <mat-chip *ngFor="let s of selectedSymptoms()"
+                      (removed)="toggleSymptom(s)"
+                      class="custom-chip">
+              {{ s.name }}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip>
+          </mat-chip-listbox>
+        </div>
+        <button mat-flat-button class="btn-submit-diagnosis" (click)="getDiagnosis()">
+          Obtener Diagnóstico
+          <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </ng-container>
+
+
+  <!--
+    VISTA 2: RESULTADOS
+    (Se muestra si showResults() es true)
+  -->
+  <div class="diagnosis-result" *ngIf="showResults()">
+
+    <mat-card class="result-card">
+      <div class="result-header">
+        <div class="result-header-left">
+          <h3>Síntomas Inespecíficos</h3>
+          <span class="severity-badge">Severidad: <strong>Baja</strong></span>
+        </div>
+        <button mat-stroked-button class="new-diagnosis-btn" (click)="resetDiagnosis()">
+          <mat-icon>add</mat-icon> Nuevo Diagnóstico
+        </button>
+      </div>
+
+      <div class="result-body">
+        <div class="result-probability">
+          Probabilidad: <strong>60%</strong>
+        </div>
+        <div class="result-description">
+          <strong>Descripción:</strong>
+          <p>Los síntomas que presentas podrían estar relacionados con varias condiciones. Se recomienda una evaluación médica personalizada.</p>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="result-recommendations">
+        <strong>Recomendaciones</strong>
+        <ul class="recommendations-list">
+          <li><mat-icon>check_circle_outline</mat-icon> Descansa adecuadamente</li>
+          <li><mat-icon>check_circle_outline</mat-icon> Mantente hidratado</li>
+          <li><mat-icon>check_circle_outline</mat-icon> Monitorea la evolución de tus síntomas</li>
+          <li><mat-icon>check_circle_outline</mat-icon> Consulta a un médico si los síntomas persisten más de 3 días</li>
+          <li><mat-icon>check_circle_outline</mat-icon> Busca atención inmediata si experimentas síntomas graves</li>
+        </ul>
+      </div>
+
+      <div class="next-steps-box">
+        <mat-icon>info</mat-icon>
+        <div class="next-steps-text">
+          <strong>Próximos Pasos</strong>
+          <p>Te recomendamos agendar una cita con un profesional de la salud para confirmar el diagnóstico y recibir el tratamiento adecuado.</p>
+        </div>
+      </div>
+    </mat-card>
+
+    <div class="symptoms-reported-footer">
+      <strong>Síntomas Reportados</strong>
+      <mat-chip-listbox>
+        <mat-chip *ngFor="let s of selectedSymptoms()" class="custom-chip readonly">
+          {{ s.name }}
+        </mat-chip>
+      </mat-chip-listbox>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,71 @@
+<div class="historial-container">
+
+  <!-- Encabezado de la Página -->
+  <div class="page-title-header">
+    <div class="icon-circle-header cyan">
+      <mat-icon>assignment</mat-icon> <!-- Icono de historial médico -->
+    </div>
+    <div class="page-title-text">
+      <h2>Historial de Diagnósticos</h2>
+      <p>Revisa tus diagnósticos anteriores y su evolución</p>
+    </div>
+  </div>
+
+  <!-- Tarjetas de Resumen (Summary Grid) -->
+  <div class="summary-grid">
+    <mat-card class="summary-card">
+      <div class="summary-icon-wrapper cyan-bg">
+        <mat-icon class="cyan-text">description</mat-icon>
+      </div>
+      <span class="summary-value">1</span>
+      <span class="summary-title">Total Diagnósticos</span>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <div class="summary-icon-wrapper blue-bg">
+        <mat-icon class="blue-text">calendar_today</mat-icon>
+      </div>
+      <span class="summary-value">12/11/2025</span>
+      <span class="summary-title">Último Diagnóstico</span>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <div class="summary-icon-wrapper red-bg">
+        <mat-icon class="red-text">error</mat-icon>
+      </div>
+      <span class="summary-value">0</span>
+      <span class="summary-title">Alta Prioridad</span>
+    </mat-card>
+  </div>
+
+  <!-- Lista de Historial -->
+  <div class="history-list">
+
+    <!-- Tarjeta de Historial (Iteraríamos aquí con *ngFor en el futuro) -->
+    <mat-card class="history-card">
+      <div class="history-card-header">
+        <div class="history-header-left">
+          <h3>Síntomas Inespecíficos</h3>
+          <span class="badge severity-low">Baja</span>
+          <span class="badge probability">60%</span>
+        </div>
+        <div class="history-header-right">
+          <span class="history-date">12 de noviembre de 2025, 22:20</span>
+          <button mat-icon-button class="toggle-btn">
+            <mat-icon>expand_more</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="history-card-body">
+        <span class="symptom-tag">Fiebre</span>
+        <span class="symptom-tag">Tos</span>
+        <span class="symptom-tag">Diarrea</span>
+      </div>
+    </mat-card>
+
+    <!-- Puedes añadir más tarjetas de ejemplo si quieres ver cómo se ve la lista -->
+
+  </div>
+
+</div>
