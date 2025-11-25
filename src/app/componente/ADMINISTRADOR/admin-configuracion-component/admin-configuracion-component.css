@@ -18,7 +18,6 @@
 .menu-item:hover { background-color: #f8fafc; color: #1e293b; }
 .menu-item.active-page { background-color: #f3f4f6; color: #374151; font-weight: 600; }
 .logout { margin-top: auto; display: flex; align-items: center; gap: 10px; color: #ef4444; text-decoration: none; cursor: pointer; padding: 10px; font-weight: 500; }
-
 /* CONTENIDO */
 .content-container { flex-grow: 1; overflow-y: auto; padding: 2rem; display: flex; flex-direction: column; gap: 20px; }
 .page-header h2 { font-size: 24px; color: #1e293b; margin: 0 0 5px 0; font-weight: 700; }
@@ -32,13 +31,11 @@
 .tab-btn:hover { background: #f1f5f9; color: #334155; }
 .tab-btn.active { background: #ecfdf5; color: #047857; font-weight: 600; }
 .settings-content { flex-grow: 1; }
-
 /* Tarjetas */
 .profile-card { background: white; border-radius: 16px; padding: 30px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
 .card-header { margin-bottom: 25px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
 .card-header h3 { font-size: 18px; margin: 0 0 5px 0; color: #1e293b; font-weight: 600; }
 .card-header p { margin: 0; font-size: 13px; color: #64748b; }
-
 /* Info Avatar */
 .profile-header-info { display: flex; gap: 20px; align-items: center; margin-bottom: 30px; }
 .avatar-wrapper { position: relative; width: 80px; height: 80px; }
@@ -48,7 +45,6 @@
 .user-details h4 { margin: 0; font-size: 16px; color: #1e293b; font-weight: 700; }
 .role-badge { font-size: 12px; color: #64748b; display: block; margin: 2px 0 5px 0; }
 .link-change-photo { font-size: 12px; color: #357a70; text-decoration: none; font-weight: 600; }
-
 /* Formulario */
 .profile-form { display: flex; flex-direction: column; gap: 20px; }
 .form-row { display: flex; gap: 20px; }
@@ -62,7 +58,6 @@
 .form-actions { display: flex; justify-content: flex-end; margin-top: 10px; }
 .btn-save { background-color: #357a70; color: white; padding: 10px 24px; border-radius: 8px; font-weight: 600; display: flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
 .btn-save:hover { background-color: #2d6a62; }
-
 /* Seguridad */
 .security-container { display: flex; flex-direction: column; gap: 24px; }
 .sec-panel { border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
