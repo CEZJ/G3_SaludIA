@@ -1,72 +1,155 @@
-<div class="content-container">
+<div class="layout-wrapper">
 
-  <!-- Banner de Bienvenida -->
-  <mat-card class="admin-welcome-banner">
-    <div class="banner-text">
-      <mat-icon class="banner-icon-bg">bubble_chart</mat-icon>
-      <h2>Gestionar Usuarios</h2>
-      <p>Administración de pacientes y perfiles</p>
-    </div>
-  </mat-card>
+  <aside class="sidebar">
 
-  <!-- Filtros de búsqueda -->
-  <div class="filters-row">
-    <div class="filter">
-      <span class="icon">🔍</span>
-      <input type="number" placeholder="Buscar por ID" [(ngModel)]="filterId" (input)="applyFilter()">
+    <div class="brand">
+      <img src="assets/img.png" class="logo" alt="logo" />
+      <div>
+        <h2>Salud AI</h2>
+        <small>Alerta Infecciosa</small>
+      </div>
     </div>
-    <div class="filter">
-      <span class="icon">🔍</span>
-      <!-- Actualicé el placeholder para reflejar que busca en más campos -->
-      <input type="text" placeholder="Buscar por Nombre, Correo, Distrito..." [(ngModel)]="filterName" (input)="applyFilter()">
-    </div>
-  </div>
 
-  <!-- Tabla de Usuarios -->
-  <div class="table-container">
-    <table>
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Correo</th>
-        <th>F. Nacimiento</th>
-        <th>Dirección</th>
-        <th>Distrito</th>
-        <th>Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-      <!-- Iteramos sobre la lista filtrada -->
-      <tr *ngFor="let u of filteredUsuarios">
-        <td>{{u.idUsuario}}</td>
-        <td>
-          <div class="user-cell">
-            <span class="user-name">{{u.nombre}}</span>
+    <div class="status">
+      <span class="dot"></span> Active
+      <span class="sep">|</span>
+      <span class="patients">52 Patients</span>
+    </div>
+
+    <nav class="menu">
+
+      <a routerLink="/inicio-admin" class="menu-item">
+        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;">
+          <mat-icon>home</mat-icon>
+        </span>
+        Inicio
+      </a>
+
+      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item" style="background-color: #f1f5f9; font-weight: 600; color: #0e7490;">
+        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;">
+          <mat-icon>group</mat-icon>
+        </span>
+        Usuarios
+      </a>
+
+      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item">
+        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;">
+          <mat-icon>coronavirus</mat-icon>
+        </span>
+        Síntomas
+      </a>
+
+      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item">
+        <span class="icon-circle" style="color:#9333ea; background:#faf5ff;">
+          <mat-icon>science</mat-icon>
+        </span>
+        Enfermedades
+      </a>
+
+      <a routerLink="/admin-ubicaciones-component" class="menu-item">
+        <span class="icon-circle" style="color:#f97316; background:#fff7ed;">
+          <mat-icon>location_on</mat-icon>
+        </span>
+        Ubicaciones
+      </a>
+
+      <a routerLink="/admin-configuracion-component" class="menu-item">
+        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;">
+          <mat-icon>settings</mat-icon>
+        </span>
+        Ajustes
+      </a>
+
+    </nav>
+
+    <a routerLink="/login" class="logout">
+      <mat-icon>logout</mat-icon>
+      Cerrar Sesión
+    </a>
+
+  </aside>
+
+  <main class="content-container">
+
+    <mat-card class="admin-welcome-banner">
+      <div class="banner-content">
+        <div class="banner-text">
+          <div class="icon-title">
+            <mat-icon class="banner-icon-bg">group</mat-icon>
+            <h2>Gestión de Usuarios</h2>
           </div>
-        </td>
-        <!-- Asegúrate de usar la propiedad correcta (username o email) -->
-        <td>{{u.email}}</td>
-        <td>{{u.fechaNacimiento | date:'dd/MM/yyyy'}}</td>
+          <p>Administra y monitorea todos los usuarios registrados</p>
+        </div>
+        <div class="banner-actions">
+          <button class="btn-export"><mat-icon>download</mat-icon> Exportar</button>
+          <button class="btn-new"><mat-icon>add</mat-icon> Nuevo Usuario</button>
+        </div>
+      </div>
+    </mat-card>
 
-        <!-- USO DEL MODELO UBICACIÓN -->
-        <td>{{u.ubicacion?.direccion || 'N/A'}}</td>
-        <td>{{u.ubicacion?.distrito || 'N/A'}}</td>
+    <mat-card class="filters-card">
+      <div class="filters-row">
+        <div class="filter-item">
+          <label>BUSCAR POR ID</label>
+          <div class="input-wrapper">
+            <span class="icon">#</span>
+            <input type="text" placeholder="USR-001" [(ngModel)]="filterId" (input)="applyFilter()">
+          </div>
+        </div>
+        <div class="filter-item wide">
+          <label>BUSCADOR GENERAL</label>
+          <div class="input-wrapper">
+            <span class="icon">🔍</span>
+            <input type="text" placeholder="Buscar..." [(ngModel)]="filterName" (input)="applyFilter()">
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat-box"><strong>{{filteredUsuarios.length}}</strong><span>Total</span></div>
+          <div class="stat-box"><strong>8</strong><span>Distritos</span></div>
+        </div>
+      </div>
+    </mat-card>
 
-        <td>
-          <button class="btn-action edit"><mat-icon>edit</mat-icon></button>
-          <button class="btn-action delete"><mat-icon>delete</mat-icon></button>
-        </td>
-      </tr>
+    <div class="table-container mat-elevation-z2">
+      <table>
+        <thead>
+        <tr>
+          <th>USUARIO</th>
+          <th>ID</th>
+          <th>CORREO</th>
+          <th>DIRECCIÓN</th>
+          <th>DISTRITO</th>
+          <th>ESTADO</th>
+          <th>ACCIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let u of filteredUsuarios">
+          <td>
+            <div class="user-cell">
+              <div class="avatar">{{u.nombre.charAt(0)}}</div>
+              <div class="user-info">
+                <span class="user-name">{{u.nombre}}</span>
+                <span class="user-role">Usuario registrado</span>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge-id"># {{u.idUsuario}}</span></td>
+          <td class="text-muted">{{u.email}}</td>
+          <td class="text-muted">{{u.ubicacion?.direccion || 'N/A'}}</td>
+          <td><span class="badge-district">{{u.ubicacion?.distrito || 'N/A'}}</span></td>
+          <td><span class="badge-status active">Active</span></td>
+          <td>
+            <button class="btn-action edit"><mat-icon>edit</mat-icon></button>
+            <button class="btn-action delete"><mat-icon>delete</mat-icon></button>
+          </td>
+        </tr>
+        <tr *ngIf="filteredUsuarios.length === 0">
+          <td colspan="7" class="no-data">No se encontraron usuarios.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <!-- Mensaje si no hay datos -->
-      <tr *ngIf="filteredUsuarios.length === 0">
-        <td colspan="7" class="no-data">
-          No se encontraron usuarios.
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
+  </main>
 </div>

@@ -1,8 +1,6 @@
-<div class="layout">
+<div class="layout-wrapper">
 
-  <!-- ========== SIDEBAR ========== -->
   <aside class="sidebar">
-
     <div class="brand">
       <img src="assets/img.png" class="logo" alt="logo" />
       <div>
@@ -19,27 +17,39 @@
 
     <nav class="menu">
       <a routerLink="/inicio-admin" class="menu-item">
-        <mat-icon>home</mat-icon> Inicio
+        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;">
+          <mat-icon>home</mat-icon>
+        </span> Inicio
       </a>
 
-      <a routerLink="/admin-gestionar-usuarios" class="menu-item">
-        <mat-icon>group</mat-icon> Usuarios
+      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item">
+        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;">
+          <mat-icon>group</mat-icon>
+        </span> Usuarios
       </a>
 
-      <a routerLink="/admin-gestionar-sintomas" class="menu-item">
-        <mat-icon>coronavirus</mat-icon> Síntomas
+      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item">
+        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;">
+          <mat-icon>coronavirus</mat-icon>
+        </span> Síntomas
       </a>
 
-      <a routerLink="/admin-gestionar-enfermedades" class="menu-item">
-        <mat-icon>science</mat-icon> Enfermedades
+      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item active-page">
+        <span class="icon-circle" style="color:#f59e0b; background:#fffbeb;">
+          <mat-icon>warning</mat-icon>
+        </span> Enfermedades
       </a>
 
-      <a routerLink="/admin-ubicaciones" class="menu-item">
-        <mat-icon>location_on</mat-icon> Ubicaciones
+      <a routerLink="/admin-ubicaciones-component" class="menu-item">
+        <span class="icon-circle" style="color:#f97316; background:#fff7ed;">
+          <mat-icon>location_on</mat-icon>
+        </span> Ubicaciones
       </a>
 
-      <a routerLink="/admin-configuracion" class="menu-item">
-        <mat-icon>settings</mat-icon> Configuracion
+      <a routerLink="/admin-configuracion-component" class="menu-item">
+        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;">
+          <mat-icon>settings</mat-icon>
+        </span> Ajustes
       </a>
     </nav>
 
@@ -49,23 +59,79 @@
   </aside>
 
 
+  <main class="content-container">
 
-  <!-- ========== CONTENIDO PRINCIPAL ========== -->
-  <main class="content">
-
-
-    <!-- Banner de Bienvenida -->
-    <mat-card class="admin-welcome-banner">
-      <div class="banner-text">
-        <mat-icon class="banner-icon-bg">bubble_chart</mat-icon>
-        <h2>Gestionar Enfermedades</h2>
-
-        <p>
-          modo administrador
-        </p>
+    <div class="top-header">
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <input type="text" placeholder="Buscar por ID o nombre de enfermedad...">
       </div>
-    </mat-card>
+
+      <div class="user-actions">
+        <button class="icon-btn"><mat-icon>notifications</mat-icon><span class="badge-dot">3</span></button>
+        <button class="icon-btn"><mat-icon>settings</mat-icon></button>
+        <div class="user-profile">
+          <div class="user-text">
+            <span class="name">Cristina Sihuas</span>
+            <span class="role">Desarrollador</span>
+          </div>
+          <div class="avatar-img">CS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-info">
+      <p class="count">9 de 9 enfermedades</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="disease-card" *ngFor="let item of enfermedades">
+
+        <div class="card-header" [ngClass]="'theme-' + item.color">
+          <div class="header-main">
+            <div class="icon-bg-glass">
+              <mat-icon>{{ item.icon }}</mat-icon>
+            </div>
+            <div class="header-titles">
+              <h3>{{ item.nombre }}</h3>
+              <span class="live-tag">● Live Data</span>
+            </div>
+          </div>
+          <button class="btn-expand"><mat-icon>open_in_full</mat-icon></button>
+        </div>
+
+        <div class="card-actions">
+          <button class="tab-btn active"><mat-icon>medical_services</mat-icon> Síntomas</button>
+          <button class="tab-btn"><mat-icon>shuffle</mat-icon> Transmisión</button>
+          <button class="tab-btn"><mat-icon>shield</mat-icon> Prevención</button>
+        </div>
+
+        <div class="card-body">
+          <div class="info-box" [ngClass]="'bg-' + item.color">
+            <div class="box-header">
+              <div class="mini-icon" [ngClass]="'icon-' + item.color">
+                <mat-icon>thermometer</mat-icon>
+              </div>
+              <div class="box-text">
+                <strong>Síntomas Comunes</strong>
+                <p>{{ item.desc }}</p>
+              </div>
+
+              <div class="status-badge" [ngClass]="item.estado === 'Critical' ? 'badge-critical' : 'badge-follow'">
+                <mat-icon *ngIf="item.estado === 'Critical'">warning</mat-icon>
+                {{ item.estado }}
+              </div>
+            </div>
+
+            <div class="box-footer">
+              <span>Periodo de incubación: {{ item.duracion }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
   </main>
-
 </div>

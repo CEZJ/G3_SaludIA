@@ -1,144 +1,233 @@
-<div class="content-container">
+<div class="layout-wrapper">
 
-  <!-- Encabezado -->
-  <div class="page-header">
-    <h2>Configuración</h2>
-    <p>Administra tu cuenta y preferencias</p>
-  </div>
-
-  <!-- Layout de Configuración (Menú Izq + Contenido Der) -->
-  <div class="settings-layout">
-
-    <!-- 1. Menú de Pestañas -->
-    <div class="settings-sidebar">
-      <button class="tab-btn"
-              [class.active]="activeTab === 'perfil'"
-              (click)="setActiveTab('perfil')">
-        <mat-icon class="tab-icon">person_outline</mat-icon>
-        Perfil
-      </button>
-
-      <button class="tab-btn"
-              [class.active]="activeTab === 'seguridad'"
-              (click)="setActiveTab('seguridad')">
-        <mat-icon class="tab-icon">security</mat-icon>
-        Seguridad
-      </button>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="assets/img.png" class="logo" alt="logo" />
+      <div>
+        <h2>Salud AI</h2>
+        <small>Alerta Infecciosa</small>
+      </div>
     </div>
 
-    <!-- 2. Contenido (Formulario) -->
-    <div class="settings-content">
+    <div class="status">
+      <span class="dot"></span> Active
+      <span class="sep">|</span>
+      <span class="patients">52 Patients</span>
+    </div>
 
-      <!-- Pestaña PERFIL -->
-      <mat-card class="profile-card" *ngIf="activeTab === 'perfil'">
-        <div class="card-header">
-          <h3>Información del Perfil</h3>
-          <p>Actualiza tu información personal</p>
-        </div>
+    <nav class="menu">
+      <a routerLink="/inicio-admin" class="menu-item">
+        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;"><mat-icon>home</mat-icon></span> Inicio
+      </a>
+      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item">
+        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;"><mat-icon>group</mat-icon></span> Usuarios
+      </a>
+      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item">
+        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;"><mat-icon>coronavirus</mat-icon></span> Síntomas
+      </a>
+      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item">
+        <span class="icon-circle" style="color:#9333ea; background:#faf5ff;"><mat-icon>science</mat-icon></span> Enfermedades
+      </a>
+      <a routerLink="/admin-ubicaciones-component" class="menu-item">
+        <span class="icon-circle" style="color:#10b981; background:#ecfdf5;"><mat-icon>location_on</mat-icon></span> Ubicaciones
+      </a>
+      <a routerLink="/admin-configuracion-component" class="menu-item active-page">
+        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;"><mat-icon>settings</mat-icon></span> Ajustes
+      </a>
+    </nav>
 
-        <!-- Sección de Foto de Perfil -->
-        <div class="profile-header-info">
-          <div class="avatar-wrapper">
-            <!-- Placeholder de imagen (reemplazar con la real) -->
-            <img src="https://placehold.co/100x100/3E7C70/ffffff?text=CS" alt="Foto de perfil" class="avatar-img">
-            <button class="btn-edit-photo">
-              <mat-icon>photo_camera</mat-icon>
-            </button>
-          </div>
-          <div class="user-details">
-            <h4>Cristina Sihuas</h4>
-            <span class="role-badge">Desarrollador</span>
-            <a href="javascript:void(0)" class="link-change-photo">Cambiar foto</a>
-          </div>
-        </div>
+    <a routerLink="/login" class="logout">
+      <mat-icon>logout</mat-icon> Cerrar Sesión
+    </a>
+  </aside>
 
-        <!-- Formulario -->
-        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+  <main class="content-container">
 
-          <!-- Fila 1: Nombre y Apellido -->
-          <div class="form-row">
-            <div class="form-group">
-              <label>Nombre</label>
-              <div class="input-wrapper">
-                <mat-icon>person_outline</mat-icon>
-                <input type="text" formControlName="nombre" placeholder="Tu nombre">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Apellido</label>
-              <div class="input-wrapper">
-                <mat-icon>person_outline</mat-icon>
-                <input type="text" formControlName="apellido" placeholder="Tu apellido">
-              </div>
-            </div>
-          </div>
+    <div class="page-header">
+      <h2>Configuración</h2>
+      <p>Administra tu cuenta y preferencias</p>
+    </div>
 
-          <!-- Fila 2: Email y Teléfono -->
-          <div class="form-row">
-            <div class="form-group">
-              <label>Email</label>
-              <div class="input-wrapper">
-                <mat-icon>mail_outline</mat-icon>
-                <input type="email" formControlName="email" placeholder="correo@ejemplo.com">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Teléfono</label>
-              <div class="input-wrapper">
-                <mat-icon>phone</mat-icon>
-                <input type="tel" formControlName="telefono" placeholder="+51 999 999 999">
-              </div>
-            </div>
-          </div>
+    <div class="settings-layout">
 
-          <!-- Fila 3: Dirección (Full Width) -->
-          <div class="form-row full-width">
-            <div class="form-group">
-              <label>Dirección</label>
-              <div class="input-wrapper">
-                <mat-icon>location_on</mat-icon>
-                <input type="text" formControlName="direccion" placeholder="Tu dirección">
-              </div>
-            </div>
+      <div class="settings-sidebar">
+        <button class="tab-btn"
+                [class.active]="activeTab === 'perfil'"
+                (click)="setActiveTab('perfil')">
+          <mat-icon class="tab-icon">person_outline</mat-icon>
+          Perfil
+        </button>
+
+        <button class="tab-btn"
+                [class.active]="activeTab === 'seguridad'"
+                (click)="setActiveTab('seguridad')">
+          <mat-icon class="tab-icon">security</mat-icon>
+          Seguridad
+        </button>
+      </div>
+
+      <div class="settings-content">
+
+        <mat-card class="profile-card" *ngIf="activeTab === 'perfil'">
+          <div class="card-header">
+            <h3>Información del Perfil</h3>
+            <p>Actualiza tu información personal</p>
           </div>
 
-          <!-- Fila 4: País e Idioma -->
-          <div class="form-row">
-            <div class="form-group">
-              <label>País</label>
-              <div class="input-wrapper">
-                <mat-icon>public</mat-icon>
-                <input type="text" formControlName="pais" placeholder="País">
-              </div>
+          <div class="profile-header-info">
+            <div class="avatar-wrapper">
+              <img src="https://placehold.co/100x100/357a70/ffffff?text=CS" alt="Foto" class="avatar-img">
+              <button class="btn-edit-photo"><mat-icon>photo_camera</mat-icon></button>
             </div>
-            <div class="form-group">
-              <label>Idioma</label>
-              <div class="input-wrapper">
-                <mat-icon>translate</mat-icon>
-                <input type="text" formControlName="idioma" placeholder="Idioma">
-              </div>
+            <div class="user-details">
+              <h4>Cristina Sihuas</h4>
+              <span class="role-badge">Desarrollador</span>
+              <a href="javascript:void(0)" class="link-change-photo">Cambiar foto</a>
             </div>
           </div>
 
-          <!-- Botón Guardar -->
-          <div class="form-actions">
-            <button mat-flat-button class="btn-save" type="submit">
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nombre</label>
+                <div class="input-wrapper">
+                  <mat-icon>person_outline</mat-icon>
+                  <input matInput type="text" formControlName="nombre" placeholder="Tu nombre">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Apellido</label>
+                <div class="input-wrapper">
+                  <mat-icon>person_outline</mat-icon>
+                  <input matInput type="text" formControlName="apellido" placeholder="Tu apellido">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email</label>
+                <div class="input-wrapper">
+                  <mat-icon>mail_outline</mat-icon>
+                  <input matInput type="email" formControlName="email" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Teléfono</label>
+                <div class="input-wrapper">
+                  <mat-icon>phone</mat-icon>
+                  <input matInput type="tel" formControlName="telefono" placeholder="Teléfono">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row full-width">
+              <div class="form-group">
+                <label>Dirección</label>
+                <div class="input-wrapper">
+                  <mat-icon>location_on</mat-icon>
+                  <input matInput type="text" formControlName="direccion" placeholder="Dirección">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>País</label>
+                <div class="input-wrapper">
+                  <mat-icon>public</mat-icon>
+                  <input matInput type="text" formControlName="pais" placeholder="País">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Idioma</label>
+                <div class="input-wrapper">
+                  <mat-icon>translate</mat-icon>
+                  <input matInput type="text" formControlName="idioma" placeholder="Idioma">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button mat-flat-button class="btn-save" type="submit">
+                <mat-icon>save</mat-icon> Guardar Cambios
+              </button>
+            </div>
+
+          </form>
+        </mat-card>
+
+        <mat-card class="profile-card" *ngIf="activeTab === 'seguridad'">
+          <div class="card-header">
+            <h3>Seguridad</h3>
+            <p>Administra tu contraseña y seguridad de la cuenta</p>
+          </div>
+
+          <div class="security-container">
+            <div class="sec-panel password-panel">
+              <div class="sec-header">
+                <div class="sec-icon-box dark-green"><mat-icon>vpn_key</mat-icon></div>
+                <div class="sec-texts">
+                  <h4>Cambiar Contraseña</h4>
+                  <p>Actualiza tu contraseña regularmente</p>
+                </div>
+              </div>
+              <div class="sec-body form-stack">
+                <div class="input-white-wrapper">
+                  <input type="password" placeholder="Contraseña actual">
+                  <mat-icon class="eye-icon">visibility_off</mat-icon>
+                </div>
+                <div class="input-white-wrapper"><input type="password" placeholder="Nueva contraseña"></div>
+                <div class="input-white-wrapper"><input type="password" placeholder="Confirmar nueva contraseña"></div>
+              </div>
+            </div>
+
+            <div class="sec-panel two-factor-panel">
+              <div class="panel-flex-row">
+                <div class="flex-left">
+                  <div class="sec-icon-box green"><mat-icon>smartphone</mat-icon></div>
+                  <div class="sec-texts">
+                    <h4>Autenticación de Dos Factores</h4>
+                    <p>Capa extra de seguridad</p>
+                    <div class="status-indicator"><mat-icon>check_circle</mat-icon> Activado</div>
+                  </div>
+                </div>
+                <button class="btn-outline-green">Configurar</button>
+              </div>
+            </div>
+
+            <div class="sec-panel sessions-panel">
+              <div class="sec-header">
+                <div class="sec-icon-box orange"><mat-icon>devices</mat-icon></div>
+                <div class="sec-texts">
+                  <h4>Sesiones Activas</h4>
+                  <p>Dispositivos conectados actualmente</p>
+                </div>
+              </div>
+              <div class="sec-body list-stack">
+                <div class="session-item">
+                  <mat-icon class="device-icon">laptop_mac</mat-icon>
+                  <div class="session-info"><strong>Chrome en Windows</strong><span>Lima, Perú • Ahora</span></div>
+                  <span class="status-badge-text">Actual</span>
+                </div>
+                <div class="session-item">
+                  <mat-icon class="device-icon">smartphone</mat-icon>
+                  <div class="session-info"><strong>Safari en iPhone</strong><span>Lima, Perú • Hace 2 horas</span></div>
+                  <button class="btn-text-danger">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions mt-4">
+            <button mat-flat-button class="btn-save">
               <mat-icon>save</mat-icon> Guardar Cambios
             </button>
           </div>
+        </mat-card>
 
-        </form>
-      </mat-card>
-
-      <!-- Pestaña SEGURIDAD (Placeholder) -->
-      <mat-card class="profile-card" *ngIf="activeTab === 'seguridad'">
-        <div class="card-header">
-          <h3>Seguridad</h3>
-          <p>Configura tu contraseña y autenticación.</p>
-        </div>
-        <!-- Contenido de seguridad aquí -->
-      </mat-card>
-
+      </div>
     </div>
-  </div>
+  </main>
 </div>

@@ -1,117 +1,179 @@
-<div class="content-container">
+<div class="layout-wrapper">
 
-  <!-- Banner Azul Grande con Estadísticas -->
-  <div class="dashboard-header-card">
-    <div class="header-top">
-      <div class="header-info">
-        <div class="icon-box">
-          <mat-icon>pulse_alert</mat-icon>
-        </div>
-        <div>
-          <h2>Lista de Síntomas</h2>
-          <p>Registro médico de síntomas y manifestaciones clínicas</p>
-        </div>
+  <aside class="sidebar">
+
+    <div class="brand">
+      <img src="assets/img.png" class="logo" alt="logo" />
+      <div>
+        <h2>Salud AI</h2>
+        <small>Alerta Infecciosa</small>
       </div>
-      <!-- Botón Nuevo Síntoma -->
-      <button mat-flat-button class="btn-new">
-        <mat-icon>add</mat-icon> Nuevo Síntoma
-      </button>
     </div>
 
-    <!-- Grid de Estadísticas -->
-    <div class="stats-row">
-      <div class="stat-box">
-        <mat-icon>description</mat-icon>
-        <div>
-          <span class="stat-label">Total Síntomas</span>
-          <span class="stat-number">{{ totalSintomas }}</span>
-        </div>
-      </div>
-      <div class="stat-box">
-        <mat-icon>warning</mat-icon>
-        <div>
-          <span class="stat-label">Casos Severos</span>
-          <span class="stat-number">{{ casosSeveros }}</span>
-        </div>
-      </div>
-      <div class="stat-box">
-        <mat-icon>trending_up</mat-icon>
-        <div>
-          <span class="stat-label">Más Frecuente</span>
-          <span class="stat-number">{{ masFrecuente }}</span>
-        </div>
-      </div>
-      <div class="stat-box">
-        <mat-icon>category</mat-icon>
-        <div>
-          <span class="stat-label">Categorías</span>
-          <span class="stat-number">{{ totalCategorias }}</span>
-        </div>
-      </div>
+    <div class="status">
+      <span class="dot"></span> Active
+      <span class="sep">|</span>
+      <span class="patients">52 Patients</span>
     </div>
-  </div>
 
-  <!-- Filtros -->
-  <div class="filters-container">
-    <div class="filter-item">
-      <label># Buscar por ID del Síntoma</label>
-      <div class="input-wrapper">
-        <input type="text" placeholder="# 123" [(ngModel)]="filterId" (input)="applyFilter()">
-      </div>
-    </div>
-    <div class="filter-item">
-      <label>Q Buscar por Nombre del Síntoma</label>
-      <div class="input-wrapper">
-        <input type="text" placeholder="Nombre del síntoma" [(ngModel)]="filterName" (input)="applyFilter()">
-      </div>
-    </div>
-  </div>
+    <nav class="menu">
 
-  <!-- Tabla -->
-  <div class="table-container">
-    <table>
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>NOMBRE DEL SÍNTOMA</th>
-        <!-- Como tu modelo solo tiene id y nombre, ocultamos las columnas que no existen -->
-        <!-- <th>CATEGORÍA</th> -->
-        <!-- <th>SEVERIDAD</th> -->
-        <!-- <th>FRECUENCIA</th> -->
-        <th>ACCIONES</th>
-      </tr>
-      </thead>
-      <tbody>
-      <!-- Iteramos sobre la lista filtrada -->
-      <tr *ngFor="let s of filteredSintomas">
+      <a routerLink="/inicio-admin" class="menu-item">
+        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;">
+          <mat-icon>home</mat-icon>
+        </span>
+        Inicio
+      </a>
 
-        <!-- ID -->
-        <td>
-          <span class="id-badge"># {{ s.idSintoma }}</span>
-        </td>
+      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item">
+        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;">
+          <mat-icon>group</mat-icon>
+        </span>
+        Usuarios
+      </a>
 
-        <!-- Nombre -->
-        <td>
-          <div class="name-cell">
-            <div class="mini-icon"><mat-icon>show_chart</mat-icon></div>
-            <span>{{ s.nombre }}</span>
+      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item" style="background-color: #f1f5f9; font-weight: 600; color: #166534;">
+        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;">
+          <mat-icon>coronavirus</mat-icon>
+        </span>
+        Síntomas
+      </a>
+
+      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item">
+        <span class="icon-circle" style="color:#9333ea; background:#faf5ff;">
+          <mat-icon>science</mat-icon>
+        </span>
+        Enfermedades
+      </a>
+
+      <a routerLink="/admin-ubicaciones-component" class="menu-item">
+        <span class="icon-circle" style="color:#f97316; background:#fff7ed;">
+          <mat-icon>location_on</mat-icon>
+        </span>
+        Ubicaciones
+      </a>
+
+      <a routerLink="/admin-configuracion-component" class="menu-item">
+        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;">
+          <mat-icon>settings</mat-icon>
+        </span>
+        Ajustes
+      </a>
+
+    </nav>
+
+    <a routerLink="/login" class="logout">
+      <mat-icon>logout</mat-icon>
+      Cerrar Sesión
+    </a>
+
+  </aside>
+
+  <main class="content-container">
+
+    <div class="dashboard-header-card">
+      <div class="header-top">
+        <div class="header-info">
+          <div class="icon-box">
+            <mat-icon>monitor_heart</mat-icon> </div>
+          <div>
+            <h2>Lista de Síntomas</h2>
+            <p>Registro médico de síntomas y manifestaciones clínicas</p>
           </div>
-        </td>
+        </div>
+        <button class="btn-new">
+          <mat-icon>add</mat-icon> Nuevo Síntoma
+        </button>
+      </div>
 
-        <!-- Acciones -->
-        <td>
-          <button class="btn-icon delete" (click)="eliminarSintoma(s.idSintoma)">
-            <mat-icon>delete_outline</mat-icon>
-          </button>
-        </td>
-      </tr>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-icon-bg"><mat-icon>description</mat-icon></div>
+          <div>
+            <span class="stat-number">{{ totalSintomas }}</span>
+            <span class="stat-label">Total Síntomas</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon-bg warning"><mat-icon>warning</mat-icon></div>
+          <div>
+            <span class="stat-number">{{ casosSeveros }}</span>
+            <span class="stat-label">Casos Severos</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon-bg success"><mat-icon>trending_up</mat-icon></div>
+          <div>
+            <span class="stat-number">{{ masFrecuente }}</span>
+            <span class="stat-label">Más Frecuente</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon-bg purple"><mat-icon>category</mat-icon></div>
+          <div>
+            <span class="stat-number">{{ totalCategorias }}</span>
+            <span class="stat-label">Categorías</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <!-- Mensaje si no hay datos -->
-      <tr *ngIf="filteredSintomas.length === 0">
-        <td colspan="3" class="no-data">No se encontraron síntomas.</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="filters-container">
+      <div class="filter-item">
+        <label># BUSCAR POR ID</label>
+        <div class="input-wrapper">
+          <mat-icon>tag</mat-icon>
+          <input type="text" placeholder="123" [(ngModel)]="filterId" (input)="applyFilter()">
+        </div>
+      </div>
+      <div class="filter-item wide">
+        <label>Q BUSCAR POR NOMBRE</label>
+        <div class="input-wrapper">
+          <mat-icon>search</mat-icon>
+          <input type="text" placeholder="Nombre del síntoma" [(ngModel)]="filterName" (input)="applyFilter()">
+        </div>
+      </div>
+    </div>
 
+    <div class="table-container">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>NOMBRE DEL SÍNTOMA</th>
+          <th style="text-align: right;">ACCIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let s of filteredSintomas">
+
+          <td style="width: 100px;">
+            <span class="id-badge"># {{ s.idSintoma }}</span>
+          </td>
+
+          <td>
+            <div class="name-cell">
+              <div class="mini-icon"><mat-icon>show_chart</mat-icon></div>
+              <span class="text-bold">{{ s.nombre }}</span>
+            </div>
+          </td>
+
+          <td style="text-align: right;">
+            <button class="btn-icon delete" (click)="eliminarSintoma(s.idSintoma)" title="Eliminar">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="filteredSintomas.length === 0">
+          <td colspan="3" class="no-data">
+            <mat-icon>search_off</mat-icon>
+            <p>No se encontraron síntomas.</p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
 </div>

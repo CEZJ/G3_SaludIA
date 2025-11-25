@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router'; // <--- IMPORTANTE PARA EL MENU LATERAL
 
 // Material Modules
 import { MatCardModule } from '@angular/material/card';
@@ -16,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule, // <--- NECESARIO PARA routerLink
     MatCardModule,
     MatIconModule,
     MatButtonModule,

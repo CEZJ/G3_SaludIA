@@ -1,96 +1,134 @@
-<div class="content-container">
+<div class="layout-wrapper">
 
-  <!-- Banner de Bienvenida -->
-  <mat-card class="admin-welcome-banner">
-    <div class="banner-text">
-      <mat-icon class="banner-icon-bg">map</mat-icon>
-      <h2>Gestión de Ubicaciones</h2>
-      <p>Modo administrador: Visualiza y gestiona los puntos de monitoreo.</p>
-    </div>
-  </mat-card>
-
-  <!-- Tarjeta del Mapa -->
-  <mat-card class="map-view-card">
-    <div class="map-header">
-      <div class="header-details">
-        <mat-icon class="map-icon">location_on</mat-icon>
-        <div class="header-text-container">
-          <h2>Mapa de Ubicaciones</h2>
-          <p>Distribución geográfica de puntos de monitoreo</p>
-        </div>
-      </div>
-
-      <div class="map-controls">
-        <button mat-button class="map-view-button">Vista Satélite</button>
-        <button mat-button class="map-view-button active-map-view">Vista Mapa</button>
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="assets/img.png" class="logo" alt="logo" />
+      <div>
+        <h2>Salud AI</h2>
+        <small>Alerta Infecciosa</small>
       </div>
     </div>
 
-    <div class="map-placeholder">
-      <!-- Aquí iría tu componente de mapa real (Google Maps / Leaflet) -->
-      <div class="map-image-placeholder"></div>
-
-      <div class="map-legend">
-        <div class="legend-item">
-          <span class="legend-dot active-location-dot"></span>
-          <span>Ubicación activa</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-dot case-count-dot"></span>
-          <span>Número de casos</span>
-        </div>
-      </div>
+    <div class="status">
+      <span class="dot"></span> Active
+      <span class="sep">|</span>
+      <span class="patients">52 Patients</span>
     </div>
-  </mat-card>
 
-  <!-- Tabla de Ubicaciones -->
-  <div class="table-wrapper mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <nav class="menu">
+      <a routerLink="/inicio-admin" class="menu-item">
+        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;"><mat-icon>home</mat-icon></span> Inicio
+      </a>
+      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item">
+        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;"><mat-icon>group</mat-icon></span> Usuarios
+      </a>
+      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item">
+        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;"><mat-icon>coronavirus</mat-icon></span> Síntomas
+      </a>
+      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item">
+        <span class="icon-circle" style="color:#9333ea; background:#faf5ff;"><mat-icon>science</mat-icon></span> Enfermedades
+      </a>
+      <a routerLink="/admin-ubicaciones-component" class="menu-item active-page">
+        <span class="icon-circle" style="color:#10b981; background:#ecfdf5;"><mat-icon>location_on</mat-icon></span> Ubicaciones
+      </a>
+      <a routerLink="/admin-configuracion-component" class="menu-item">
+        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;"><mat-icon>settings</mat-icon></span> Ajustes
+      </a>
+    </nav>
 
-      <!-- ID Column -->
-      <ng-container matColumnDef="idUbicacion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let element">
-          <span class="id-badge">#{{element.idUbicacion}}</span>
-        </td>
-      </ng-container>
+    <a routerLink="/login" class="logout">
+      <mat-icon>logout</mat-icon> Cerrar Sesión
+    </a>
+  </aside>
 
-      <!-- Distrito Column -->
-      <ng-container matColumnDef="distrito">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Distrito </th>
-        <td mat-cell *matCellDef="let element"> {{element.distrito}} </td>
-      </ng-container>
+  <main class="content-container">
 
-      <!-- Provincia Column -->
-      <ng-container matColumnDef="provincia">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Provincia </th>
-        <td mat-cell *matCellDef="let element"> {{element.provincia}} </td>
-      </ng-container>
-
-      <!-- Dirección Column -->
-      <ng-container matColumnDef="direccion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
-        <td mat-cell *matCellDef="let element">
-          <div class="address-cell">
-            <mat-icon class="tiny-icon">home</mat-icon>
-            {{element.direccion}}
+    <div class="green-dashboard-banner">
+      <div class="banner-header">
+        <div class="banner-title-group">
+          <div class="icon-box-glass"><mat-icon>map</mat-icon></div>
+          <div>
+            <h1>Gestión de Ubicaciones</h1>
+            <p>Monitoreo geográfico de áreas de interés médico</p>
           </div>
-        </td>
-      </ng-container>
+        </div>
+        <div class="banner-actions">
+          <button class="btn-glass"><mat-icon>warning</mat-icon> Añadir Brote</button>
+          <button class="btn-glass"><mat-icon>bar_chart</mat-icon> Ver Estadísticas</button>
+          <button class="btn-white"><mat-icon>add</mat-icon> Nueva Ubicación</button>
+        </div>
+      </div>
+      <div class="banner-stats-row">
+        <div class="stat-card-glass">
+          <mat-icon>location_city</mat-icon>
+          <div><span class="stat-label">Total Ubicaciones</span><span class="stat-value">8</span></div>
+        </div>
+        <div class="stat-card-glass">
+          <mat-icon>public</mat-icon>
+          <div><span class="stat-label">Provincias</span><span class="stat-value">2</span></div>
+        </div>
+        <div class="stat-card-glass">
+          <mat-icon>share_location</mat-icon>
+          <div><span class="stat-label">Distritos</span><span class="stat-value">8</span></div>
+        </div>
+        <div class="stat-card-glass">
+          <mat-icon>sick</mat-icon>
+          <div><span class="stat-label">Total Casos</span><span class="stat-value">269</span></div>
+        </div>
+      </div>
+    </div>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover-row"></tr>
+    <div class="map-card-container">
+      <div class="map-header">
+        <div class="map-title">
+          <div class="map-icon-box"><mat-icon>map</mat-icon></div>
+          <div><h3>Mapa de Ubicaciones</h3><p>Distribución geográfica</p></div>
+        </div>
+        <div class="map-toggles">
+          <button class="toggle-btn">Vista Satélite</button>
+          <button class="toggle-btn active">Vista Mapa</button>
+        </div>
+      </div>
+      <div class="map-viewport">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d124855.57683936648!2d-77.028240!3d-12.046374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
 
-      <!-- Fila vacía si no hay datos -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell no-data" colspan="4">No se encontraron ubicaciones.</td>
-      </tr>
-    </table>
+    <div class="search-bar-container">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Buscar por distrito, provincia o dirección...">
+    </div>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                   showFirstLastButtons
-                   aria-label="Seleccionar página de ubicaciones">
-    </mat-paginator>
-  </div>
+    <div class="table-wrapper mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="idUbicacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element"><span class="id-badge">#{{element.idUbicacion}}</span></td>
+        </ng-container>
+        <ng-container matColumnDef="distrito">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distrito </th>
+          <td mat-cell *matCellDef="let element"><span class="district-text">{{element.distrito}}</span></td>
+        </ng-container>
+        <ng-container matColumnDef="provincia">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Provincia </th>
+          <td mat-cell *matCellDef="let element"> {{element.provincia}} </td>
+        </ng-container>
+        <ng-container matColumnDef="direccion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="address-cell"><mat-icon class="tiny-icon">home</mat-icon> {{element.direccion}}</div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover-row"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell no-data" colspan="4">No se encontraron ubicaciones.</td>
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
 
+    <div style="height: 40px;"></div>
+
+  </main>
 </div>
