@@ -1,232 +1,258 @@
 <mat-sidenav-container class="dashboard-container">
 
-  <mat-sidenav mode="side" opened class="sidenav">
-    <div class="sidenav-content">
-
+  <mat-sidenav mode="side" opened class="sidenav-white-theme">
+    <div class="sidenav-header">
       <div class="logo-area">
-        <img src="assets/Logo-app-inicio.png" alt="Salud AI Logo" class="logo-img">
+        <div class="logo-circle"><span>SS</span></div>
         <div class="logo-text">
           <span class="logo-title">Salud AI</span>
-          <span class="logo-subtitle">A Tu Salud Primero</span>
+          <span class="logo-subtitle">Tu Salud Primero</span>
         </div>
       </div>
       <div class="status-badge">
-        <span class="online-dot"></span> En línea
-      </div>
-
-      <mat-nav-list>
-        <a mat-list-item class="nav-item active-item" routerLink="/inicio">
-          <mat-icon>home</mat-icon>
-          <span>Inicio</span>
-        </a>
-
-        <a mat-list-item class="nav-item" routerLink="/diagnostico">
-          <mat-icon>biotech</mat-icon>
-          <span>Diagnóstico</span>
-          <mat-icon class="chevron-icon">chevron_right</mat-icon>
-        </a>
-
-        <a mat-list-item class="nav-item" routerLink="/historial">
-          <mat-icon>history</mat-icon>
-          <span>Historial</span>
-          <mat-icon class="chevron-icon">chevron_right</mat-icon>
-        </a>
-
-        <a mat-list-item class="nav-item" routerLink="/ubicacion-usuario">
-          <mat-icon>map</mat-icon>
-          <span>Mapas</span>
-          <mat-icon class="chevron-icon">chevron_right</mat-icon>
-        </a>
-
-        <a mat-list-item class="nav-item" routerLink="/ajustes-usuario">
-          <mat-icon>settings</mat-icon>
-          <span>Ajustes</span>
-        </a>
-      </mat-nav-list>
-
-      <div class="logout-area">
-        <a mat-list-item class="nav-item logout-item" (click)="logout()">
-          <mat-icon>exit_to_app</mat-icon>
-          <span>Cerrar Sesión</span>
-          <mat-icon class="chevron-icon">chevron_right</mat-icon>
-        </a>
+        <span class="online-dot"></span><span>En línea | Panel de Usuario</span>
       </div>
     </div>
+
+    <div class="nav-menu-container">
+      <mat-nav-list class="nav-list-white">
+        <a mat-list-item class="nav-item-white active" routerLink="/inicio">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-purple-light"><mat-icon class="icon-purple">home</mat-icon></div>
+            <span class="nav-label">Inicio</span><mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <a mat-list-item class="nav-item-white" routerLink="/diagnostico">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-cyan-light"><mat-icon class="icon-cyan">medical_services</mat-icon></div>
+            <span class="nav-label">Diagnóstico</span><mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <a mat-list-item class="nav-item-white" routerLink="/historial">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-blue-light"><mat-icon class="icon-blue">description</mat-icon></div>
+            <span class="nav-label">Historial</span><mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-purple-light"><mat-icon class="icon-purple">map</mat-icon></div>
+            <span class="nav-label">Mapas</span><mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <a mat-list-item class="nav-item-white" routerLink="/ajustes-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-gray-light"><mat-icon class="icon-gray">settings</mat-icon></div>
+            <span class="nav-label">Ajustes</span><mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+      </mat-nav-list>
+    </div>
+
+    <div class="sidenav-footer-white">
+      <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
+        <div class="item-content-wrapper">
+          <div class="nav-icon-wrapper icon-bg-red-light"><mat-icon class="icon-red rotate-icon">logout</mat-icon></div>
+          <span class="nav-label">Cerrar Sesión</span><mat-icon class="chevron">chevron_right</mat-icon>
+        </div>
+      </a>
+    </div>
   </mat-sidenav>
+
 
   <mat-sidenav-content class="main-content">
 
     <mat-toolbar class="top-toolbar">
-      <div class="breadcrumbs">
-        Panel de Usuario
-      </div>
-      <span class="spacer"></span> <button mat-icon-button>
-      <mat-icon>search</mat-icon>
-    </button>
-      <button mat-icon-button>
-        <mat-icon>notifications_none</mat-icon>
-      </button>
+      <span class="spacer"></span>
 
-      <div class="user-profile">
-        <img src="https://placehold.co/40x40" alt="Avatar" class="user-avatar">
-        <div class="user-info">
-          <span class="user-name">Usuario</span>
-          <span class="user-role">Paciente</span>
+      <div class="top-actions">
+        <button mat-icon-button class="action-btn">
+          <mat-icon>search</mat-icon>
+        </button>
+
+        <button mat-icon-button class="action-btn notification-btn">
+          <mat-icon>notifications_none</mat-icon>
+          <span class="badge">3</span>
+        </button>
+
+        <button mat-icon-button class="action-btn">
+          <mat-icon>settings</mat-icon>
+        </button>
+
+        <div class="user-profile">
+          <div class="text-info">
+            <span class="user-name">Usuario</span>
+            <span class="user-role">Paciente</span>
+          </div>
+          <img src="https://placehold.co/40x40" alt="Avatar" class="user-avatar">
         </div>
-        <mat-icon>expand_more</mat-icon>
       </div>
     </mat-toolbar>
 
     <div class="content-body">
 
       <mat-card class="welcome-banner">
-        <div class="banner-text">
-          <mat-icon class="shield-icon">verified_user</mat-icon>
-          <h2>¡Bienvenido a Salud AI!</h2>
-          <strong>Tu sistema inteligente de prevención de salud</strong>
-          <p>
+        <div class="banner-content">
+          <div class="banner-header">
+            <mat-icon class="shield-icon">verified_user</mat-icon>
+            <h1>¡Bienvenido a Salud AI!</h1>
+          </div>
+          <p class="subtitle">Tu sistema inteligente de prevención de salud</p>
+          <p class="description">
             Sistema especializado en la prevención y monitoreo de enfermedades infecciosas.
             Utiliza nuestras herramientas para evaluar síntomas, consultar tu historial y visualizar
             brotes de enfermedades en tu zona.
           </p>
-          <button mat-flat-button class="diag-button">
+          <button mat-raised-button class="diag-button">
             Realizar Diagnóstico Ahora
           </button>
         </div>
-        <mat-icon class="banner-icon-bg">medical_services</mat-icon>
+        <mat-icon class="banner-bg-icon">medical_services</mat-icon>
       </mat-card>
 
       <div class="stats-grid">
         <mat-card class="stat-card">
-          <div class="stat-header">
-            <mat-icon class="stat-icon">bar_chart</mat-icon>
-            <span class="stat-percent">+12%</span>
+          <div class="stat-top">
+            <div class="icon-box icon-teal"><mat-icon>bar_chart</mat-icon></div>
+            <span class="percent-badge">+12%</span>
           </div>
-          <span class="stat-title">Diagnósticos Totales</span>
+          <span class="stat-label">Diagnósticos Totales</span>
           <span class="stat-value">0</span>
         </mat-card>
+
         <mat-card class="stat-card">
-          <div class="stat-header">
-            <mat-icon class="stat-icon">query_builder</mat-icon>
+          <div class="stat-top">
+            <div class="icon-box icon-blue"><mat-icon>schedule</mat-icon></div>
           </div>
-          <span class="stat-title">Última Consulta</span>
+          <span class="stat-label">Última Consulta</span>
           <span class="stat-value">Sin registro</span>
         </mat-card>
+
         <mat-card class="stat-card">
-          <div class="stat-header">
-            <mat-icon class="stat-icon">favorite_border</mat-icon>
-            <span class="stat-tag">Estable</span>
+          <div class="stat-top">
+            <div class="icon-box icon-green"><mat-icon>favorite</mat-icon></div>
+            <span class="status-badge-text">Estable</span>
           </div>
-          <span class="stat-title">Estado de Salud</span>
+          <span class="stat-label">Estado de Salud</span>
           <span class="stat-value">Bueno</span>
         </mat-card>
       </div>
 
-      <h2>Acceso Rápido</h2>
+      <h2 class="section-title">Acceso Rápido</h2>
       <div class="access-grid">
         <mat-card class="access-card" routerLink="/diagnostico">
-          <div class="icon-circle" style="background-color: #e0f7fa;">
-            <mat-icon style="color: #00bcd4;">stethoscope</mat-icon>
-          </div>
-          <strong>Nuevo Diagnóstico</strong>
-          <span>Evalúa tus síntomas ahora</span>
+          <div class="access-icon circle-cyan"><mat-icon>medical_services</mat-icon></div>
+          <strong class="access-title">Nuevo Diagnóstico</strong>
+          <span class="access-desc">Evalúa tus síntomas ahora</span>
         </mat-card>
+
         <mat-card class="access-card" routerLink="/historial">
-          <div class="icon-circle" style="background-color: #e3f2fd;">
-            <mat-icon style="color: #2196f3;">assignment</mat-icon>
-          </div>
-          <strong>Mi Historial</strong>
-          <span>0 diagnósticos registrados</span>
+          <div class="access-icon circle-blue"><mat-icon>description</mat-icon></div>
+          <strong class="access-title">Mi Historial</strong>
+          <span class="access-desc">0 diagnósticos registrados</span>
         </mat-card>
+
         <mat-card class="access-card" routerLink="/mapas">
-          <div class="icon-circle" style="background-color: #f3e5f5;">
-            <mat-icon style="color: #ab47bc;">location_on</mat-icon>
-          </div>
-          <strong>Mapa de Salud</strong>
-          <span>Enfermedades en tu zona</span>
+          <div class="access-icon circle-purple"><mat-icon>location_on</mat-icon></div>
+          <strong class="access-title">Mapa de Salud</strong>
+          <span class="access-desc">Enfermedades en tu zona</span>
         </mat-card>
+
         <mat-card class="access-card" routerLink="/perfil">
-          <div class="icon-circle" style="background-color: #ffebee;">
-            <mat-icon style="color: #f44336;">person_outline</mat-icon>
-          </div>
-          <strong>Mi Perfil</strong>
-          <span>Configuración personal</span>
+          <div class="access-icon circle-red"><mat-icon>person</mat-icon></div>
+          <strong class="access-title">Mi Perfil</strong>
+          <span class="access-desc">Configuración personal</span>
         </mat-card>
       </div>
 
       <div class="alerts-section">
-        <div class="alerts-header">
-          <h2>Alertas en tu Zona</h2>
-          <a routerLink="/mapas">Ver Mapa Completo</a>
+        <div class="section-header">
+          <div class="title-with-icon">
+            <mat-icon class="pin-icon">location_on</mat-icon>
+            <h2 class="section-title remove-margin">Alertas en tu Zona</h2>
+          </div>
+          <button mat-flat-button class="view-map-btn" routerLink="/mapas">Ver Mapa Completo</button>
         </div>
+
         <div class="alerts-grid">
-          <mat-card class="alert-card alert-red">
+          <mat-card class="alert-card bg-red">
             <div class="alert-header">
               <strong>Gripe</strong>
-              <mat-icon>info_outline</mat-icon>
+              <mat-icon class="alert-icon">error_outline</mat-icon>
             </div>
-            <div class="alert-body">
-              <div class="alert-info">
-                <span>Casos:</span>
-                <span><mat-icon>location_on</mat-icon> Lima Centro</span>
+            <div class="alert-details">
+              <div class="detail-row">
+                <span class="label">Casos:</span>
+                <span class="count text-red">234</span>
               </div>
-              <span class="alert-count">234</span>
+              <div class="detail-row location">
+                <mat-icon>place</mat-icon> Lima Centro
+              </div>
             </div>
           </mat-card>
-          <mat-card class="alert-card alert-yellow">
+
+          <mat-card class="alert-card bg-orange">
             <div class="alert-header">
               <strong>Gastroenteritis</strong>
-              <mat-icon>info_outline</mat-icon>
+              <mat-icon class="alert-icon">warning_amber</mat-icon>
             </div>
-            <div class="alert-body">
-              <div class="alert-info">
-                <span>Casos:</span>
-                <span><mat-icon>location_on</mat-icon> Surco</span>
+            <div class="alert-details">
+              <div class="detail-row">
+                <span class="label">Casos:</span>
+                <span class="count text-orange">145</span>
               </div>
-              <span class="alert-count">145</span>
+              <div class="detail-row location">
+                <mat-icon>place</mat-icon> Surco
+              </div>
             </div>
           </mat-card>
-          <mat-card class="alert-card alert-green">
+
+          <mat-card class="alert-card bg-green">
             <div class="alert-header">
               <strong>COVID-19</strong>
-              <mat-icon>info_outline</mat-icon>
+              <mat-icon class="alert-icon">check_circle_outline</mat-icon>
             </div>
-            <div class="alert-body">
-              <div class="alert-info">
-                <span>Casos:</span>
-                <span><mat-icon>location_on</mat-icon> Miraflores</span>
+            <div class="alert-details">
+              <div class="detail-row">
+                <span class="label">Casos:</span>
+                <span class="count text-green">89</span>
               </div>
-              <span class="alert-count">89</span>
+              <div class="detail-row location">
+                <mat-icon>place</mat-icon> Miraflores
+              </div>
             </div>
           </mat-card>
         </div>
       </div>
 
-      <h2>Consejos de Prevención</h2>
+      <h2 class="section-title margin-top">Consejos de Prevención</h2>
       <div class="consejos-grid">
         <mat-card class="consejo-card">
-          <div class="consejo-icon icon-blue"><mat-icon>wash</mat-icon></div>
+          <div class="consejo-icon icon-blue-bg"><mat-icon>clean_hands</mat-icon></div>
           <div class="consejo-text">
             <strong>Prevención de Enfermedades</strong>
             <p>Lávate las manos frecuentemente con agua y jabón durante al menos 20 segundos</p>
           </div>
         </mat-card>
+
         <mat-card class="consejo-card">
-          <div class="consejo-icon icon-green"><mat-icon>water_drop</mat-icon></div>
+          <div class="consejo-icon icon-teal-bg"><mat-icon>water_drop</mat-icon></div>
           <div class="consejo-text">
             <strong>Mantente Hidratado</strong>
             <p>Bebe al menos 8 vasos de agua al día para mantener tu cuerpo funcionando correctamente</p>
           </div>
         </mat-card>
+
         <mat-card class="consejo-card">
-          <div class="consejo-icon icon-purple"><mat-icon>fitness_center</mat-icon></div>
+          <div class="consejo-icon icon-purple-bg"><mat-icon>directions_run</mat-icon></div>
           <div class="consejo-text">
             <strong>Ejercicio Regular</strong>
             <p>Realiza al menos 30 minutos de actividad física moderada todos los días</p>
           </div>
         </mat-card>
+
         <mat-card class="consejo-card">
-          <div class="consejo-icon icon-red"><mat-icon>restaurant</mat-icon></div>
+          <div class="consejo-icon icon-red-bg"><mat-icon>restaurant</mat-icon></div>
           <div class="consejo-text">
             <strong>Alimentación Balanceada</strong>
             <p>Consume frutas, verduras y proteínas para fortalecer tu sistema inmunológico</p>
@@ -235,15 +261,17 @@
       </div>
 
       <mat-card class="aviso-card">
-        <mat-icon>warning_amber</mat-icon>
+        <mat-icon class="aviso-icon">warning</mat-icon>
         <div class="aviso-text">
-          <strong>Aviso Médico Importante</strong>
+          <strong class="aviso-title">Aviso Médico Importante</strong>
           <p>
             La herramienta de diagnóstico de Salud AI es una guía orientativa basada en síntomas.
-            Si presentas síntomas graves o persistentes, busca atención médica inmediata. Los datos del mapa de enfermedades son referenciales y se actualizan constantemente.
+            Si presentas síntomas graves o persistentes, busca atención médica inmediata.
+            Los datos del mapa de enfermedades son referenciales y se actualizan constantemente.
           </p>
         </div>
       </mat-card>
 
-    </div> </mat-sidenav-content>
+    </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>
