@@ -5,10 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select'; // IMPORTANTE
+import { MatSelectModule } from '@angular/material/select'; // <--- IMPORTANTE
 import { MatIconModule } from '@angular/material/icon';
 
-// Asegúrate de que las rutas a tus modelos y servicios sean correctas
 import { Sintoma } from '../../../../model/sintoma';
 import { SintomaService } from '../../../../services/sintoma-service';
 
@@ -16,13 +15,13 @@ import { SintomaService } from '../../../../services/sintoma-service';
   selector: 'app-enfermedad-dialog',
   standalone: true,
   imports: [
-    CommonModule,         // CRUCIAL para *ngFor
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
-    MatSelectModule,      // CRUCIAL para el selector
+    MatSelectModule,
     MatIconModule
   ],
   template: `
@@ -36,35 +35,33 @@ import { SintomaService } from '../../../../services/sintoma-service';
     <mat-dialog-content>
       <form [formGroup]="form" style="display: flex; flex-direction: column; gap: 15px; padding-top: 10px;">
 
-        <!-- Nombre -->
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Nombre de la Enfermedad</mat-label>
           <input matInput formControlName="nombre" placeholder="Ej. Dengue">
-          <mat-error *ngIf="form.get('nombre')?.hasError('required')">El nombre es requerido</mat-error>
+          <mat-error *ngIf="form.get('nombre')?.hasError('required')">Requerido</mat-error>
         </mat-form-field>
 
-        <!-- Descripción -->
         <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Descripción / Síntomas comunes</mat-label>
-          <textarea matInput formControlName="descripcion" rows="3" placeholder="Describa la enfermedad..."></textarea>
-          <mat-error *ngIf="form.get('descripcion')?.hasError('required')">La descripción es requerida</mat-error>
+          <mat-label>Descripción</mat-label>
+          <textarea matInput formControlName="descripcion" rows="3"></textarea>
+          <mat-error *ngIf="form.get('descripcion')?.hasError('required')">Requerido</mat-error>
         </mat-form-field>
 
-        <!-- SELECTOR DE SÍNTOMAS -->
-        <!-- Si la lista está vacía, mostramos un aviso -->
+        <!-- SELECTOR MÚLTIPLE CORREGIDO -->
         <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Síntoma Principal Asociado</mat-label>
-          <mat-select formControlName="idSintoma">
-            <mat-option *ngIf="listaSintomas.length === 0" disabled>
-              -- No hay síntomas registrados --
-            </mat-option>
+          <mat-label>Seleccionar Síntomas</mat-label>
 
-            <mat-option *ngFor="let s of listaSintomas" [value]="s.idSintoma">
+          <mat-select formControlName="sintomasIds" multiple>
+            <!--
+               CORRECCIÓN CLAVE: Usamos 's.id' o 's.idSintoma'
+               Ahora que el modelo tiene 'id', esto capturará el valor correcto.
+            -->
+            <mat-option *ngFor="let s of listaSintomas" [value]="s.id || s.idSintoma">
               {{ s.nombre }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="form.get('idSintoma')?.hasError('required')">Debe seleccionar un síntoma</mat-error>
-          <mat-hint align="end">{{ listaSintomas.length }} síntomas disponibles</mat-hint>
+
+          <mat-error *ngIf="form.get('sintomasIds')?.hasError('required')">Seleccione al menos uno</mat-error>
         </mat-form-field>
 
       </form>
@@ -73,20 +70,16 @@ import { SintomaService } from '../../../../services/sintoma-service';
     <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close color="warn">Cancelar</button>
       <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="guardar()">
-        {{ data ? 'Actualizar' : 'Guardar' }}
+        Guardar
       </button>
     </mat-dialog-actions>
   `,
-  styles: [`
-    .w-full { width: 100%; }
-    mat-dialog-content { min-width: 400px; }
-  `]
+  styles: [`.w-full { width: 100%; }`]
 })
 export class EnfermedadDialogComponent implements OnInit {
   form: FormGroup;
   listaSintomas: Sintoma[] = [];
 
-  // Inyección de servicios
   private sintomaService = inject(SintomaService);
 
   constructor(
@@ -95,29 +88,31 @@ export class EnfermedadDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.fb.group({
-      idEnfermedad: [data?.idEnfermedad || null],
+      // Mapeamos ID de enfermedad
+      idEnfermedad: [data?.idEnfermedad || data?.id || null],
       nombre: [data?.nombre || '', Validators.required],
       descripcion: [data?.descripcion || '', Validators.required],
-      idSintoma: [data?.idSintoma || '', Validators.required]
+
+      // Mapeamos los síntomas. Si es edición, 'data.sintomasIds' debe venir del backend.
+      sintomasIds: [data?.sintomasIds || [], Validators.required]
     });
   }
 
   ngOnInit(): void {
-    console.log("Cargando síntomas para el selector...");
-
+    // Cargamos la lista de síntomas
     this.sintomaService.list().subscribe({
       next: (data) => {
-        console.log("Síntomas cargados:", data); // Verifica esto en la consola F12
         this.listaSintomas = data;
+        console.log('Síntomas cargados (Verificar campo ID):', data);
       },
-      error: (err) => {
-        console.error("Error al cargar síntomas en el diálogo:", err);
-      }
+      error: (e) => console.error('Error cargando síntomas:', e)
     });
   }
 
   guardar() {
     if (this.form.valid) {
+      // Al cerrar, pasamos el objeto con el formato:
+      // { nombre: 'X', descripcion: 'Y', sintomasIds: [1, 2, 3] }
       this.dialogRef.close(this.form.value);
     }
   }

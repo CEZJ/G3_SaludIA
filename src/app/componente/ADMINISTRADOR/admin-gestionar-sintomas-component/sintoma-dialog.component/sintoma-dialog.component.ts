@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import {MatDialogRef, MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatDialogModule
   ],
   template: `
-    <h2 mat-dialog-title>Nuevo Síntoma</h2>
+    <h2 mat-dialog-title>{{ data ? 'Editar' : 'Nuevo' }} Síntoma</h2>
     <mat-dialog-content>
       <form [formGroup]="form">
         <mat-form-field appearance="outline" style="width: 100%;">
@@ -30,7 +30,9 @@ import { MatButtonModule } from '@angular/material/button';
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close>Cancelar</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="guardar()">Guardar</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="guardar()">
+        {{ data ? 'Actualizar' : 'Guardar' }}
+      </button>
     </mat-dialog-actions>
   `
 })
@@ -39,10 +41,14 @@ export class SintomaDialogComponent {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<SintomaDialogComponent>
+    private dialogRef: MatDialogRef<SintomaDialogComponent>,
+    // Inyectamos los datos. Si viene null es crear, si viene objeto es editar.
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.fb.group({
-      nombre: ['', Validators.required]
+      // Si estamos editando (data existe), ponemos el ID oculto y el nombre
+      id: [data?.id || data?.idSintoma || null],
+      nombre: [data?.nombre || '', Validators.required]
     });
   }
 

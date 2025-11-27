@@ -1,5 +1,5 @@
 <div class="layout-wrapper">
-  <!-- SIDEBAR (Mismo de siempre) -->
+  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="brand">
       <img src="assets/img.png" class="logo" alt="logo" />
@@ -46,7 +46,7 @@
               <span class="live-tag">ID: {{ item.idEnfermedad }}</span>
             </div>
           </div>
-          <!-- Botones de Acción en la cabecera -->
+          <!-- Botones de Acción -->
           <div style="display: flex; gap: 5px;">
             <button class="btn-action" (click)="abrirDialogo(item)" title="Editar"><mat-icon>edit</mat-icon></button>
             <button class="btn-action" (click)="eliminarEnfermedad(item.idEnfermedad)" title="Eliminar"><mat-icon>delete</mat-icon></button>
@@ -63,7 +63,11 @@
               </div>
             </div>
             <div class="box-footer">
-              <span>Sintoma ID Relacionado: {{ item.idSintoma }}</span>
+              <!-- AQUÍ ESTÁ EL CAMBIO VISUAL: Usamos sintomasTexto en lugar de idSintoma -->
+              <span style="display: flex; align-items: center; gap: 5px;">
+                <mat-icon style="font-size: 16px; width: 16px; height: 16px;">list</mat-icon>
+                {{ item.sintomasTexto }}
+              </span>
             </div>
           </div>
         </div>

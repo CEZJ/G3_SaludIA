@@ -12,9 +12,9 @@ import { MatButtonModule } from '@angular/material/button';
 // Servicios y Modelos
 import { EnfermedadService } from '../../../services/enfermedad-service';
 import { Enfermedad } from '../../../model/enfermedad';
+import { Sintoma } from '../../../model/sintoma';
 
-// Importamos el Diálogo (Asegúrate que esta ruta sea correcta según tu estructura)
-// Generalmente está en una carpeta compartida 'components' o al mismo nivel
+// Diálogo
 import { EnfermedadDialogComponent } from './enfermedad-dialog.component/enfermedad-dialog.component';
 
 
@@ -35,15 +35,11 @@ import { EnfermedadDialogComponent } from './enfermedad-dialog.component/enferme
 })
 export class AdminGestionarEnfermedadesComponent implements OnInit {
 
-  // Inyección de dependencias
   private enfermedadService = inject(EnfermedadService);
   private dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
-  // Lista de datos reales del backend
   enfermedades: Enfermedad[] = [];
-
-  // Lista decorada para la vista (agrega colores, iconos, conteo de síntomas)
   enfermedadesVisuales: any[] = [];
 
   constructor() {}
@@ -56,48 +52,70 @@ export class AdminGestionarEnfermedadesComponent implements OnInit {
   cargarEnfermedades() {
     this.enfermedadService.list().subscribe({
       next: (data) => {
-        this.enfermedades = data;
-        console.log("Enfermedades cargadas:", data);
+        console.log("Datos del backend:", data);
 
-        // Transformamos los datos planos en datos visuales para las tarjetas
-        this.enfermedadesVisuales = data.map(enf => {
-          // Robustez: Usar idEnfermedad o id
-          const idReal = enf.idEnfermedad || enf.id || 0;
+        this.enfermedades = data;
+
+        // Preparar vista
+        this.enfermedadesVisuales = this.enfermedades.map(enf => {
+          const idReal = enf.id || enf.idEnfermedad || 0;
+
+          // Detectar si vienen IDs en 'idsSintomas' (DTO) o objetos en 'sintomas' (Entidad)
+          let cantidad = 0;
+
+          if (enf.idsSintomas && enf.idsSintomas.length > 0) {
+            cantidad = enf.idsSintomas.length;
+          }
+          else if (enf.sintomas && enf.sintomas.length > 0) {
+            cantidad = enf.sintomas.length;
+          }
 
           return {
             ...enf,
-            idEnfermedad: idReal, // Normalizamos el ID para la vista
+            idEnfermedad: idReal,
             color: this.getColor(idReal),
             icon: 'medical_services',
             estado: 'Registro Activo',
-            // Calculamos cuántos síntomas tiene asociados para mostrarlo
-            sintomasTexto: enf.sintomasIds && enf.sintomasIds.length > 0
-              ? `${enf.sintomasIds.length} síntomas asociados`
-              : 'Sin síntomas registrados'
+            sintomasTexto: cantidad > 0 ? `${cantidad} síntomas asociados` : 'Sin síntomas registrados'
           };
         });
       },
       error: (err) => {
-        console.error("Error al cargar enfermedades:", err);
+        console.error("Error al cargar:", err);
         this.snackBar.open('Error al conectar con el servidor', 'Cerrar', { panelClass: ['snackbar-error'] });
       }
     });
   }
 
-  // --- CREATE / UPDATE: Abrir Modal ---
+  // --- ABRIR DIÁLOGO ---
   abrirDialogo(enfermedad?: Enfermedad) {
+    let datosParaDialogo = null;
+
+    if (enfermedad) {
+      let idsParaEdicion: number[] = [];
+
+      // Intentamos recuperar los IDs existentes para marcar las casillas
+      if (enfermedad.idsSintomas) {
+        idsParaEdicion = enfermedad.idsSintomas;
+      } else if (enfermedad.sintomas) {
+        idsParaEdicion = enfermedad.sintomas.map((s: any) => s.id || s.idSintoma);
+      }
+
+      datosParaDialogo = {
+        ...enfermedad,
+        sintomasIds: idsParaEdicion
+      };
+    }
+
     const dialogRef = this.dialog.open(EnfermedadDialogComponent, {
       width: '500px',
-      disableClose: true, // Evita cerrar por accidente
-      data: enfermedad // Si es null = Crear, Si tiene datos = Editar
+      disableClose: true,
+      data: datosParaDialogo
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log("Datos del diálogo:", result);
-
-        // Si tiene ID, es una actualización
-        if (result.idEnfermedad || result.id) {
+        if (result.id || result.idEnfermedad) {
           this.actualizarEnfermedad(result);
         } else {
           this.crearEnfermedad(result);
@@ -106,56 +124,72 @@ export class AdminGestionarEnfermedadesComponent implements OnInit {
     });
   }
 
-  crearEnfermedad(enf: Enfermedad) {
-    this.enfermedadService.insert(enf).subscribe({
-      next: (nueva) => {
-        console.log("Creada:", nueva);
-        this.snackBar.open('Enfermedad registrada con éxito', 'Cerrar', { duration: 3000 });
-        this.cargarEnfermedades(); // Recargar la lista visual
+  // --- CREAR (Usa DTO -> idsSintomas) ---
+  crearEnfermedad(formValue: any) {
+    const payload = {
+      nombre: formValue.nombre,
+      descripcion: formValue.descripcion,
+      // DTO requiere 'idsSintomas' (lista de números)
+      idsSintomas: formValue.sintomasIds ? formValue.sintomasIds.map((i: any) => Number(i)) : []
+    };
+
+    console.log("Payload CREAR (DTO):", payload);
+
+    this.enfermedadService.insert(payload as any).subscribe({
+      next: () => {
+        this.snackBar.open('Enfermedad registrada', 'Cerrar', { duration: 3000 });
+        this.cargarEnfermedades();
       },
       error: (err) => {
-        console.error(err);
-        this.snackBar.open('Error al registrar enfermedad', 'Cerrar');
+        console.error("Error backend:", err);
+        this.snackBar.open('Error al registrar', 'Cerrar');
       }
     });
   }
 
-  actualizarEnfermedad(enf: Enfermedad) {
-    this.enfermedadService.update(enf).subscribe({
-      next: (actualizada) => {
-        console.log("Actualizada:", actualizada);
-        this.snackBar.open('Enfermedad actualizada correctamente', 'Cerrar', { duration: 3000 });
+  // --- ACTUALIZAR (Usa Entidad -> sintomas: [{id: 1}]) ---
+  actualizarEnfermedad(formValue: any) {
+    const idsNumeros = formValue.sintomasIds ? formValue.sintomasIds.map((i: any) => Number(i)) : [];
+
+    const payload = {
+      id: formValue.idEnfermedad || formValue.id,
+      nombre: formValue.nombre,
+      descripcion: formValue.descripcion,
+
+      // CAMBIO CLAVE: Para actualizar, usamos la Entidad, que espera objetos en 'sintomas'
+      // No usamos 'idsSintomas' aquí porque la Entidad Java lo ignoraría.
+      sintomas: idsNumeros.map((id: number) => ({ id: id }))
+    };
+
+    console.log("Payload ACTUALIZAR (Entidad):", payload);
+
+    this.enfermedadService.update(payload as any).subscribe({
+      next: () => {
+        this.snackBar.open('Enfermedad actualizada', 'Cerrar', { duration: 3000 });
         this.cargarEnfermedades();
       },
       error: (err) => {
         console.error(err);
-        this.snackBar.open('Error al actualizar enfermedad', 'Cerrar');
+        this.snackBar.open('Error al actualizar', 'Cerrar');
       }
     });
   }
 
-  // --- DELETE: Eliminar ---
   eliminarEnfermedad(id: number) {
     if (!id) return;
-
-    if(confirm('¿Eliminar esta enfermedad y sus relaciones con síntomas?')) {
+    if(confirm('¿Eliminar esta enfermedad?')) {
       this.enfermedadService.delete(id).subscribe({
         next: () => {
           this.snackBar.open('Eliminado correctamente', 'Cerrar', { duration: 3000 });
           this.cargarEnfermedades();
         },
-        error: (err) => {
-          console.error(err);
-          this.snackBar.open('No se pudo eliminar (Verificar dependencias)', 'Cerrar');
-        }
+        error: () => this.snackBar.open('Error al eliminar', 'Cerrar')
       });
     }
   }
 
-  // Utilidad visual: Asignar un color basado en el ID para que no se vea monótono
   getColor(id: number): string {
     const colors = ['blue', 'red', 'green', 'purple', 'orange', 'teal'];
-    // Usamos el módulo para ciclar los colores
     return colors[id % colors.length];
   }
 }

@@ -14,10 +14,7 @@ export class SintomaService {
 
   // --- MÉTODO CLAVE: Genera las cabeceras con el Token ---
   private getHeaders(): HttpHeaders {
-    // Recupera el token del almacenamiento local
-    // Asegúrate de que en tu Login lo guardes con este nombre: 'token'
     const token = localStorage.getItem('token');
-
     let headers = new HttpHeaders();
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);
@@ -25,7 +22,7 @@ export class SintomaService {
     return headers;
   }
 
-  // Listar todos (Añadimos { headers: this.getHeaders() })
+  // Listar todos
   list(): Observable<Sintoma[]> {
     return this.http.get<Sintoma[]>(this.apiUrl, { headers: this.getHeaders() });
   }
@@ -33,6 +30,13 @@ export class SintomaService {
   // Insertar nuevo
   insert(sintoma: Sintoma): Observable<Sintoma> {
     return this.http.post<Sintoma>(this.apiUrl, sintoma, { headers: this.getHeaders() });
+  }
+
+  // Actualizar existente (ESTE ES EL QUE FALTABA)
+  update(sintoma: Sintoma): Observable<Sintoma> {
+    // Usamos el ID que venga disponible (id o idSintoma) para la URL
+    const id = sintoma.id || sintoma.idSintoma;
+    return this.http.put<Sintoma>(`${this.apiUrl}/${id}`, sintoma, { headers: this.getHeaders() });
   }
 
   // Eliminar por ID

@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 
 // Material
 import { MatCardModule } from '@angular/material/card';
@@ -16,138 +16,175 @@ import { Sintoma } from '../../../model/sintoma';
 import { SintomaDialogComponent } from './sintoma-dialog.component/sintoma-dialog.component';
 
 import { HttpErrorResponse } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-admin-gestionar-sintomas-component',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatDialogModule
+    CommonModule, FormsModule, RouterModule,
+    MatCardModule, MatIconModule, MatButtonModule,
+    MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule
   ],
   templateUrl: './admin-gestionar-sintomas-component.html',
   styleUrls: ['./admin-gestionar-sintomas-component.css']
 })
 export class AdminGestionarSintomasComponent implements OnInit {
 
-  // Inyección de dependencias
   private sintomaService = inject(SintomaService);
   private snackBar = inject(MatSnackBar);
   private dialog = inject(MatDialog);
+  private router = inject(Router);
 
-  // Variables de datos
   sintomas: Sintoma[] = [];
   filteredSintomas: Sintoma[] = [];
-
-  // Variable de estado de carga (Añadida para corregir el error en el HTML)
   isLoading: boolean = false;
-
-  // Filtros
   filterId: string = '';
   filterName: string = '';
-
-  // Estadísticas
   totalSintomas: number = 0;
 
   ngOnInit(): void {
     this.cargarSintomas();
   }
 
-  // --- LÓGICA DE CARGA (Actualizada a tu estilo) ---
+  // --- MANEJO DE ERRORES ROBUSTO ---
+  private manejarError(err: HttpErrorResponse) {
+    this.isLoading = false;
+    console.error("Error detectado (Status " + err.status + "):", err);
+
+    // 1. ERRORES DE INTEGRIDAD DE DATOS (No cerrar sesión)
+    // 500: Error interno (común en FK violation)
+    // 409: Conflicto
+    // 400: Bad Request
+    if (err.status === 500 || err.status === 409 || err.status === 400) {
+      this.snackBar.open('⚠️ No se puede eliminar: El síntoma está siendo usado en una Enfermedad o Diagnóstico.', 'Cerrar', {
+        duration: 6000,
+        panelClass: ['snackbar-warning']
+      });
+    }
+    // 2. ERRORES DE SESIÓN (Token inválido/expirado real)
+    else if (err.status === 401) {
+      this.snackBar.open('🔒 Sesión expirada. Por favor inicia sesión.', 'Cerrar', { duration: 4000 });
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    }
+      // 3. ERRORES DE PERMISOS (403)
+    // Si podemos listar pero no borrar, es falta de permisos, no token vencido. No cerramos sesión.
+    else if (err.status === 403) {
+      this.snackBar.open('⛔ No tienes permiso para realizar esta acción.', 'Cerrar', { duration: 4000 });
+    }
+    // 4. OTROS
+    else if (err.status === 0) {
+      this.snackBar.open('❌ Error de conexión con el servidor.', 'Cerrar');
+    } else {
+      this.snackBar.open(`Error inesperado (${err.status}): ${err.message}`, 'Cerrar');
+    }
+  }
+
+  // --- CARGAR ---
   cargarSintomas() {
-    this.isLoading = true; // Activar carga
+    this.isLoading = true;
     this.sintomaService.list().subscribe({
-      next: (data: Sintoma[]) => {
-        console.log("Síntomas cargados:", data);
-        this.sintomas = data;
-        this.filteredSintomas = data;
-        this.totalSintomas = data.length; // Actualizamos el contador para la tarjeta de estadísticas
-        this.isLoading = false; // Desactivar carga
-        this.applyFilter(); // Re-aplicar filtros si existían
+      next: (data: any[]) => {
+        this.isLoading = false;
+        // Normalizamos ID
+        this.sintomas = data.map(item => ({
+          ...item,
+          id: item.id || item.idSintoma,
+          idSintoma: item.idSintoma || item.id
+        }));
+        this.filteredSintomas = this.sintomas;
+        this.totalSintomas = this.sintomas.length;
+        this.applyFilter();
       },
-      error: (err: HttpErrorResponse) => {
-        this.isLoading = false; // Desactivar carga en error
-        console.error("Error al cargar síntomas:", err);
-        this.snackBar.open('Error al conectar con el servidor', 'Cerrar', {
-          duration: 5000,
-          panelClass: ['snackbar-error']
-        });
+      error: (err) => {
+        // Si falla al cargar la lista, ahí sí podría ser token vencido (403)
+        if (err.status === 403) {
+          this.snackBar.open('🔒 Sesión expirada.', 'Cerrar');
+          this.router.navigate(['/login']);
+        } else {
+          this.manejarError(err);
+        }
       }
     });
   }
 
-  // --- LÓGICA DE CREACIÓN (CREATE) ---
-  abrirDialogo() {
+  // --- ABRIR DIÁLOGO (CREAR O EDITAR) ---
+  abrirDialogo(sintoma?: Sintoma) {
     const dialogRef = this.dialog.open(SintomaDialogComponent, {
       width: '400px',
-      disableClose: true
+      disableClose: true,
+      data: sintoma // Pasamos el objeto si es edición, o undefined si es nuevo
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.crearSintoma(result);
+        // Si el objeto tiene un ID, es una actualización
+        if (result.id || result.idSintoma) {
+          this.actualizarSintoma(result);
+        } else {
+          this.crearSintoma(result);
+        }
       }
     });
   }
+
+  // --- ACCIONES CRUD ---
 
   crearSintoma(sintoma: Sintoma) {
-    this.isLoading = true; // Activar carga al guardar
+    this.isLoading = true;
     this.sintomaService.insert(sintoma).subscribe({
-      next: (nuevo: any) => {
-        console.log("Síntoma creado:", nuevo);
-        this.snackBar.open(`Síntoma agregado correctamente`, 'Cerrar', { duration: 3000 });
+      next: () => {
         this.isLoading = false;
+        this.snackBar.open('Síntoma agregado correctamente', 'Cerrar', { duration: 3000 });
         this.cargarSintomas();
       },
-      error: (err) => {
-        this.isLoading = false; // Desactivar carga en error
-        console.error("Error al crear:", err);
-        this.snackBar.open('Error al guardar en base de datos', 'Cerrar');
-      }
+      error: (err) => this.manejarError(err)
     });
   }
 
-  // --- LÓGICA DE FILTRADO ---
+  actualizarSintoma(sintoma: Sintoma) {
+    this.isLoading = true;
+    this.sintomaService.update(sintoma).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.snackBar.open('Síntoma actualizado correctamente', 'Cerrar', { duration: 3000 });
+        this.cargarSintomas();
+      },
+      error: (err) => this.manejarError(err)
+    });
+  }
+
+  eliminarSintoma(id: number | undefined) {
+    if (!id) {
+      this.snackBar.open('Error: ID inválido', 'Cerrar');
+      return;
+    }
+
+    if(confirm('¿Estás seguro de eliminar este síntoma?')) {
+      this.isLoading = true;
+      this.sintomaService.delete(id).subscribe({
+        next: () => {
+          this.isLoading = false;
+          this.snackBar.open('Síntoma eliminado', 'Cerrar', { duration: 3000 });
+          this.cargarSintomas();
+        },
+        error: (err) => this.manejarError(err)
+      });
+    }
+  }
+
+  // --- FILTROS ---
   applyFilter() {
     const termName = this.filterName.toLowerCase().trim();
     const termId = this.filterId.toLowerCase().trim();
 
     this.filteredSintomas = this.sintomas.filter(s => {
-      // Usamos idSintoma
-      const idStr = s.idSintoma ? s.idSintoma.toString() : '';
-
+      const idVal = s.id || s.idSintoma;
+      const idStr = idVal ? idVal.toString() : '';
       const matchId = idStr.includes(termId);
       const matchName = s.nombre ? s.nombre.toLowerCase().includes(termName) : false;
-
       return matchId && matchName;
     });
-  }
-
-  // --- LÓGICA DE ELIMINACIÓN ---
-  eliminarSintoma(idSintoma: number | undefined) {
-    if (!idSintoma) {
-      this.snackBar.open('Error: ID no válido', 'Cerrar');
-      return;
-    }
-
-    if(confirm('¿Estás seguro de eliminar este síntoma?')) {
-      this.isLoading = true; // Opcional: mostrar carga al eliminar
-      this.sintomaService.delete(idSintoma).subscribe({
-        next: () => {
-          this.snackBar.open('Síntoma eliminado', 'Cerrar', { duration: 3000 });
-          this.cargarSintomas(); // cargarSintomas ya maneja su propio isLoading
-        },
-        error: (err) => {
-          this.isLoading = false;
-          console.error(err);
-          this.snackBar.open('No se pudo eliminar (Puede estar en uso)', 'Cerrar');
-        }
-      });
-    }
   }
 }
