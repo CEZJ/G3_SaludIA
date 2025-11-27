@@ -24,7 +24,6 @@
   padding: 1.5rem;
   border-right: 1px solid #e5e7eb;
   flex-shrink: 0;
-  height: 100%; /* Toma el 100% del padre */
   overflow-y: auto; /* Si el menú es muy largo, scrollea */
 }
 

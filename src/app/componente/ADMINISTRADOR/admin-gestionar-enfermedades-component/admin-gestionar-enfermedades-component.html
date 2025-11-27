@@ -1,19 +1,67 @@
 <div class="layout-wrapper">
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="brand">
       <img src="assets/img.png" class="logo" alt="logo" />
-      <div><h2>Salud AI</h2><small>Alerta Infecciosa</small></div>
+      <div>
+        <h2>Salud AI</h2>
+        <small>Alerta Infecciosa</small>
+      </div>
     </div>
-    <div class="status"><span class="dot"></span> Active <span class="sep">|</span> <span class="patients">Admin Panel</span></div>
+
+    <div class="status">
+      <span class="dot"></span> Activo
+      <span class="sep">|</span>
+      <span class="patients">Panel Admin</span>
+    </div>
 
     <nav class="menu">
-      <a routerLink="/inicio-admin" class="menu-item"><span class="icon-circle" style="color:#4f46e5; background:#eef2ff;"><mat-icon>home</mat-icon></span>Inicio</a>
-      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item"><span class="icon-circle" style="color:#06b6d4; background:#ecfeff;"><mat-icon>group</mat-icon></span>Usuarios</a>
-      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item"><span class="icon-circle" style="color:#22c55e; background:#f0fdf4;"><mat-icon>coronavirus</mat-icon></span>Síntomas</a>
-      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item active-page" style="background-color: #fffbeb; color: #b45309; font-weight: 600;"><span class="icon-circle" style="color:#f59e0b; background:#fffbeb;"><mat-icon>warning</mat-icon></span>Enfermedades</a>
+      <a routerLink="/inicio-admin" class="menu-item">
+        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;">
+          <mat-icon>home</mat-icon>
+        </span>
+        Inicio
+      </a>
+
+      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item">
+        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;">
+          <mat-icon>group</mat-icon>
+        </span>
+        Usuarios
+      </a>
+
+      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item">
+        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;">
+          <mat-icon>coronavirus</mat-icon>
+        </span>
+        Síntomas
+      </a>
+
+      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item active-page" style="background-color: #faf5ff; color: #7e22ce; font-weight: 600;">
+        <span class="icon-circle" style="color:#9333ea; background:#faf5ff;">
+          <mat-icon>science</mat-icon>
+        </span>
+        Enfermedades
+      </a>
+
+      <a routerLink="/admin-ubicaciones-component" class="menu-item">
+        <span class="icon-circle" style="color:#f97316; background:#fff7ed;">
+          <mat-icon>location_on</mat-icon>
+        </span>
+        Ubicaciones
+      </a>
+
+      <a routerLink="/admin-configuracion-component" class="menu-item">
+        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;">
+          <mat-icon>settings</mat-icon>
+        </span>
+        Ajustes
+      </a>
     </nav>
-    <a routerLink="/login" class="logout"><mat-icon>logout</mat-icon>Cerrar Sesión</a>
+
+    <a routerLink="/login" class="logout">
+      <mat-icon>logout</mat-icon>
+      Cerrar Sesión
+    </a>
   </aside>
 
   <main class="content-container">
@@ -23,7 +71,6 @@
         <input type="text" placeholder="Buscar enfermedad...">
       </div>
       <div class="user-actions">
-        <!-- Botón NUEVA ENFERMEDAD -->
         <button class="btn-new" (click)="abrirDialogo()">
           <mat-icon>add_circle</mat-icon> Nueva Enfermedad
         </button>
@@ -35,7 +82,6 @@
     </div>
 
     <div class="cards-grid">
-      <!-- Iteramos sobre la lista visual -->
       <div class="disease-card" *ngFor="let item of enfermedadesVisuales">
 
         <div class="card-header" [ngClass]="'theme-' + item.color">
@@ -46,7 +92,6 @@
               <span class="live-tag">ID: {{ item.idEnfermedad }}</span>
             </div>
           </div>
-          <!-- Botones de Acción -->
           <div style="display: flex; gap: 5px;">
             <button class="btn-action" (click)="abrirDialogo(item)" title="Editar"><mat-icon>edit</mat-icon></button>
             <button class="btn-action" (click)="eliminarEnfermedad(item.idEnfermedad)" title="Eliminar"><mat-icon>delete</mat-icon></button>
@@ -63,7 +108,6 @@
               </div>
             </div>
             <div class="box-footer">
-              <!-- AQUÍ ESTÁ EL CAMBIO VISUAL: Usamos sintomasTexto en lugar de idSintoma -->
               <span style="display: flex; align-items: center; gap: 5px;">
                 <mat-icon style="font-size: 16px; width: 16px; height: 16px;">list</mat-icon>
                 {{ item.sintomasTexto }}

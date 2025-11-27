@@ -2,7 +2,7 @@
 .layout-wrapper { display: flex; height: 100vh; width: 100%; background-color: #f8f9fa; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; overflow: hidden; }
 
 /* SIDEBAR */
-.sidebar { width: 260px; background-color: #ffffff; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #e5e7eb; flex-shrink: 0; height: 100%; z-index: 10; }
+.sidebar { width: 260px; background-color: #ffffff; display: flex; flex-direction: column; padding: 1.5rem; border-right: 1px solid #e5e7eb; flex-shrink: 0; z-index: 10; }
 .brand { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
 .brand h2 { margin: 0; font-size: 1.2rem; color: #1e293b; }
 .brand small { color: #64748b; }
