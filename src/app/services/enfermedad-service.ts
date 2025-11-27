@@ -2,29 +2,35 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Enfermedad} from '../model/enfermedad';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EnfermedadService {
-  private url = environment.apiURL;
-  private httpClient = inject(HttpClient);
-  constructor() {}
-  list(){
-    console.log(this.url + "/enfermedades");
-    return this.httpClient.get<Enfermedad[]>(this.url + "/enfermedades");
+  private http = inject(HttpClient);
+  // Ajusta el puerto si es necesario (8080)
+  private apiUrl = 'http://localhost:8080/api/enfermedades';
+
+  constructor() { }
+
+  list(): Observable<Enfermedad[]> {
+    return this.http.get<Enfermedad[]>(this.apiUrl);
   }
-  listId(id:number){
-    return this.httpClient.get<Enfermedad>(this.url + "/enfermedad" + {id});
+
+  listId(id: number): Observable<Enfermedad> {
+    return this.http.get<Enfermedad>(`${this.apiUrl}/${id}`);
   }
-  insert(enfermedad: Enfermedad){
-    console.log("Enviando Insert:",enfermedad);
-    return this.httpClient.post(this.url + "/enfermedad", enfermedad);
+
+  insert(enfermedad: Enfermedad): Observable<Enfermedad> {
+    return this.http.post<Enfermedad>(this.apiUrl, enfermedad);
   }
-  update(enfermedad: Enfermedad){
-    return this.httpClient.put(this.url + "/enfermedad", enfermedad);
+
+  update(enfermedad: Enfermedad): Observable<Enfermedad> {
+    return this.http.put<Enfermedad>(`${this.apiUrl}/${enfermedad.idEnfermedad}`, enfermedad);
   }
-  delete(id:number){
-    return this.httpClient.delete(this.url + "/enfermedad" + {id});
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

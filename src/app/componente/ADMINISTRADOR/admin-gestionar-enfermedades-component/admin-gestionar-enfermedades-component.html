@@ -1,137 +1,74 @@
 <div class="layout-wrapper">
-
+  <!-- SIDEBAR (Mismo de siempre) -->
   <aside class="sidebar">
     <div class="brand">
       <img src="assets/img.png" class="logo" alt="logo" />
-      <div>
-        <h2>Salud AI</h2>
-        <small>Alerta Infecciosa</small>
-      </div>
+      <div><h2>Salud AI</h2><small>Alerta Infecciosa</small></div>
     </div>
-
-    <div class="status">
-      <span class="dot"></span> Active
-      <span class="sep">|</span>
-      <span class="patients">52 Patients</span>
-    </div>
+    <div class="status"><span class="dot"></span> Active <span class="sep">|</span> <span class="patients">Admin Panel</span></div>
 
     <nav class="menu">
-      <a routerLink="/inicio-admin" class="menu-item">
-        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;">
-          <mat-icon>home</mat-icon>
-        </span> Inicio
-      </a>
-
-      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item">
-        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;">
-          <mat-icon>group</mat-icon>
-        </span> Usuarios
-      </a>
-
-      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item">
-        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;">
-          <mat-icon>coronavirus</mat-icon>
-        </span> Síntomas
-      </a>
-
-      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item active-page">
-        <span class="icon-circle" style="color:#f59e0b; background:#fffbeb;">
-          <mat-icon>warning</mat-icon>
-        </span> Enfermedades
-      </a>
-
-      <a routerLink="/admin-ubicaciones-component" class="menu-item">
-        <span class="icon-circle" style="color:#f97316; background:#fff7ed;">
-          <mat-icon>location_on</mat-icon>
-        </span> Ubicaciones
-      </a>
-
-      <a routerLink="/admin-configuracion-component" class="menu-item">
-        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;">
-          <mat-icon>settings</mat-icon>
-        </span> Ajustes
-      </a>
+      <a routerLink="/inicio-admin" class="menu-item"><span class="icon-circle" style="color:#4f46e5; background:#eef2ff;"><mat-icon>home</mat-icon></span>Inicio</a>
+      <a routerLink="/admin-gestionar-usuarios-component" class="menu-item"><span class="icon-circle" style="color:#06b6d4; background:#ecfeff;"><mat-icon>group</mat-icon></span>Usuarios</a>
+      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item"><span class="icon-circle" style="color:#22c55e; background:#f0fdf4;"><mat-icon>coronavirus</mat-icon></span>Síntomas</a>
+      <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item active-page" style="background-color: #fffbeb; color: #b45309; font-weight: 600;"><span class="icon-circle" style="color:#f59e0b; background:#fffbeb;"><mat-icon>warning</mat-icon></span>Enfermedades</a>
     </nav>
-
-    <a routerLink="/login" class="logout">
-      <mat-icon>logout</mat-icon> Cerrar Sesión
-    </a>
+    <a routerLink="/login" class="logout"><mat-icon>logout</mat-icon>Cerrar Sesión</a>
   </aside>
 
-
   <main class="content-container">
-
     <div class="top-header">
       <div class="search-box">
         <mat-icon>search</mat-icon>
-        <input type="text" placeholder="Buscar por ID o nombre de enfermedad...">
+        <input type="text" placeholder="Buscar enfermedad...">
       </div>
-
       <div class="user-actions">
-        <button class="icon-btn"><mat-icon>notifications</mat-icon><span class="badge-dot">3</span></button>
-        <button class="icon-btn"><mat-icon>settings</mat-icon></button>
-        <div class="user-profile">
-          <div class="user-text">
-            <span class="name">Cristina Sihuas</span>
-            <span class="role">Desarrollador</span>
-          </div>
-          <div class="avatar-img">CS</div>
-        </div>
+        <!-- Botón NUEVA ENFERMEDAD -->
+        <button class="btn-new" (click)="abrirDialogo()">
+          <mat-icon>add_circle</mat-icon> Nueva Enfermedad
+        </button>
       </div>
     </div>
 
     <div class="page-info">
-      <p class="count">9 de 9 enfermedades</p>
+      <p class="count">{{ enfermedadesVisuales.length }} registros encontrados</p>
     </div>
 
     <div class="cards-grid">
-
-      <div class="disease-card" *ngFor="let item of enfermedades">
+      <!-- Iteramos sobre la lista visual -->
+      <div class="disease-card" *ngFor="let item of enfermedadesVisuales">
 
         <div class="card-header" [ngClass]="'theme-' + item.color">
           <div class="header-main">
-            <div class="icon-bg-glass">
-              <mat-icon>{{ item.icon }}</mat-icon>
-            </div>
+            <div class="icon-bg-glass"><mat-icon>{{ item.icon }}</mat-icon></div>
             <div class="header-titles">
               <h3>{{ item.nombre }}</h3>
-              <span class="live-tag">● Live Data</span>
+              <span class="live-tag">ID: {{ item.idEnfermedad }}</span>
             </div>
           </div>
-          <button class="btn-expand"><mat-icon>open_in_full</mat-icon></button>
-        </div>
-
-        <div class="card-actions">
-          <button class="tab-btn active"><mat-icon>medical_services</mat-icon> Síntomas</button>
-          <button class="tab-btn"><mat-icon>shuffle</mat-icon> Transmisión</button>
-          <button class="tab-btn"><mat-icon>shield</mat-icon> Prevención</button>
+          <!-- Botones de Acción en la cabecera -->
+          <div style="display: flex; gap: 5px;">
+            <button class="btn-action" (click)="abrirDialogo(item)" title="Editar"><mat-icon>edit</mat-icon></button>
+            <button class="btn-action" (click)="eliminarEnfermedad(item.idEnfermedad)" title="Eliminar"><mat-icon>delete</mat-icon></button>
+          </div>
         </div>
 
         <div class="card-body">
           <div class="info-box" [ngClass]="'bg-' + item.color">
             <div class="box-header">
-              <div class="mini-icon" [ngClass]="'icon-' + item.color">
-                <mat-icon>thermometer</mat-icon>
-              </div>
+              <div class="mini-icon" [ngClass]="'icon-' + item.color"><mat-icon>description</mat-icon></div>
               <div class="box-text">
-                <strong>Síntomas Comunes</strong>
-                <p>{{ item.desc }}</p>
-              </div>
-
-              <div class="status-badge" [ngClass]="item.estado === 'Critical' ? 'badge-critical' : 'badge-follow'">
-                <mat-icon *ngIf="item.estado === 'Critical'">warning</mat-icon>
-                {{ item.estado }}
+                <strong>Descripción</strong>
+                <p>{{ item.descripcion }}</p>
               </div>
             </div>
-
             <div class="box-footer">
-              <span>Periodo de incubación: {{ item.duracion }}</span>
+              <span>Sintoma ID Relacionado: {{ item.idSintoma }}</span>
             </div>
           </div>
         </div>
 
       </div>
     </div>
-
   </main>
 </div>

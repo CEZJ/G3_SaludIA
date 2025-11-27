@@ -1,42 +1,47 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { Sintoma } from '../model/sintoma'; // Tu modelo
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importa HttpHeaders
 import { Observable } from 'rxjs';
-import {inject, Injectable} from '@angular/core';
+import { Sintoma } from '../model/sintoma';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SintomaService {
-  private url = environment.apiURL; // http://localhost:8080/api
-  private httpClient = inject(HttpClient);
-  private readonly TOKEN_KEY = 'jwt_token';
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/api/sintomas';
 
-  // Helper para obtener el token y crear los headers
-  private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem(this.TOKEN_KEY);
-    if (!token) return new HttpHeaders();
-    return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+  constructor() { }
+
+  // --- MÉTODO CLAVE: Genera las cabeceras con el Token ---
+  private getHeaders(): HttpHeaders {
+    // Recupera el token del almacenamiento local
+    // Asegúrate de que en tu Login lo guardes con este nombre: 'token'
+    const token = localStorage.getItem('token');
+
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
   }
 
-  // Listar todos los síntomas
+  // Listar todos (Añadimos { headers: this.getHeaders() })
   list(): Observable<Sintoma[]> {
-    return this.httpClient.get<Sintoma[]>(`${this.url}/sintomas`, {
-      headers: this.getAuthHeaders()
-    });
+    return this.http.get<Sintoma[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 
-  // Eliminar un síntoma por ID
-  delete(id: number) {
-    return this.httpClient.delete(`${this.url}/sintomas/${id}`, {
-      headers: this.getAuthHeaders()
-    });
+  // Insertar nuevo
+  insert(sintoma: Sintoma): Observable<Sintoma> {
+    return this.http.post<Sintoma>(this.apiUrl, sintoma, { headers: this.getHeaders() });
   }
 
-  // (Opcional) Crear un síntoma
-  insert(sintoma: Sintoma) {
-    return this.httpClient.post(`${this.url}/sintomas`, sintoma, {
-      headers: this.getAuthHeaders()
-    });
+  // Eliminar por ID
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  }
+
+  // Buscar por nombre
+  buscarPorNombre(palabra: string): Observable<Sintoma[]> {
+    return this.http.get<Sintoma[]>(`${this.apiUrl}/nombre/${palabra}`, { headers: this.getHeaders() });
   }
 }

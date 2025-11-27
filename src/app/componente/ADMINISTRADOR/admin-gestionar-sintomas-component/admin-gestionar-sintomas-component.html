@@ -1,87 +1,49 @@
 <div class="layout-wrapper">
 
+  <!-- SIDEBAR -->
   <aside class="sidebar">
-
     <div class="brand">
       <img src="assets/img.png" class="logo" alt="logo" />
-      <div>
-        <h2>Salud AI</h2>
-        <small>Alerta Infecciosa</small>
-      </div>
+      <div><h2>Salud AI</h2><small>Alerta Infecciosa</small></div>
     </div>
-
-    <div class="status">
-      <span class="dot"></span> Active
-      <span class="sep">|</span>
-      <span class="patients">52 Patients</span>
-    </div>
+    <div class="status"><span class="dot"></span> Active <span class="sep">|</span> <span class="patients">Admin Panel</span></div>
 
     <nav class="menu">
-
       <a routerLink="/inicio-admin" class="menu-item">
-        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;">
-          <mat-icon>home</mat-icon>
-        </span>
-        Inicio
+        <span class="icon-circle" style="color:#4f46e5; background:#eef2ff;"><mat-icon>home</mat-icon></span>Inicio
       </a>
-
       <a routerLink="/admin-gestionar-usuarios-component" class="menu-item">
-        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;">
-          <mat-icon>group</mat-icon>
-        </span>
-        Usuarios
+        <span class="icon-circle" style="color:#06b6d4; background:#ecfeff;"><mat-icon>group</mat-icon></span>Usuarios
       </a>
-
-      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item" style="background-color: #f1f5f9; font-weight: 600; color: #166534;">
-        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;">
-          <mat-icon>coronavirus</mat-icon>
-        </span>
-        Síntomas
+      <a routerLink="/admin-gestionar-sintomas-component" class="menu-item active-menu" style="background-color: #f1f5f9; font-weight: 600; color: #166534;">
+        <span class="icon-circle" style="color:#22c55e; background:#f0fdf4;"><mat-icon>coronavirus</mat-icon></span>Síntomas
       </a>
-
       <a routerLink="/admin-gestionar-enfermedades-component" class="menu-item">
-        <span class="icon-circle" style="color:#9333ea; background:#faf5ff;">
-          <mat-icon>science</mat-icon>
-        </span>
-        Enfermedades
+        <span class="icon-circle" style="color:#9333ea; background:#faf5ff;"><mat-icon>science</mat-icon></span>Enfermedades
       </a>
-
       <a routerLink="/admin-ubicaciones-component" class="menu-item">
-        <span class="icon-circle" style="color:#f97316; background:#fff7ed;">
-          <mat-icon>location_on</mat-icon>
-        </span>
-        Ubicaciones
+        <span class="icon-circle" style="color:#f97316; background:#fff7ed;"><mat-icon>location_on</mat-icon></span>Ubicaciones
       </a>
-
       <a routerLink="/admin-configuracion-component" class="menu-item">
-        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;">
-          <mat-icon>settings</mat-icon>
-        </span>
-        Ajustes
+        <span class="icon-circle" style="color:#64748b; background:#f1f5f9;"><mat-icon>settings</mat-icon></span>Ajustes
       </a>
-
     </nav>
-
-    <a routerLink="/login" class="logout">
-      <mat-icon>logout</mat-icon>
-      Cerrar Sesión
-    </a>
-
+    <a routerLink="/login" class="logout"><mat-icon>logout</mat-icon>Cerrar Sesión</a>
   </aside>
 
+  <!-- CONTENIDO -->
   <main class="content-container">
 
     <div class="dashboard-header-card">
       <div class="header-top">
         <div class="header-info">
-          <div class="icon-box">
-            <mat-icon>monitor_heart</mat-icon> </div>
+          <div class="icon-box"><mat-icon>monitor_heart</mat-icon></div>
           <div>
             <h2>Lista de Síntomas</h2>
             <p>Registro médico de síntomas y manifestaciones clínicas</p>
           </div>
         </div>
-        <button class="btn-new">
+        <button class="btn-new" (click)="abrirDialogo()">
           <mat-icon>add</mat-icon> Nuevo Síntoma
         </button>
       </div>
@@ -95,29 +57,13 @@
           </div>
         </div>
         <div class="stat-box">
-          <div class="stat-icon-bg warning"><mat-icon>warning</mat-icon></div>
-          <div>
-            <span class="stat-number">{{ casosSeveros }}</span>
-            <span class="stat-label">Casos Severos</span>
-          </div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-icon-bg success"><mat-icon>trending_up</mat-icon></div>
-          <div>
-            <span class="stat-number">{{ masFrecuente }}</span>
-            <span class="stat-label">Más Frecuente</span>
-          </div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-icon-bg purple"><mat-icon>category</mat-icon></div>
-          <div>
-            <span class="stat-number">{{ totalCategorias }}</span>
-            <span class="stat-label">Categorías</span>
-          </div>
+          <div class="stat-icon-bg purple"><mat-icon>update</mat-icon></div>
+          <div><span class="stat-number">DB</span><span class="stat-label">Conectado</span></div>
         </div>
       </div>
     </div>
 
+    <!-- FILTROS -->
     <div class="filters-container">
       <div class="filter-item">
         <label># BUSCAR POR ID</label>
@@ -135,8 +81,14 @@
       </div>
     </div>
 
+    <!-- TABLA -->
     <div class="table-container">
-      <table>
+
+      <div *ngIf="isLoading" style="padding: 20px; display: flex; justify-content: center;">
+        <p>Cargando datos...</p>
+      </div>
+
+      <table *ngIf="!isLoading">
         <thead>
         <tr>
           <th>ID</th>
@@ -145,9 +97,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let s of filteredSintomas">
 
+        <tr *ngFor="let s of filteredSintomas">
           <td style="width: 100px;">
+            <!-- AJUSTE: Usamos s.idSintoma estrictamente -->
             <span class="id-badge"># {{ s.idSintoma }}</span>
           </td>
 
@@ -159,6 +112,7 @@
           </td>
 
           <td style="text-align: right;">
+            <!-- AJUSTE: Pasamos s.idSintoma -->
             <button class="btn-icon delete" (click)="eliminarSintoma(s.idSintoma)" title="Eliminar">
               <mat-icon>delete_outline</mat-icon>
             </button>
@@ -168,7 +122,7 @@
         <tr *ngIf="filteredSintomas.length === 0">
           <td colspan="3" class="no-data">
             <mat-icon>search_off</mat-icon>
-            <p>No se encontraron síntomas.</p>
+            <p>No se encontraron síntomas registrados.</p>
           </td>
         </tr>
         </tbody>
