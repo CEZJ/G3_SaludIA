@@ -1,157 +1,159 @@
-<mat-sidenav mode="side" opened class="sidenav-white-theme">
+<div class="dashboard-layout">
 
-  <div class="sidenav-header">
-    <div class="logo-area">
-      <img src="assets/img.png" alt="Logo Salud AI" class="logo-circle" style="object-fit: contain; background: transparent; border: none;">
+  <mat-sidenav mode="side" opened class="sidenav-white-theme">
 
-      <div class="logo-text">
-        <span class="logo-title">Salud AI</span>
-        <span class="logo-subtitle">Tu Salud Primero</span>
+    <div class="sidenav-header">
+      <div class="logo-area">
+        <img src="assets/img.png" alt="Logo Salud AI" class="logo-circle" style="object-fit: contain; background: transparent; border: none;">
+
+        <div class="logo-text">
+          <span class="logo-title">Salud AI</span>
+          <span class="logo-subtitle">Tu Salud Primero</span>
+        </div>
+      </div>
+
+      <div class="status-badge">
+        <span class="online-dot"></span><span>En línea | Panel de Usuario</span>
       </div>
     </div>
 
-    <div class="status-badge">
-      <span class="online-dot"></span><span>En línea | Panel de Usuario</span>
+    <div class="nav-menu-container">
+      <mat-nav-list class="nav-list-white">
+
+        <a mat-list-item class="nav-item-white active" routerLink="/inicio-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-purple-light">
+              <mat-icon class="icon-purple">home</mat-icon>
+            </div>
+            <span class="nav-label">Inicio</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/diagnostico">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-cyan-light">
+              <mat-icon class="icon-cyan">medical_services</mat-icon>
+            </div>
+            <span class="nav-label">Diagnóstico</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/historial">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-blue-light">
+              <mat-icon class="icon-blue">description</mat-icon>
+            </div>
+            <span class="nav-label">Historial</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-purple-light">
+              <mat-icon class="icon-purple">map</mat-icon>
+            </div>
+            <span class="nav-label">Mapas</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/ajustes-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-gray-light">
+              <mat-icon class="icon-gray">settings</mat-icon>
+            </div>
+            <span class="nav-label">Ajustes</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+      </mat-nav-list>
     </div>
-  </div>
 
-  <div class="nav-menu-container">
-    <mat-nav-list class="nav-list-white">
-
-      <a mat-list-item class="nav-item-white active" routerLink="/inicio-usuario">
+    <div class="sidenav-footer-white">
+      <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
         <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-purple-light">
-            <mat-icon class="icon-purple">home</mat-icon>
+          <div class="nav-icon-wrapper icon-bg-red-light">
+            <mat-icon class="icon-red rotate-icon">logout</mat-icon>
           </div>
-          <span class="nav-label">Inicio</span>
+          <span class="nav-label">Cerrar Sesión</span>
           <mat-icon class="chevron">chevron_right</mat-icon>
         </div>
       </a>
-
-      <a mat-list-item class="nav-item-white" routerLink="/diagnostico">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-cyan-light">
-            <mat-icon class="icon-cyan">medical_services</mat-icon>
-          </div>
-          <span class="nav-label">Diagnóstico</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-      <a mat-list-item class="nav-item-white" routerLink="/historial">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-blue-light">
-            <mat-icon class="icon-blue">description</mat-icon>
-          </div>
-          <span class="nav-label">Historial</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-      <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-purple-light">
-            <mat-icon class="icon-purple">map</mat-icon>
-          </div>
-          <span class="nav-label">Mapas</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-      <a mat-list-item class="nav-item-white" routerLink="/ajustes-usuario">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-gray-light">
-            <mat-icon class="icon-gray">settings</mat-icon>
-          </div>
-          <span class="nav-label">Ajustes</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-    </mat-nav-list>
-  </div>
-
-  <div class="sidenav-footer-white">
-    <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
-      <div class="item-content-wrapper">
-        <div class="nav-icon-wrapper icon-bg-red-light">
-          <mat-icon class="icon-red rotate-icon">logout</mat-icon>
-        </div>
-        <span class="nav-label">Cerrar Sesión</span>
-        <mat-icon class="chevron">chevron_right</mat-icon>
-      </div>
-    </a>
-  </div>
-
-</mat-sidenav>
-<div class="historial-container">
-
-  <!-- Encabezado de la Página -->
-  <div class="page-title-header">
-    <div class="icon-circle-header cyan">
-      <mat-icon>assignment</mat-icon> <!-- Icono de historial médico -->
     </div>
-    <div class="page-title-text">
-      <h2>Historial de Diagnósticos</h2>
-      <p>Revisa tus diagnósticos anteriores y su evolución</p>
-    </div>
-  </div>
 
-  <!-- Tarjetas de Resumen (Summary Grid) -->
-  <div class="summary-grid">
-    <mat-card class="summary-card">
-      <div class="summary-icon-wrapper cyan-bg">
-        <mat-icon class="cyan-text">description</mat-icon>
-      </div>
-      <span class="summary-value">1</span>
-      <span class="summary-title">Total Diagnósticos</span>
-    </mat-card>
+  </mat-sidenav>
 
-    <mat-card class="summary-card">
-      <div class="summary-icon-wrapper blue-bg">
-        <mat-icon class="blue-text">calendar_today</mat-icon>
-      </div>
-      <span class="summary-value">12/11/2025</span>
-      <span class="summary-title">Último Diagnóstico</span>
-    </mat-card>
+  <main class="main-content-area">
+    <div class="content-scrollable">
 
-    <mat-card class="summary-card">
-      <div class="summary-icon-wrapper red-bg">
-        <mat-icon class="red-text">error</mat-icon>
-      </div>
-      <span class="summary-value">0</span>
-      <span class="summary-title">Alta Prioridad</span>
-    </mat-card>
-  </div>
+      <div class="historial-container">
 
-  <!-- Lista de Historial -->
-  <div class="history-list">
-
-    <!-- Tarjeta de Historial (Iteraríamos aquí con *ngFor en el futuro) -->
-    <mat-card class="history-card">
-      <div class="history-card-header">
-        <div class="history-header-left">
-          <h3>Síntomas Inespecíficos</h3>
-          <span class="badge severity-low">Baja</span>
-          <span class="badge probability">60%</span>
+        <div class="page-title-header">
+          <div class="icon-circle-header cyan">
+            <mat-icon>assignment</mat-icon>
+          </div>
+          <div class="page-title-text">
+            <h2>Historial de Diagnósticos</h2>
+            <p>Revisa tus diagnósticos anteriores y su evolución</p>
+          </div>
         </div>
-        <div class="history-header-right">
-          <span class="history-date">12 de noviembre de 2025, 22:20</span>
-          <button mat-icon-button class="toggle-btn">
-            <mat-icon>expand_more</mat-icon>
-          </button>
+
+        <div class="summary-grid">
+          <mat-card class="summary-card">
+            <div class="summary-icon-wrapper cyan-bg">
+              <mat-icon class="cyan-text">description</mat-icon>
+            </div>
+            <span class="summary-value">1</span>
+            <span class="summary-title">Total Diagnósticos</span>
+          </mat-card>
+
+          <mat-card class="summary-card">
+            <div class="summary-icon-wrapper blue-bg">
+              <mat-icon class="blue-text">calendar_today</mat-icon>
+            </div>
+            <span class="summary-value">12/11/2025</span>
+            <span class="summary-title">Último Diagnóstico</span>
+          </mat-card>
+
+          <mat-card class="summary-card">
+            <div class="summary-icon-wrapper red-bg">
+              <mat-icon class="red-text">error</mat-icon>
+            </div>
+            <span class="summary-value">0</span>
+            <span class="summary-title">Alta Prioridad</span>
+          </mat-card>
         </div>
-      </div>
 
-      <div class="history-card-body">
-        <span class="symptom-tag">Fiebre</span>
-        <span class="symptom-tag">Tos</span>
-        <span class="symptom-tag">Diarrea</span>
-      </div>
-    </mat-card>
+        <div class="history-list">
 
-    <!-- Puedes añadir más tarjetas de ejemplo si quieres ver cómo se ve la lista -->
+          <mat-card class="history-card">
+            <div class="history-card-header">
+              <div class="history-header-left">
+                <h3>Síntomas Inespecíficos</h3>
+                <span class="badge severity-low">Baja</span>
+                <span class="badge probability">60%</span>
+              </div>
+              <div class="history-header-right">
+                <span class="history-date">12 de noviembre de 2025, 22:20</span>
+                <button mat-icon-button class="toggle-btn">
+                  <mat-icon>expand_more</mat-icon>
+                </button>
+              </div>
+            </div>
 
-  </div>
+            <div class="history-card-body">
+              <span class="symptom-tag">Fiebre</span>
+              <span class="symptom-tag">Tos</span>
+              <span class="symptom-tag">Diarrea</span>
+            </div>
+          </mat-card>
 
+        </div>
+
+      </div> </div>
+  </main>
 </div>
