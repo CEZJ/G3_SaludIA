@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -10,8 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import {MatSidenav} from '@angular/material/sidenav';
-import {Router, RouterLink} from '@angular/router';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ajustes-usuario',
@@ -26,34 +26,44 @@ import {Router, RouterLink} from '@angular/router';
     MatInputModule,
     MatDividerModule,
     MatListModule,
-    MatSidenav,
+    MatSidenavModule,
     RouterLink
   ],
   templateUrl: './ajustes-usuario-component.html',
   styleUrls: ['./ajustes-usuario-component.css']
 })
-export class AjustesUsuarioComponent {
+export class AjustesUsuarioComponent implements OnInit {
 
   activeTab: 'perfil' | 'seguridad' = 'perfil';
 
   userForm: FormGroup;
   securityForm: FormGroup;
 
-  // Variables para ocultar/mostrar contraseñas
   hideCurrentPass = true;
   hideNewPass = true;
   hideConfirmPass = true;
 
+  // --- DATOS DE VISUALIZACIÓN (Encabezado) ---
+  // Inicializamos vacíos para que no aparezca nombre por defecto.
+  userInfo = {
+    nombre: '',
+    apellido: '',
+    rol: 'Paciente'
+  };
+
+  // Imagen de perfil
+  profileImage: string | ArrayBuffer | null = 'https://placehold.co/80x80';
+  selectedFile: File | null = null;
+
   constructor(private fb: FormBuilder, private router: Router) {
-    // Inicializar formulario de perfil con datos ficticios
+    // Inicializar formulario con valores VACÍOS
     this.userForm = this.fb.group({
-      nombre: ['Cristina', Validators.required],
-      apellido: ['Sihuas', Validators.required],
-      email: ['cristina.sihuas@saludai.com', [Validators.required, Validators.email]],
-      telefono: ['+51 987 654 321']
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['']
     });
 
-    // Inicializar formulario de seguridad
     this.securityForm = this.fb.group({
       currentPassword: ['', Validators.required],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -61,36 +71,87 @@ export class AjustesUsuarioComponent {
     });
   }
 
+  // Al iniciar, cargamos lo que haya en memoria (si existe)
+  ngOnInit(): void {
+    this.loadUserData();
+  }
+
+  // --- CARGAR DATOS GUARDADOS (Persistencia) ---
+  loadUserData(): void {
+    const savedData = localStorage.getItem('user_profile_data');
+    const savedImage = localStorage.getItem('user_profile_image');
+
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+
+      // 1. Rellenamos el formulario si hay datos guardados
+      this.userForm.patchValue(parsedData);
+
+      // 2. Actualizamos el encabezado con lo guardado
+      this.userInfo.nombre = parsedData.nombre;
+      this.userInfo.apellido = parsedData.apellido;
+    }
+
+    if (savedImage) {
+      this.profileImage = savedImage;
+    }
+  }
+
   setActiveTab(tab: 'perfil' | 'seguridad') {
     this.activeTab = tab;
   }
 
+  // --- LÓGICA DE SELECCIÓN DE IMAGEN ---
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+
+      // Previsualización inmediata
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.profileImage = e.target?.result ?? this.profileImage;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  // --- GUARDAR CAMBIOS (Acción del Botón Rojo) ---
   onSaveProfile() {
     if (this.userForm.valid) {
-      console.log('Datos de perfil guardados:', this.userForm.value);
-      // Aquí llamarías a tu servicio para actualizar el perfil
+      const formValues = this.userForm.value;
+
+      // 1. Guardar en LocalStorage (Persistencia)
+      localStorage.setItem('user_profile_data', JSON.stringify(formValues));
+
+      if (this.profileImage && typeof this.profileImage === 'string') {
+        localStorage.setItem('user_profile_image', this.profileImage);
+      }
+
+      // 2. Actualizar el objeto de visualización (Actualizar Cuadro Amarillo)
+      this.userInfo.nombre = formValues.nombre;
+      this.userInfo.apellido = formValues.apellido;
+
+      alert('¡Perfil actualizado y guardado correctamente!');
     }
   }
 
   onSaveSecurity() {
     if (this.securityForm.valid) {
       console.log('Contraseña actualizada:', this.securityForm.value);
-      // Aquí llamarías a tu servicio para cambiar la contraseña
       this.securityForm.reset();
+      alert('Contraseña actualizada correctamente.');
     }
   }
-  // Inyectamos el Router para la función de logout
 
-  /**
-   * Función de ejemplo para cerrar sesión.
-   * Limpia el almacenamiento local y redirige al login.
-   */
+  // --- CERRAR SESIÓN ---
   logout(): void {
-    // Lógica de logout (ej. limpiar token)
+    // Borrar datos al salir para que la próxima vez empiece de cero
+    localStorage.removeItem('user_profile_data');
+    localStorage.removeItem('user_profile_image');
     localStorage.removeItem('jwt_token');
 
-    // Redirigir a la página de login
     this.router.navigate(['/login']);
   }
-
 }

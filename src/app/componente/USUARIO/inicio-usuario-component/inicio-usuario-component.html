@@ -50,12 +50,24 @@
           </div>
         </a>
 
-        <a mat-list-item class="nav-item-white" routerLink="/mapas">
+
+
+        <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
           <div class="item-content-wrapper">
             <div class="nav-icon-wrapper icon-bg-purple-light">
               <mat-icon class="icon-purple">map</mat-icon>
             </div>
             <span class="nav-label">Mapas</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/videos-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-blue-light">
+              <mat-icon class="icon-blue">movie</mat-icon>
+            </div>
+            <span class="nav-label">Videos</span>
             <mat-icon class="chevron">chevron_right</mat-icon>
           </div>
         </a>
@@ -92,28 +104,14 @@
 
     <mat-toolbar class="top-toolbar">
       <span class="spacer"></span>
-
-      <div class="top-actions">
-        <button mat-icon-button class="action-btn">
-          <mat-icon>search</mat-icon>
-        </button>
-
-        <button mat-icon-button class="action-btn notification-btn">
-          <mat-icon>notifications_none</mat-icon>
-          <span class="badge">3</span>
-        </button>
-
-        <button mat-icon-button class="action-btn">
-          <mat-icon>settings</mat-icon>
-        </button>
-
-        <div class="user-profile">
-          <div class="text-info">
-            <span class="user-name">Usuario</span>
-            <span class="user-role">Paciente</span>
-          </div>
-          <img src="https://placehold.co/40x40" alt="Avatar" class="user-avatar">
+      <div class="user-profile">
+        <div class="text-info">
+          <!-- He vinculado también el nombre por si acaso, usando {{ userName }} -->
+          <span class="user-name">{{ userName }}</span>
+          <span class="user-role">Paciente</span>
         </div>
+        <!-- AQUÍ ESTÁ EL CAMBIO PRINCIPAL: [src]="profileImage" -->
+        <img [src]="profileImage" alt="Avatar" class="user-avatar">
       </div>
     </mat-toolbar>
 
@@ -131,9 +129,11 @@
             Utiliza nuestras herramientas para evaluar síntomas, consultar tu historial y visualizar
             brotes de enfermedades en tu zona.
           </p>
-          <button mat-raised-button class="diag-button">
+          <button mat-raised-button class="diag-button" routerLink="/diagnostico">
             Realizar Diagnóstico Ahora
           </button>
+
+
         </div>
         <mat-icon class="banner-bg-icon">medical_services</mat-icon>
       </mat-card>
@@ -177,16 +177,17 @@
         <mat-card class="access-card" routerLink="/historial">
           <div class="access-icon circle-blue"><mat-icon>description</mat-icon></div>
           <strong class="access-title">Mi Historial</strong>
-          <span class="access-desc">0 diagnósticos registrados</span>
+          <!-- AQUÍ USAS LA VARIABLE -->
+          <span class="access-desc">{{ diagnosticosCount }} diagnósticos registrados</span>
         </mat-card>
 
-        <mat-card class="access-card" routerLink="/mapas">
+        <mat-card class="access-card" routerLink="/ubicacion-usuario">
           <div class="access-icon circle-purple"><mat-icon>location_on</mat-icon></div>
           <strong class="access-title">Mapa de Salud</strong>
           <span class="access-desc">Enfermedades en tu zona</span>
         </mat-card>
 
-        <mat-card class="access-card" routerLink="/perfil">
+        <mat-card class="access-card" routerLink="/ajustes-usuario">
           <div class="access-icon circle-red"><mat-icon>person</mat-icon></div>
           <strong class="access-title">Mi Perfil</strong>
           <span class="access-desc">Configuración personal</span>

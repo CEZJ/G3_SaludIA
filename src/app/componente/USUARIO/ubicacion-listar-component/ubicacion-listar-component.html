@@ -1,196 +1,262 @@
-<mat-sidenav mode="side" opened class="sidenav-white-theme">
+<div class="dashboard-container" style="display: flex; height: 100vh; overflow: hidden;">
 
-  <div class="sidenav-header">
-    <div class="logo-area">
-      <img src="assets/img.png" alt="Logo Salud AI" class="logo-circle" style="object-fit: contain; background: transparent; border: none;">
-
-      <div class="logo-text">
-        <span class="logo-title">Salud AI</span>
-        <span class="logo-subtitle">Tu Salud Primero</span>
+  <mat-sidenav mode="side" opened class="sidenav-white-theme">
+    <div class="sidenav-header">
+      <div class="logo-area">
+        <img src="assets/img.png" alt="Logo Salud AI" class="logo-circle" style="object-fit: contain; background: transparent; border: none;">
+        <div class="logo-text">
+          <span class="logo-title">Salud AI</span>
+          <span class="logo-subtitle">Tu Salud Primero</span>
+        </div>
+      </div>
+      <div class="status-badge">
+        <span class="online-dot"></span><span>En línea | Panel de Usuario</span>
       </div>
     </div>
 
-    <div class="status-badge">
-      <span class="online-dot"></span><span>En línea | Panel de Usuario</span>
+    <div class="nav-menu-container">
+      <mat-nav-list class="nav-list-white">
+        <a mat-list-item class="nav-item-white active" routerLink="/inicio-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-purple-light">
+              <mat-icon class="icon-purple">home</mat-icon>
+            </div>
+            <span class="nav-label">Inicio</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <!-- Resto de items del menú... -->
+        <a mat-list-item class="nav-item-white" routerLink="/diagnostico">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-cyan-light"><mat-icon class="icon-cyan">medical_services</mat-icon></div>
+            <span class="nav-label">Diagnóstico</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <a mat-list-item class="nav-item-white" routerLink="/historial">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-blue-light"><mat-icon class="icon-blue">description</mat-icon></div>
+            <span class="nav-label">Historial</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-purple-light"><mat-icon class="icon-purple">map</mat-icon></div>
+            <span class="nav-label">Mapas</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <a mat-list-item class="nav-item-white" routerLink="/videos-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-blue-light">
+              <mat-icon class="icon-blue">movie</mat-icon>
+            </div>
+            <span class="nav-label">Videos</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+        <a mat-list-item class="nav-item-white" routerLink="/ajustes-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-gray-light"><mat-icon class="icon-gray">settings</mat-icon></div>
+            <span class="nav-label">Ajustes</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+      </mat-nav-list>
     </div>
-  </div>
 
-  <div class="nav-menu-container">
-    <mat-nav-list class="nav-list-white">
-
-      <a mat-list-item class="nav-item-white active" routerLink="/inicio-usuario">
+    <div class="sidenav-footer-white">
+      <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
         <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-purple-light">
-            <mat-icon class="icon-purple">home</mat-icon>
+          <div class="nav-icon-wrapper icon-bg-red-light">
+            <mat-icon class="icon-red rotate-icon">logout</mat-icon>
           </div>
-          <span class="nav-label">Inicio</span>
+          <span class="nav-label">Cerrar Sesión</span>
           <mat-icon class="chevron">chevron_right</mat-icon>
         </div>
       </a>
+    </div>
+  </mat-sidenav>
 
-      <a mat-list-item class="nav-item-white" routerLink="/diagnostico">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-cyan-light">
-            <mat-icon class="icon-cyan">medical_services</mat-icon>
+  <main class="main-content" style="flex: 1; overflow-y: auto; background-color: #f8f9fd;">
+    <div class="content-body" style="max-width: 1200px; margin: 0 auto; padding: 32px; width: 100%; box-sizing: border-box;">
+
+      <div class="mapa-enfermedades-container">
+
+        <mat-card class="map-header-card">
+          <div class="header-content">
+            <mat-icon class="header-icon">location_on</mat-icon>
+            <div class="header-text">
+              <h2>Mapa de Enfermedades</h2>
+              <p>Visualiza la distribución de enfermedades en diferentes zonas</p>
+              <div class="alert-box">
+                <mat-icon>warning_amber</mat-icon>
+                <small>Los datos se actualizan en tiempo real.</small>
+              </div>
+            </div>
           </div>
-          <span class="nav-label">Diagnóstico</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
+        </mat-card>
 
-      <a mat-list-item class="nav-item-white" routerLink="/historial">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-blue-light">
-            <mat-icon class="icon-blue">description</mat-icon>
+        <div class="metric-cards-grid">
+          <mat-card class="metric-card total-cases">
+            <div class="metric-info">
+              <span class="metric-title">Total Casos</span>
+              <span class="metric-value">1279</span>
+            </div>
+            <div class="metric-icon-trend"><mat-icon>timeline</mat-icon></div>
+          </mat-card>
+          <mat-card class="metric-card zones-monitored">
+            <div class="metric-info">
+              <span class="metric-title">Zonas Monitoreadas</span>
+              <span class="metric-value">8</span>
+            </div>
+            <div class="metric-icon-trend"><mat-icon>location_on</mat-icon></div>
+          </mat-card>
+          <mat-card class="metric-card zones-alert">
+            <div class="metric-info">
+              <span class="metric-title">Zonas de Alto Riesgo</span>
+              <span class="metric-value">4</span>
+            </div>
+            <div class="metric-icon-trend alert-icon"><mat-icon>error_outline</mat-icon></div>
+          </mat-card>
+          <mat-card class="metric-card trend">
+            <div class="metric-info">
+              <span class="metric-title">Tendencia</span>
+              <span class="metric-value">+12%</span>
+            </div>
+            <div class="metric-icon-trend"><mat-icon>trending_up</mat-icon></div>
+          </mat-card>
+        </div>
+
+        <div class="filter-section">
+          <label>Filtrar por enfermedad:</label>
+          <button mat-flat-button class="filter-button active">Todas</button>
+        </div>
+
+        <!-- AQUÍ ESTÁ EL CAMBIO: CONTENEDOR DEL MAPA -->
+        <mat-card class="mapa-calor-card">
+          <div class="map-title-row">
+            <h3>Mapa de Calor</h3>
+            <span class="live-indicator">En vivo</span>
           </div>
-          <span class="nav-label">Historial</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
+          <!-- Este div es donde se inyecta el mapa -->
+          <div id="map" class="map-container"></div>
+        </mat-card>
 
-      <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-purple-light">
-            <mat-icon class="icon-purple">map</mat-icon>
+        <div class="detalle-zona-section">
+          <h2>Detalle por Zona</h2>
+
+          <div class="alerts-cards-grid">
+
+            <mat-card class="alert-zone-card card-red">
+              <div class="zone-header">
+                <mat-icon class="status-icon-red">location_on</mat-icon>
+                <span class="zone-name">Lima Centro</span>
+                <span class="zone-status status-red">Alta</span>
+              </div>
+              <div class="zone-details">
+                <span class="disease">Gripe</span>
+                <span class="detail-label">Casos:</span><span class="detail-value">234</span>
+                <span class="detail-label">Fecha:</span><span class="detail-date">14/1/2024</span>
+              </div>
+            </mat-card>
+
+            <mat-card class="alert-zone-card card-orange">
+              <div class="zone-header">
+                <mat-icon class="status-icon-orange">location_on</mat-icon>
+                <span class="zone-name">Miraflores</span>
+                <span class="zone-status status-orange">Media</span>
+              </div>
+              <div class="zone-details">
+                <span class="disease">COVID-19</span>
+                <span class="detail-label">Casos:</span><span class="detail-value">89</span>
+                <span class="detail-label">Fecha:</span><span class="detail-date">14/1/2024</span>
+              </div>
+            </mat-card>
+
+            <mat-card class="alert-zone-card card-green">
+              <div class="zone-header">
+                <mat-icon class="status-icon-green">location_on</mat-icon>
+                <span class="zone-name">San Isidro</span>
+                <span class="zone-status status-green">Baja</span>
+              </div>
+              <div class="zone-details">
+                <span class="disease">Gripe</span>
+                <span class="detail-label">Casos:</span><span class="detail-value">56</span>
+                <span class="detail-label">Fecha:</span><span class="detail-date">13/1/2024</span>
+              </div>
+            </mat-card>
+
+            <mat-card class="alert-zone-card card-orange">
+              <div class="zone-header">
+                <mat-icon class="status-icon-orange">location_on</mat-icon>
+                <span class="zone-name">Surco</span>
+                <span class="zone-status status-orange">Media</span>
+              </div>
+              <div class="zone-details">
+                <span class="disease">Gastroenteritis</span>
+                <span class="detail-label">Casos:</span><span class="detail-value">145</span>
+                <span class="detail-label">Fecha:</span><span class="detail-date">14/1/2024</span>
+              </div>
+            </mat-card>
+
+            <mat-card class="alert-zone-card card-red">
+              <div class="zone-header">
+                <mat-icon class="status-icon-red">location_on</mat-icon>
+                <span class="zone-name">San Borja</span>
+                <span class="zone-status status-red">Alta</span>
+              </div>
+              <div class="zone-details">
+                <span class="disease">Gripe</span>
+                <span class="detail-label">Casos:</span><span class="detail-value">178</span>
+                <span class="detail-label">Fecha:</span><span class="detail-date">14/1/2024</span>
+              </div>
+            </mat-card>
+
+            <mat-card class="alert-zone-card card-green">
+              <div class="zone-header">
+                <mat-icon class="status-icon-green">location_on</mat-icon>
+                <span class="zone-name">La Molina</span>
+                <span class="zone-status status-green">Baja</span>
+              </div>
+              <div class="zone-details">
+                <span class="disease">COVID-19</span>
+                <span class="detail-label">Casos:</span><span class="detail-value">67</span>
+                <span class="detail-label">Fecha:</span><span class="detail-date">13/1/2024</span>
+              </div>
+            </mat-card>
+
+            <mat-card class="alert-zone-card card-red">
+              <div class="zone-header">
+                <mat-icon class="status-icon-red">location_on</mat-icon>
+                <span class="zone-name">Callao</span>
+                <span class="zone-status status-red">Alta</span>
+              </div>
+              <div class="zone-details">
+                <span class="disease">Gripe</span>
+                <span class="detail-label">Casos:</span><span class="detail-value">198</span>
+                <span class="detail-label">Fecha:</span><span class="detail-date">14/1/2024</span>
+              </div>
+            </mat-card>
+
+            <mat-card class="alert-zone-card card-red">
+              <div class="zone-header">
+                <mat-icon class="status-icon-red">location_on</mat-icon>
+                <span class="zone-name">San Juan de L.</span>
+                <span class="zone-status status-red">Alta</span>
+              </div>
+              <div class="zone-details">
+                <span class="disease">Gastroenteritis</span>
+                <span class="detail-label">Casos:</span><span class="detail-value">312</span>
+                <span class="detail-label">Fecha:</span><span class="detail-date">14/1/2024</span>
+              </div>
+            </mat-card>
+
           </div>
-          <span class="nav-label">Mapas</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
         </div>
-      </a>
 
-      <a mat-list-item class="nav-item-white" routerLink="/ajustes-usuario">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-gray-light">
-            <mat-icon class="icon-gray">settings</mat-icon>
-          </div>
-          <span class="nav-label">Ajustes</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-    </mat-nav-list>
-  </div>
-
-  <div class="sidenav-footer-white">
-    <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
-      <div class="item-content-wrapper">
-        <div class="nav-icon-wrapper icon-bg-red-light">
-          <mat-icon class="icon-red rotate-icon">logout</mat-icon>
-        </div>
-        <span class="nav-label">Cerrar Sesión</span>
-        <mat-icon class="chevron">chevron_right</mat-icon>
-      </div>
-    </a>
-  </div>
-
-</mat-sidenav>
-<div class="mapa-enfermedades-container">
-
-  <mat-card class="map-header-card">
-    <div class="header-content">
-      <mat-icon class="header-icon">location_on</mat-icon>
-      <div class="header-text">
-        <h2>Mapa de Enfermedades</h2>
-        <p>Visualiza la distribución de enfermedades en diferentes zonas</p>
-        <div class="alert-box">
-          <mat-icon>warning_amber</mat-icon>
-          <small>Los datos se actualizan en tiempo real. Esta información es orientativa y basada en reportes de usuarios.</small>
-        </div>
       </div>
     </div>
-  </mat-card>
-
-  <div class="metric-cards-grid">
-    <mat-card class="metric-card total-cases">
-      <div class="metric-info">
-        <span class="metric-title">Total Casos</span>
-        <span class="metric-value">1279</span>
-      </div>
-      <div class="metric-icon-trend">
-        <mat-icon>timeline</mat-icon>
-      </div>
-    </mat-card>
-
-    <mat-card class="metric-card zones-monitored">
-      <div class="metric-info">
-        <span class="metric-title">Zonas Monitoreadas</span>
-        <span class="metric-value">8</span>
-      </div>
-      <div class="metric-icon-trend">
-        <mat-icon>location_on</mat-icon>
-      </div>
-    </mat-card>
-
-    <mat-card class="metric-card zones-alert">
-      <div class="metric-info">
-        <span class="metric-title">Zonas de Alto Riesgo</span>
-        <span class="metric-value">4</span>
-      </div>
-      <div class="metric-icon-trend alert-icon">
-        <mat-icon>error_outline</mat-icon>
-      </div>
-    </mat-card>
-
-    <mat-card class="metric-card trend">
-      <div class="metric-info">
-        <span class="metric-title">Tendencia</span>
-        <span class="metric-value">+12%</span>
-      </div>
-      <div class="metric-icon-trend">
-        <mat-icon>trending_up</mat-icon>
-      </div>
-    </mat-card>
-  </div>
-
-  <div class="filter-section">
-    <label>Filtrar por enfermedad:</label>
-    <button mat-flat-button class="filter-button active">Todas</button>
-    <button mat-flat-button class="filter-button">Gripe</button>
-    <button mat-flat-button class="filter-button">COVID-19</button>
-    <button mat-flat-button class="filter-button">Gastroenteritis</button>
-  </div>
-
-  <mat-card class="mapa-calor-card">
-    <h3>Mapa de Calor</h3>
-    <div class="map-placeholder">
-    </div>
-  </mat-card>
-
-  <div class="detalle-zona-section">
-    <h2>Detalle por Zona</h2>
-    <div class="alerts-cards-grid">
-      <mat-card class="alert-zone-card card-red">
-        <div class="zone-header">
-          <mat-icon class="status-icon-red">location_on</mat-icon>
-          <span class="zone-name">Lima Centro</span>
-          <span class="zone-status status-red">Alta</span>
-        </div>
-        <div class="zone-details">
-          <span class="disease">Gripe</span>
-          <span class="detail-label">Casos Reportados:</span>
-          <span class="detail-value">234</span>
-          <span class="detail-label">Última Actualización:</span>
-          <span class="detail-date">14/1/2024</span>
-        </div>
-      </mat-card>
-
-      <mat-card class="alert-zone-card card-orange">
-        <div class="zone-header">
-          <mat-icon class="status-icon-orange">location_on</mat-icon>
-          <span class="zone-name">Miraflores</span>
-          <span class="zone-status status-orange">Media</span>
-        </div>
-      </mat-card>
-
-      <mat-card class="alert-zone-card card-green">
-        <div class="zone-header">
-          <mat-icon class="status-icon-green">location_on</mat-icon>
-          <span class="zone-name">San Isidro</span>
-          <span class="zone-status status-green">Baja</span>
-        </div>
-      </mat-card>
-
-    </div>
-  </div>
-
+  </main>
 </div>

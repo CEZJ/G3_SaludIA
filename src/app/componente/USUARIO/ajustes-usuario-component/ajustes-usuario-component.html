@@ -1,276 +1,277 @@
-<mat-sidenav mode="side" opened class="sidenav-white-theme">
+<div class="dashboard-container">
 
-  <div class="sidenav-header">
-    <div class="logo-area">
-      <img src="assets/img.png" alt="Logo Salud AI" class="logo-circle" style="object-fit: contain; background: transparent; border: none;">
-
-      <div class="logo-text">
-        <span class="logo-title">Salud AI</span>
-        <span class="logo-subtitle">Tu Salud Primero</span>
+  <mat-sidenav mode="side" opened class="sidenav-white-theme">
+    <div class="sidenav-header">
+      <div class="logo-area">
+        <img src="assets/img.png" alt="Logo Salud AI" class="logo-circle" style="object-fit: contain; background: transparent; border: none;">
+        <div class="logo-text">
+          <span class="logo-title">Salud AI</span>
+          <span class="logo-subtitle">Tu Salud Primero</span>
+        </div>
+      </div>
+      <div class="status-badge">
+        <span class="online-dot"></span><span>En línea | Panel de Usuario</span>
       </div>
     </div>
 
-    <div class="status-badge">
-      <span class="online-dot"></span><span>En línea | Panel de Usuario</span>
+    <div class="nav-menu-container">
+      <mat-nav-list class="nav-list-white">
+        <a mat-list-item class="nav-item-white" routerLink="/inicio-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-purple-light"><mat-icon class="icon-purple">home</mat-icon></div>
+            <span class="nav-label">Inicio</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/diagnostico">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-cyan-light"><mat-icon class="icon-cyan">medical_services</mat-icon></div>
+            <span class="nav-label">Diagnóstico</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/historial">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-blue-light"><mat-icon class="icon-blue">description</mat-icon></div>
+            <span class="nav-label">Historial</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-purple-light"><mat-icon class="icon-purple">map</mat-icon></div>
+            <span class="nav-label">Mapas</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white" routerLink="/videos-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-blue-light">
+              <mat-icon class="icon-blue">movie</mat-icon>
+            </div>
+            <span class="nav-label">Videos</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+
+        <a mat-list-item class="nav-item-white active" routerLink="/ajustes-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-gray-light"><mat-icon class="icon-gray">settings</mat-icon></div>
+            <span class="nav-label">Ajustes</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
+      </mat-nav-list>
     </div>
-  </div>
 
-  <div class="nav-menu-container">
-    <mat-nav-list class="nav-list-white">
-
-      <a mat-list-item class="nav-item-white active" routerLink="/inicio">
+    <div class="sidenav-footer-white">
+      <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
         <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-purple-light">
-            <mat-icon class="icon-purple">home</mat-icon>
-          </div>
-          <span class="nav-label">Inicio</span>
+          <div class="nav-icon-wrapper icon-bg-red-light"><mat-icon class="icon-red rotate-icon">logout</mat-icon></div>
+          <span class="nav-label">Cerrar Sesión</span>
           <mat-icon class="chevron">chevron_right</mat-icon>
         </div>
       </a>
-
-      <a mat-list-item class="nav-item-white" routerLink="/diagnostico">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-cyan-light">
-            <mat-icon class="icon-cyan">medical_services</mat-icon>
-          </div>
-          <span class="nav-label">Diagnóstico</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-      <a mat-list-item class="nav-item-white" routerLink="/historial">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-blue-light">
-            <mat-icon class="icon-blue">description</mat-icon>
-          </div>
-          <span class="nav-label">Historial</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-      <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-purple-light">
-            <mat-icon class="icon-purple">map</mat-icon>
-          </div>
-          <span class="nav-label">Mapas</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-      <a mat-list-item class="nav-item-white" routerLink="/ajustes-usuario">
-        <div class="item-content-wrapper">
-          <div class="nav-icon-wrapper icon-bg-gray-light">
-            <mat-icon class="icon-gray">settings</mat-icon>
-          </div>
-          <span class="nav-label">Ajustes</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-      </a>
-
-    </mat-nav-list>
-  </div>
-
-  <div class="sidenav-footer-white">
-    <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
-      <div class="item-content-wrapper">
-        <div class="nav-icon-wrapper icon-bg-red-light">
-          <mat-icon class="icon-red rotate-icon">logout</mat-icon>
-        </div>
-        <span class="nav-label">Cerrar Sesión</span>
-        <mat-icon class="chevron">chevron_right</mat-icon>
-      </div>
-    </a>
-  </div>
-
-</mat-sidenav>
-<div class="ajustes-container">
-
-  <!-- Encabezado de la Página -->
-  <div class="page-title-header">
-    <div class="page-title-text">
-      <h2>Configuración</h2>
-      <p>Administra tu cuenta y preferencias</p>
     </div>
-  </div>
+  </mat-sidenav>
 
-  <div class="settings-layout">
+  <main class="main-content">
 
-    <!-- Navegación Lateral de Ajustes -->
-    <aside class="settings-nav">
-      <a class="settings-nav-link"
-         [class.active]="activeTab === 'perfil'"
-         (click)="setActiveTab('perfil')">
-        <mat-icon>person</mat-icon>
-        <span>Perfil</span>
-      </a>
-      <a class="settings-nav-link"
-         [class.active]="activeTab === 'seguridad'"
-         (click)="setActiveTab('seguridad')">
-        <mat-icon>lock</mat-icon>
-        <span>Seguridad</span>
-      </a>
-    </aside>
+    <div class="content-body">
 
-    <!-- Contenido de Ajustes -->
-    <div class="settings-content">
+      <div class="ajustes-container">
 
-      <!-- TAB: PERFIL -->
-      <div *ngIf="activeTab === 'perfil'" class="settings-tab-content">
-        <mat-card class="settings-card">
-          <mat-card-header>
-            <mat-card-title>Información del Perfil</mat-card-title>
-            <mat-card-subtitle>Actualiza tu información personal</mat-card-subtitle>
-          </mat-card-header>
+        <div class="page-title-header">
+          <div class="page-title-text">
+            <h2>Configuración</h2>
+            <p>Administra tu cuenta y preferencias</p>
+          </div>
+        </div>
 
-          <mat-card-content>
-            <!-- Sección de Avatar -->
-            <div class="avatar-section">
-              <!-- Usamos una imagen de placeholder o la del usuario -->
-              <img src="https://placehold.co/80x80" alt="Avatar" class="profile-avatar">
-              <div class="avatar-info">
-                <strong>{{ userForm.get('nombre')?.value }} {{ userForm.get('apellido')?.value }}</strong>
-                <span>Paciente</span>
-                <button mat-stroked-button class="btn-change-photo">Cambiar foto</button>
-              </div>
+        <div class="settings-layout">
+
+          <aside class="settings-nav">
+            <a class="settings-nav-link"
+               [class.active]="activeTab === 'perfil'"
+               (click)="setActiveTab('perfil')">
+              <mat-icon>person</mat-icon>
+              <span>Perfil</span>
+            </a>
+            <a class="settings-nav-link"
+               [class.active]="activeTab === 'seguridad'"
+               (click)="setActiveTab('seguridad')">
+              <mat-icon>lock</mat-icon>
+              <span>Seguridad</span>
+            </a>
+          </aside>
+
+          <div class="settings-content">
+
+            <div *ngIf="activeTab === 'perfil'" class="settings-tab-content">
+              <mat-card class="settings-card">
+                <mat-card-header>
+                  <mat-card-title>Información del Perfil</mat-card-title>
+                  <mat-card-subtitle>Actualiza tu información personal</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                  <div class="avatar-section">
+                    <img [src]="profileImage" alt="Avatar" class="profile-avatar">
+
+                    <div class="avatar-info">
+                      <strong>{{ userForm.get('nombre')?.value }} {{ userForm.get('apellido')?.value }}</strong>
+                      <span>Paciente</span>
+
+                      <button mat-stroked-button class="btn-change-photo" type="button" (click)="fileInput.click()">
+                        Cambiar foto
+                      </button>
+
+                      <input
+                        #fileInput
+                        type="file"
+                        (change)="onFileSelected($event)"
+                        accept="image/*"
+                        style="display: none;">
+                    </div>
+                  </div>
+
+                  <mat-divider></mat-divider>
+
+                  <form [formGroup]="userForm" (ngSubmit)="onSaveProfile()" class="profile-form">
+                    <div class="form-row">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <mat-icon matPrefix>person</mat-icon>
+                        <input matInput formControlName="nombre">
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>Apellido</mat-label>
+                        <mat-icon matPrefix>person</mat-icon>
+                        <input matInput formControlName="apellido">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="form-row">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <mat-icon matPrefix>email</mat-icon>
+                        <input matInput formControlName="email" type="email">
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>Teléfono</mat-label>
+                        <mat-icon matPrefix>phone</mat-icon>
+                        <input matInput formControlName="telefono" type="tel">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="form-footer">
+                      <button mat-flat-button color="primary" type="submit" [disabled]="userForm.invalid || userForm.pristine">
+                        <mat-icon>check</mat-icon> Guardar Cambios
+                      </button>
+                    </div>
+                  </form>
+                </mat-card-content>
+              </mat-card>
             </div>
 
-            <mat-divider></mat-divider>
+            <div *ngIf="activeTab === 'seguridad'" class="settings-tab-content">
 
-            <!-- Formulario de Perfil -->
-            <form [formGroup]="userForm" (ngSubmit)="onSaveProfile()" class="profile-form">
-              <div class="form-row">
-                <mat-form-field appearance="outline">
-                  <mat-label>Nombre</mat-label>
-                  <mat-icon matPrefix>person</mat-icon>
-                  <input matInput formControlName="nombre">
-                </mat-form-field>
+              <mat-card class="settings-card mb-4">
+                <mat-card-header>
+                  <div mat-card-avatar class="icon-circle blue-light">
+                    <mat-icon>key</mat-icon>
+                  </div>
+                  <mat-card-title>Cambiar Contraseña</mat-card-title>
+                  <mat-card-subtitle>Actualiza tu contraseña regularmente para mayor seguridad</mat-card-subtitle>
+                </mat-card-header>
 
-                <mat-form-field appearance="outline">
-                  <mat-label>Apellido</mat-label>
-                  <mat-icon matPrefix>person</mat-icon>
-                  <input matInput formControlName="apellido">
-                </mat-form-field>
-              </div>
+                <mat-card-content>
+                  <form [formGroup]="securityForm" (ngSubmit)="onSaveSecurity()" class="security-form">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Contraseña actual</mat-label>
+                      <input matInput [type]="hideCurrentPass ? 'password' : 'text'" formControlName="currentPassword">
+                      <button mat-icon-button matSuffix (click)="hideCurrentPass = !hideCurrentPass" type="button">
+                        <mat-icon>{{hideCurrentPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    </mat-form-field>
 
-              <div class="form-row">
-                <mat-form-field appearance="outline">
-                  <mat-label>Email</mat-label>
-                  <mat-icon matPrefix>email</mat-icon>
-                  <input matInput formControlName="email" type="email">
-                </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nueva contraseña</mat-label>
+                      <input matInput [type]="hideNewPass ? 'password' : 'text'" formControlName="newPassword">
+                      <button mat-icon-button matSuffix (click)="hideNewPass = !hideNewPass" type="button">
+                        <mat-icon>{{hideNewPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                  <mat-label>Teléfono</mat-label>
-                  <mat-icon matPrefix>phone</mat-icon>
-                  <input matInput formControlName="telefono" type="tel">
-                </mat-form-field>
-              </div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Confirmar nueva contraseña</mat-label>
+                      <input matInput [type]="hideConfirmPass ? 'password' : 'text'" formControlName="confirmPassword">
+                      <button mat-icon-button matSuffix (click)="hideConfirmPass = !hideConfirmPass" type="button">
+                        <mat-icon>{{hideConfirmPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    </mat-form-field>
 
-              <div class="form-footer">
-                <button mat-flat-button color="primary" type="submit" [disabled]="userForm.invalid || userForm.pristine">
-                  <mat-icon>check</mat-icon> Guardar Cambios
-                </button>
-              </div>
-            </form>
-          </mat-card-content>
-        </mat-card>
-      </div>
+                    <div class="form-footer">
+                      <button mat-stroked-button color="primary" type="submit" [disabled]="securityForm.invalid">
+                        Actualizar Contraseña
+                      </button>
+                    </div>
+                  </form>
+                </mat-card-content>
+              </mat-card>
 
-      <!-- TAB: SEGURIDAD -->
-      <div *ngIf="activeTab === 'seguridad'" class="settings-tab-content">
-
-        <!-- Tarjeta de Cambio de Contraseña -->
-        <mat-card class="settings-card mb-4">
-          <mat-card-header>
-            <div mat-card-avatar class="icon-circle blue-light">
-              <mat-icon>key</mat-icon>
-            </div>
-            <mat-card-title>Cambiar Contraseña</mat-card-title>
-            <mat-card-subtitle>Actualiza tu contraseña regularmente para mayor seguridad</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <form [formGroup]="securityForm" (ngSubmit)="onSaveSecurity()" class="security-form">
-              <mat-form-field appearance="outline">
-                <mat-label>Contraseña actual</mat-label>
-                <input matInput [type]="hideCurrentPass ? 'password' : 'text'" formControlName="currentPassword">
-                <button mat-icon-button matSuffix (click)="hideCurrentPass = !hideCurrentPass" type="button">
-                  <mat-icon>{{hideCurrentPass ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Nueva contraseña</mat-label>
-                <input matInput [type]="hideNewPass ? 'password' : 'text'" formControlName="newPassword">
-                <button mat-icon-button matSuffix (click)="hideNewPass = !hideNewPass" type="button">
-                  <mat-icon>{{hideNewPass ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Confirmar nueva contraseña</mat-label>
-                <input matInput [type]="hideConfirmPass ? 'password' : 'text'" formControlName="confirmPassword">
-                <button mat-icon-button matSuffix (click)="hideConfirmPass = !hideConfirmPass" type="button">
-                  <mat-icon>{{hideConfirmPass ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-              </mat-form-field>
-
-              <div class="form-footer">
-                <button mat-stroked-button color="primary" type="submit" [disabled]="securityForm.invalid">
-                  Actualizar Contraseña
-                </button>
-              </div>
-            </form>
-          </mat-card-content>
-        </mat-card>
-
-        <!-- Tarjeta de 2FA -->
-        <mat-card class="settings-card mb-4 two-factor-card">
-          <div class="card-row">
-            <div class="card-info">
-              <h4>
-                <div class="icon-circle green-light inline-icon">
-                  <mat-icon>shield</mat-icon>
+              <mat-card class="settings-card mb-4 two-factor-card">
+                <div class="card-row">
+                  <div class="card-info">
+                    <h4>
+                      <div class="icon-circle green-light inline-icon">
+                        <mat-icon>shield</mat-icon>
+                      </div>
+                      Autenticación de Dos Factores
+                    </h4>
+                    <p>Agrega una capa extra de seguridad a tu cuenta <span class="badge-active">Activado</span></p>
+                  </div>
+                  <button mat-stroked-button>Configurar</button>
                 </div>
-                Autenticación de Dos Factores
-              </h4>
-              <p>Agrega una capa extra de seguridad a tu cuenta <span class="badge-active">Activado</span></p>
+              </mat-card>
+
+              <mat-card class="settings-card sessions-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="icon-circle orange-light">
+                    <mat-icon>devices</mat-icon>
+                  </div>
+                  <mat-card-title>Sesiones Activas</mat-card-title>
+                  <mat-card-subtitle>Dispositivos donde tu cuenta está actualmente conectada</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                  <mat-list>
+                    <mat-list-item>
+                      <mat-icon matListItemIcon class="session-icon">laptop_windows</mat-icon>
+                      <div matListItemTitle>Chrome en Windows</div>
+                      <div matListItemLine>Lima, Perú • Ahora <span class="session-status">Actual</span></div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item>
+                      <mat-icon matListItemIcon class="session-icon">phone_iphone</mat-icon>
+                      <div matListItemTitle>Safari en iPhone</div>
+                      <div matListItemLine>Lima, Perú • Hace 2 horas</div>
+                      <button mat-button color="warn" matListItemMeta>Cerrar</button>
+                    </mat-list-item>
+                  </mat-list>
+                </mat-card-content>
+              </mat-card>
             </div>
-            <button mat-stroked-button>Configurar</button>
+
           </div>
-        </mat-card>
-
-        <!-- Tarjeta de Sesiones Activas -->
-        <mat-card class="settings-card sessions-card">
-          <mat-card-header>
-            <div mat-card-avatar class="icon-circle orange-light">
-              <mat-icon>devices</mat-icon>
-            </div>
-            <mat-card-title>Sesiones Activas</mat-card-title>
-            <mat-card-subtitle>Dispositivos donde tu cuenta está actualmente conectada</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <mat-list>
-              <mat-list-item>
-                <mat-icon matListItemIcon class="session-icon">laptop_windows</mat-icon>
-                <div matListItemTitle>Chrome en Windows</div>
-                <div matListItemLine>Lima, Perú • Ahora <span class="session-status">Actual</span></div>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-              <mat-list-item>
-                <mat-icon matListItemIcon class="session-icon">phone_iphone</mat-icon>
-                <div matListItemTitle>Safari en iPhone</div>
-                <div matListItemLine>Lima, Perú • Hace 2 horas</div>
-                <button mat-button color="warn" matListItemMeta>Cerrar</button>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-
+        </div>
       </div>
-
     </div>
-  </div>
+  </main>
 </div>

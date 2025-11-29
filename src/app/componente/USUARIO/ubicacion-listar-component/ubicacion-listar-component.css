@@ -1,3 +1,185 @@
+/* --- Estilos Generales --- */
+.dashboard-container {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fd;
+}
+
+/* Sidenav */
+.sidenav-white-theme {
+  width: 260px;
+  background: white;
+  border-right: none;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+}
+.sidenav-header { padding: 24px; }
+.logo-area { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.logo-circle { width: 45px; height: 45px; background: #457b6d; color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.logo-text { display: flex; flex-direction: column; }
+.logo-title { font-weight: 700; font-size: 1.2rem; color: #457b6d; }
+.logo-subtitle { font-size: 0.75rem; color: #fb8c00; font-weight: 500; }
+.status-badge { font-size: 0.75rem; color: #888; display: flex; align-items: center; gap: 6px; }
+.online-dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; }
+
+/* Menu */
+.nav-item-white {
+  border-radius: 12px;
+  margin-bottom: 8px;
+  height: 48px;
+  color: #7e7e7e;
+}
+.nav-item-white:hover {
+  background-color: #f5f5f5;
+}
+.item-content-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.nav-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+.icon-bg-purple-light {
+  background: #f3e5f5;
+}
+.icon-purple {
+  color: #8e24aa;
+}
+.icon-bg-cyan-light {
+  background: #e0f7fa;
+}
+.icon-cyan {
+  color: #00acc1;
+}
+.icon-bg-blue-light {
+  background: #e3f2fd;
+}
+.icon-blue {
+    color: #1e88e5;
+  }
+.icon-bg-gray-light {
+  background: #eceff1;
+}
+.icon-gray {
+  color: #546e7a;
+}
+.icon-bg-red-light {
+  background: #ffebee;
+}
+.icon-red {
+  color: #e53935;
+}
+.nav-label {
+  flex: 1;
+}
+.logout-item-white {
+  color: #d32f2f;
+}
+
+
+/* Contenido Principal */
+.mapa-enfermedades-container {
+  padding: 0;
+}
+.map-header-card {
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+.header-content {
+  display: flex; gap: 15px;
+}
+.header-icon {
+  color: #4CAF50;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+.header-text h2 {
+  margin: 0 0 5px 0;
+  font-size: 1.5rem;
+}
+.alert-box {
+  background: #fff3e0;
+  color: #ff9800;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center; gap: 8px; margin-top: 10px; font-size: 0.9rem; }
+
+/* Métricas */
+.metric-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 25px; }
+.metric-card { padding: 20px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; }
+.metric-info { display: flex; flex-direction: column; }
+.metric-title { font-size: 0.9rem; color: #666; }
+.metric-value { font-size: 1.8rem; font-weight: 700; color: #333; }
+.metric-icon-trend { color: #1e88e5; }
+.zones-alert .alert-icon { color: #e53935; }
+
+/* Filtros */
+.filter-section { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+.filter-button { border-radius: 20px; }
+.filter-button.active { background-color: #4CAF50; color: white; }
+
+/* --- MAPA (ESTILOS CRÍTICOS) --- */
+.mapa-calor-card {
+  padding: 0 !important; /* Quitar padding para que el mapa llene la tarjeta */
+  border-radius: 16px !important;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.map-title-row {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.map-title-row h3 { margin: 0; font-size: 1.1rem; color: #333; }
+
+.live-indicator {
+  background: #ffebee; color: #d32f2f; padding: 4px 10px;
+  border-radius: 12px; font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* El contenedor del mapa DEBE tener altura */
+.map-container {
+  height: 450px;
+  width: 100%;
+  background-color: #e0e0e0; /* Color de fondo mientras carga */
+  z-index: 1; /* Asegura que el mapa esté visible */
+}
+
+/* Detalle por Zona */
+.detalle-zona-section h2 { margin-bottom: 20px; color: #333; }
+.alerts-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.alert-zone-card { padding: 16px; border-radius: 12px; border: 1px solid #eee; }
+.card-red { border-left: 4px solid #e53935; }
+.card-orange { border-left: 4px solid #ff9800; }
+.card-green { border-left: 4px solid #4caf50; }
+
+.zone-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.zone-name { font-weight: 700; }
+.zone-status { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; color: white; }
+.status-red { background: #e53935; } .status-icon-red { color: #e53935; }
+.status-orange { background: #ff9800; } .status-icon-orange { color: #ff9800; }
+.status-green { background: #4caf50; } .status-icon-green { color: #4caf50; }
+
+.zone-details { display: grid; grid-template-columns: auto 1fr; gap: 8px 12px; font-size: 0.9rem; }
+.disease { grid-column: 1 / -1; font-weight: 600; color: #555; margin-bottom: 4px; }
+.detail-label { color: #888; }
+.detail-value, .detail-date { text-align: right; font-weight: 500; }
 /* --- Variables Generales y Reset --- */
 :root {
   --primary-color: #457b6d; /* El verde del banner */
@@ -105,11 +287,6 @@ body {
   background-color: #f5f5f5;
 }
 
-.nav-item-white.active {
-  background-color: #f0f2f5;
-  color: #333;
-  font-weight: 600;
-}
 
 .item-content-wrapper {
   display: flex;
@@ -164,7 +341,11 @@ body {
 .sidenav-footer-white {
   position: absolute;
   bottom: 20px;
+
   width: 100%;
+  max-width: 260px;
+  left: 0;
+
   padding: 0 16px;
   box-sizing: border-box;
 }

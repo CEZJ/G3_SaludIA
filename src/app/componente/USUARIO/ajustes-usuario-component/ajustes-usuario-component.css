@@ -1,7 +1,7 @@
 /* --- Variables Generales y Reset --- */
 :root {
-  --primary-color: #457b6d; /* El verde del banner */
-  --bg-color: #f8f9fd;      /* Fondo gris muy claro */
+  --primary-color: #457b6d;
+  --bg-color: #f8f9fd;
   --text-primary: #333333;
   --text-secondary: #7e7e7e;
   --card-radius: 16px;
@@ -15,10 +15,13 @@ body {
   background-color: var(--bg-color);
 }
 
-/* --- Layout Principal --- */
+/* --- Layout Principal (ACTUALIZADO) --- */
 .dashboard-container {
   height: 100vh;
   background-color: var(--bg-color);
+  /* Nuevas reglas del estilo en linea */
+  display: flex;
+  overflow: hidden;
 }
 
 /* --- Sidenav (Barra Lateral) --- */
@@ -53,7 +56,7 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
   border: 2px solid #356055;
-  object-fit: contain; /* Para asegurar que la imagen del logo se vea bien */
+  object-fit: contain;
 }
 
 .logo-text {
@@ -133,19 +136,15 @@ body {
   height: 20px;
 }
 
-/* Colores de iconos del menú */
+/* Colores de iconos */
 .icon-bg-purple-light { background-color: #f3e5f5; }
 .icon-purple { color: #8e24aa; }
-
 .icon-bg-cyan-light { background-color: #e0f7fa; }
 .icon-cyan { color: #00acc1; }
-
 .icon-bg-blue-light { background-color: #e3f2fd; }
 .icon-blue { color: #1e88e5; }
-
 .icon-bg-gray-light { background-color: #eceff1; }
 .icon-gray { color: #546e7a; }
-
 .icon-bg-red-light { background-color: #ffebee; }
 .icon-red { color: #e53935; }
 
@@ -164,7 +163,11 @@ body {
 .sidenav-footer-white {
   position: absolute;
   bottom: 20px;
+
   width: 100%;
+  max-width: 260px;
+  left: 0;
+
   padding: 0 16px;
   box-sizing: border-box;
 }
@@ -174,96 +177,26 @@ body {
   color: #d32f2f;
 }
 
-/* --- Contenido Principal --- */
+/* --- Contenido Principal (ACTUALIZADO) --- */
 .main-content {
   background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
+  /* Nuevas reglas para layout flexible */
+  flex: 1;
+  overflow-y: auto;
 }
 
-/* Toolbar Superior */
-.top-toolbar {
-  background: transparent;
-  box-shadow: none;
-  padding: 10px 32px;
-  height: 80px;
-}
-
-.spacer {
-  flex: 1 1 auto;
-}
-
-.top-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.action-btn {
-  background: white;
-  border-radius: 50%;
-  color: var(--text-secondary);
-  box-shadow: var(--shadow-sm);
-}
-
-.notification-btn {
-  position: relative;
-}
-
-.badge {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: #f44336;
-  color: white;
-  font-size: 10px;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.user-profile {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-left: 15px;
-  background: white;
-  padding: 6px 16px;
-  border-radius: 30px;
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-}
-
-.text-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  line-height: 1.2;
-}
-
-.user-name { font-weight: 600; font-size: 0.9rem; }
-.user-role { font-size: 0.75rem; color: #888; }
-
-.user-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* --- Cuerpo del Contenido --- */
+/* --- Cuerpo del Contenido (ACTUALIZADO - CENTRADO) --- */
 .content-body {
-  padding: 0 32px 40px 32px;
+  padding: 32px; /* Unificado */
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* --- Variables y Configuración --- */
+/* --- Variables y Configuración de Ajustes --- */
 :host {
   --color-primary: #4A9D91;
   --color-text-main: #222;
@@ -272,7 +205,6 @@ body {
   --color-bg-light: #f7f9fb;
   --color-white: #ffffff;
 
-  /* Colores de iconos */
   --color-blue-light: #e7f3ff;
   --color-blue-text: #3498db;
   --color-green-light: #f0fdf4;
@@ -284,10 +216,12 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* --- Ajustes Container (ACTUALIZADO) --- */
 .ajustes-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
+  /* Modificado para adaptarse a .content-body */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* --- Header --- */
@@ -309,7 +243,7 @@ body {
 /* --- Layout Grid --- */
 .settings-layout {
   display: grid;
-  grid-template-columns: 250px 1fr; /* Sidebar fijo, contenido flexible */
+  grid-template-columns: 250px 1fr;
   gap: 32px;
   align-items: flex-start;
 }
@@ -319,7 +253,6 @@ body {
   background-color: var(--color-white);
   border-radius: 12px;
   padding: 12px;
-  /* box-shadow: 0 4px 12px rgba(0,0,0,0.05); <-- Material Card ya tiene sombra, pero si quieres más */
   border: 1px solid var(--color-border-light);
   position: sticky;
   top: 24px;
@@ -345,7 +278,7 @@ body {
 }
 
 .settings-nav-link.active {
-  background-color: #f0fdf9; /* Verde muy claro */
+  background-color: #f0fdf9;
   color: var(--color-primary);
   font-weight: 600;
 }
@@ -428,12 +361,11 @@ mat-card-subtitle {
   gap: 20px;
 }
 
-/* Ajuste de Material Form Field para que se vea limpio */
 mat-form-field {
   width: 100%;
 }
 :host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
-  display: none; /* Oculta el espacio de error si no hay error */
+  display: none;
 }
 
 .form-footer {
@@ -441,7 +373,6 @@ mat-form-field {
   justify-content: flex-end;
   margin-top: 16px;
   padding-top: 16px;
-  /* border-top: 1px solid var(--color-border-light); */
 }
 
 .security-form {
@@ -532,23 +463,20 @@ mat-form-field {
 /* --- Responsividad --- */
 @media (max-width: 768px) {
   .settings-layout {
-    grid-template-columns: 1fr; /* Columna única en móviles */
+    grid-template-columns: 1fr;
   }
-
   .settings-nav {
-    flex-direction: row; /* Navegación horizontal en móviles */
+    flex-direction: row;
     overflow-x: auto;
-    position: static; /* Ya no sticky */
+    position: static;
     margin-bottom: 20px;
   }
-
   .settings-nav-link {
     flex-shrink: 0;
     margin-bottom: 0;
     margin-right: 8px;
   }
-
   .form-row {
-    grid-template-columns: 1fr; /* Inputs uno debajo del otro */
+    grid-template-columns: 1fr;
   }
 }

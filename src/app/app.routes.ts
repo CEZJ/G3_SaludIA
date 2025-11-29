@@ -21,6 +21,7 @@ import {AjustesUsuarioComponent} from './componente/USUARIO/ajustes-usuario-comp
 import { DiagnosticoUsuarioComponent } from './componente/USUARIO/diagnostico-usuario-component/diagnostico-usuario-component';
 import { AdminGestionarUsuariosComponent } from './componente/ADMINISTRADOR/admin-gestionar-usuarios-component/admin-gestionar-usuarios-component';
 import { AdminGestionarEnfermedadesComponent } from './componente/ADMINISTRADOR/admin-gestionar-enfermedades-component/admin-gestionar-enfermedades-component';
+import {VideosUsuario} from './componente/USUARIO/videos-usuario/videos-usuario';
 
 export const routes: Routes = [
 
@@ -73,6 +74,13 @@ export const routes: Routes = [
     component: UbicacionListarComponent,
     canActivate: [AuthGuard]
   },
+
+  {
+    path:'videos-usuario',
+    component: VideosUsuario,
+    canActivate: [AuthGuard]
+  },
+
 
 
   /*---ADMINISTRADOR (PROTEGIDAS) ----*/

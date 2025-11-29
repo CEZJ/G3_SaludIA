@@ -53,6 +53,15 @@
             <mat-icon class="chevron">chevron_right</mat-icon>
           </div>
         </a>
+        <a mat-list-item class="nav-item-white" routerLink="/videos-usuario">
+          <div class="item-content-wrapper">
+            <div class="nav-icon-wrapper icon-bg-blue-light">
+              <mat-icon class="icon-blue">movie</mat-icon>
+            </div>
+            <span class="nav-label">Videos</span>
+            <mat-icon class="chevron">chevron_right</mat-icon>
+          </div>
+        </a>
         <a mat-list-item class="nav-item-white" routerLink="/ajustes-usuario">
           <div class="item-content-wrapper">
             <div class="nav-icon-wrapper icon-bg-gray-light">
@@ -67,12 +76,17 @@
 
     <div class="sidenav-footer-white">
       <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
+
         <div class="item-content-wrapper">
+
           <div class="nav-icon-wrapper icon-bg-red-light">
             <mat-icon class="icon-red rotate-icon">logout</mat-icon>
           </div>
+
           <span class="nav-label">Cerrar Sesión</span>
+
           <mat-icon class="chevron">chevron_right</mat-icon>
+
         </div>
       </a>
     </div>
@@ -93,6 +107,8 @@
             <p>Selecciona los síntomas que estás experimentando</p>
           </div>
         </div>
+
+
 
         <mat-card class="disclaimer-card">
           <div class="disclaimer-content">
