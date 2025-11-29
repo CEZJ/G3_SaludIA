@@ -1,3 +1,89 @@
+<mat-sidenav mode="side" opened class="sidenav-white-theme">
+
+  <div class="sidenav-header">
+    <div class="logo-area">
+      <img src="assets/img.png" alt="Logo Salud AI" class="logo-circle" style="object-fit: contain; background: transparent; border: none;">
+
+      <div class="logo-text">
+        <span class="logo-title">Salud AI</span>
+        <span class="logo-subtitle">Tu Salud Primero</span>
+      </div>
+    </div>
+
+    <div class="status-badge">
+      <span class="online-dot"></span><span>En línea | Panel de Usuario</span>
+    </div>
+  </div>
+
+  <div class="nav-menu-container">
+    <mat-nav-list class="nav-list-white">
+
+      <a mat-list-item class="nav-item-white active" routerLink="/inicio-usuario">
+        <div class="item-content-wrapper">
+          <div class="nav-icon-wrapper icon-bg-purple-light">
+            <mat-icon class="icon-purple">home</mat-icon>
+          </div>
+          <span class="nav-label">Inicio</span>
+          <mat-icon class="chevron">chevron_right</mat-icon>
+        </div>
+      </a>
+
+      <a mat-list-item class="nav-item-white" routerLink="/diagnostico">
+        <div class="item-content-wrapper">
+          <div class="nav-icon-wrapper icon-bg-cyan-light">
+            <mat-icon class="icon-cyan">medical_services</mat-icon>
+          </div>
+          <span class="nav-label">Diagnóstico</span>
+          <mat-icon class="chevron">chevron_right</mat-icon>
+        </div>
+      </a>
+
+      <a mat-list-item class="nav-item-white" routerLink="/historial">
+        <div class="item-content-wrapper">
+          <div class="nav-icon-wrapper icon-bg-blue-light">
+            <mat-icon class="icon-blue">description</mat-icon>
+          </div>
+          <span class="nav-label">Historial</span>
+          <mat-icon class="chevron">chevron_right</mat-icon>
+        </div>
+      </a>
+
+      <a mat-list-item class="nav-item-white" routerLink="/ubicacion-usuario">
+        <div class="item-content-wrapper">
+          <div class="nav-icon-wrapper icon-bg-purple-light">
+            <mat-icon class="icon-purple">map</mat-icon>
+          </div>
+          <span class="nav-label">Mapas</span>
+          <mat-icon class="chevron">chevron_right</mat-icon>
+        </div>
+      </a>
+
+      <a mat-list-item class="nav-item-white" routerLink="/ajustes-usuario">
+        <div class="item-content-wrapper">
+          <div class="nav-icon-wrapper icon-bg-gray-light">
+            <mat-icon class="icon-gray">settings</mat-icon>
+          </div>
+          <span class="nav-label">Ajustes</span>
+          <mat-icon class="chevron">chevron_right</mat-icon>
+        </div>
+      </a>
+
+    </mat-nav-list>
+  </div>
+
+  <div class="sidenav-footer-white">
+    <a mat-list-item class="nav-item-white logout-item-white" (click)="logout()">
+      <div class="item-content-wrapper">
+        <div class="nav-icon-wrapper icon-bg-red-light">
+          <mat-icon class="icon-red rotate-icon">logout</mat-icon>
+        </div>
+        <span class="nav-label">Cerrar Sesión</span>
+        <mat-icon class="chevron">chevron_right</mat-icon>
+      </div>
+    </a>
+  </div>
+
+</mat-sidenav>
 <div class="historial-container">
 
   <!-- Encabezado de la Página -->

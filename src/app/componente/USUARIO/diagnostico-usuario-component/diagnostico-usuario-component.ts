@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
+import {Router, RouterLink} from '@angular/router';
+import {MatListItem, MatNavList} from '@angular/material/list';
+import {MatSidenav} from '@angular/material/sidenav';
 
 // Interfaces
 export interface Symptom {
@@ -28,7 +31,11 @@ export interface SymptomCategory {
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListItem,
+    MatNavList,
+    MatSidenav,
+    RouterLink
   ],
   templateUrl: './diagnostico-usuario-component.html', // Nombre de archivo actualizado
   styleUrls: ['./diagnostico-usuario-component.css']   // Nombre de archivo actualizado
@@ -120,5 +127,20 @@ export class DiagnosticoUsuarioComponent { // Nombre de clase actualizado
         symptoms: cat.symptoms.map(s => ({ ...s, selected: false }))
       }))
     );
+  }
+
+  // Inyectamos el Router para la función de logout
+  constructor(private router: Router) {}
+
+  /**
+   * Función de ejemplo para cerrar sesión.
+   * Limpia el almacenamiento local y redirige al login.
+   */
+  logout(): void {
+    // Lógica de logout (ej. limpiar token)
+    localStorage.removeItem('jwt_token');
+
+    // Redirigir a la página de login
+    this.router.navigate(['/login']);
   }
 }

@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import {MatSidenav} from '@angular/material/sidenav';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-ajustes-usuario',
@@ -23,7 +25,9 @@ import { MatListModule } from '@angular/material/list';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatSidenav,
+    RouterLink
   ],
   templateUrl: './ajustes-usuario-component.html',
   styleUrls: ['./ajustes-usuario-component.css']
@@ -40,7 +44,7 @@ export class AjustesUsuarioComponent {
   hideNewPass = true;
   hideConfirmPass = true;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     // Inicializar formulario de perfil con datos ficticios
     this.userForm = this.fb.group({
       nombre: ['Cristina', Validators.required],
@@ -75,4 +79,18 @@ export class AjustesUsuarioComponent {
       this.securityForm.reset();
     }
   }
+  // Inyectamos el Router para la función de logout
+
+  /**
+   * Función de ejemplo para cerrar sesión.
+   * Limpia el almacenamiento local y redirige al login.
+   */
+  logout(): void {
+    // Lógica de logout (ej. limpiar token)
+    localStorage.removeItem('jwt_token');
+
+    // Redirigir a la página de login
+    this.router.navigate(['/login']);
+  }
+
 }

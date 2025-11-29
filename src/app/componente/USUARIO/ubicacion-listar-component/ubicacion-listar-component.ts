@@ -14,14 +14,16 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {DatePipe} from '@angular/common';
 import {Ubicacion} from '../../../model/ubicacion';
 import {UbicacionService} from '../../../services/ubicacion-service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 // IMPORTS CORREGIDOS: Debes importar el MÓDULO, no la directiva individual.
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Agregado para DatePipe si lo usaras
 import { MatInputModule } from '@angular/material/input'; // Útil si añades filtros/inputs
-import { MatButtonModule } from '@angular/material/button'; // Útil si añades botones
+import { MatButtonModule } from '@angular/material/button';
+import {MatListItem, MatNavList} from '@angular/material/list';
+import {MatSidenav} from '@angular/material/sidenav'; // Útil si añades botones
 
 @Component({
   selector: 'app-ubicacion-listar-component',
@@ -38,6 +40,10 @@ import { MatButtonModule } from '@angular/material/button'; // Útil si añades 
 
     // Módulo de Angular
     CommonModule,
+    MatListItem,
+    MatNavList,
+    MatSidenav,
+    RouterLink,
     // Si usas DatePipe, descomentar la línea de abajo y comentar la de arriba
     // DatePipe, // <- Si lo usas como pipe en el template, debe ir aquí o en CommonModule
 
@@ -50,5 +56,18 @@ import { MatButtonModule } from '@angular/material/button'; // Útil si añades 
   styleUrl: './ubicacion-listar-component.css',
 })
 export class UbicacionListarComponent {
+  // Inyectamos el Router para la función de logout
+  constructor(private router: Router) {}
 
+  /**
+   * Función de ejemplo para cerrar sesión.
+   * Limpia el almacenamiento local y redirige al login.
+   */
+  logout(): void {
+    // Lógica de logout (ej. limpiar token)
+    localStorage.removeItem('jwt_token');
+
+    // Redirigir a la página de login
+    this.router.navigate(['/login']);
+  }
 }

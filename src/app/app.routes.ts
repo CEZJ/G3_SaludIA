@@ -8,7 +8,7 @@ import {UsuarioListarComponent} from './componente/ADMINISTRADOR/usuario-listar-
 import {RegisterComponent} from './componente/HOME/register-component/register-component';
 import {InicioComponent} from './componente/HOME/inicio-component/inicio-component';
 import {SintomaNuevoEditComponente} from './componente/USUARIO/sintoma-nuevo-edit-componente/sintoma-nuevo-edit-componente';
-import {UbicacionListarComponent} from './componente/ADMINISTRADOR/ubicacion-listar-component/ubicacion-listar-component';
+import {UbicacionListarComponent} from './componente/USUARIO/ubicacion-listar-component/ubicacion-listar-component';
 import {SintomaListarComponente} from './componente/USUARIO/sintoma-listar-componente/sintoma-listar-componente';
 import {LoginComponent} from './componente/HOME/login-component/login-component';
 import {InicioUsuarioComponent} from './componente/USUARIO/inicio-usuario-component/inicio-usuario-component';
